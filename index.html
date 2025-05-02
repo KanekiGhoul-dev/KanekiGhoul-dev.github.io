@@ -10,9 +10,9 @@
       margin: 0;
       padding: 0;
       font-family: 'Orbitron', sans-serif;
-      background: url('https://images.unsplash.com/photo-1477201389073-1863f668fac4?auto=format&fit=crop&w=1500&q=80') no-repeat center center fixed;
+      background: url('https://cdn.pixabay.com/photo/2017/07/05/10/33/space-2478576_1280.jpg') no-repeat center center fixed;
       background-size: cover;
-      color: #00ffcc;
+      color: #00bfff; /* blu acceso */
       overflow-x: hidden;
     }
 
@@ -29,7 +29,7 @@
 
     header p {
       font-size: 1.2rem;
-      color: #ccc;
+      color: #b0dfff;
     }
 
     .section {
@@ -38,7 +38,7 @@
       background: rgba(0, 0, 0, 0.6);
       margin: 2rem;
       border-radius: 15px;
-      box-shadow: 0 0 15px #00ffcc;
+      box-shadow: 0 0 15px #00bfff;
     }
 
     .section h2 {
@@ -57,46 +57,55 @@
     .icon:hover {
       transform: scale(1.2) rotate(5deg);
       color: #ffffff;
-      text-shadow: 0 0 15px #00ffcc;
+      text-shadow: 0 0 15px #00bfff;
     }
 
     .eyes {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      width: 60px;
-      height: 30px;
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      gap: 15px;
     }
 
     .eye {
-      width: 25px;
-      height: 25px;
-      margin: 2px;
+      width: 30px;
+      height: 30px;
       border-radius: 50%;
       background: #000;
-      border: 2px solid #00ffcc;
-      display: inline-block;
-      position: relative;
+      border: 2px solid #00bfff;
       overflow: hidden;
+      position: relative;
     }
 
     .pupil {
-      width: 10px;
-      height: 10px;
-      background: #00ffcc;
+      width: 12px;
+      height: 12px;
+      background: #00bfff;
       border-radius: 50%;
       position: absolute;
-      top: 7px;
-      left: 7px;
+      top: 9px;
+      left: 9px;
       transition: all 0.1s ease;
     }
 
     footer {
       text-align: center;
       padding: 1rem;
-      color: #999;
+      color: #ccc;
       background: rgba(0, 0, 0, 0.8);
       margin-top: 4rem;
+    }
+
+    a {
+      color: #00bfff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-shadow: 0 0 10px #00bfff;
     }
   </style>
 </head>
@@ -127,7 +136,7 @@
   <div class="section">
     <h2>Contatti</h2>
     <p>Email: kanekighoul.dev@galaxy.net</p>
-    <p>GitHub: <a href="https://github.com/KanekiGhoul-dev" target="_blank" style="color:#00ffcc;">KanekiGhoul-dev</a></p>
+    <p>GitHub: <a href="https://github.com/KanekiGhoul-dev" target="_blank">KanekiGhoul-dev</a></p>
   </div>
 
   <footer>
