@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio di Kaneki</title>
-  <link rel="stylesheet" href="stile.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="stile.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div id="background"></div>
+  <div id="stars"></div>
   <div class="occhi">
     <div class="occhio"><div class="pupilla"></div></div>
     <div class="occhio"><div class="pupilla"></div></div>
@@ -29,16 +29,17 @@
       <p>Design alieni unici per brand originali e visionari.</p>
     </div>
   </section>
-</body>
-<script>
-  const occhi = document.querySelectorAll('.occhio');
-  document.addEventListener('mousemove', (e) => {
-    occhi.forEach(occhio => {
-      const r = occhio.getBoundingClientRect();
-      const x = e.clientX - r.left - r.width / 2;
-      const y = e.clientY - r.top - r.height / 2;
-      occhio.querySelector('.pupilla').style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
+
+  <script>
+    const occhi = document.querySelectorAll('.occhio');
+    document.addEventListener('mousemove', (e) => {
+      occhi.forEach(occhio => {
+        const r = occhio.getBoundingClientRect();
+        const x = e.clientX - r.left - r.width / 2;
+        const y = e.clientY - r.top - r.height / 2;
+        occhio.querySelector('.pupilla').style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
+      });
     });
-  });
-</script>
+  </script>
+</body>
 </html>
