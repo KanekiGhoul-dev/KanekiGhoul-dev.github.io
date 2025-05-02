@@ -3,11 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Il mio Portfolio</title>
+  <title>Portfolio - Elia Giordano</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  
+  <!-- tsParticles library -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@1.37.0/tsparticles.min.js"></script>
 </head>
 <body>
+
+  <!-- Background particles -->
+  <div id="particles-js"></div>
 
   <nav>
     <ul>
@@ -55,6 +61,67 @@
   <footer>
     <p>Contattami: eliagiordano@email.com</p>
   </footer>
+
+  <!-- tsParticles Script to generate space-like particles -->
+  <script>
+    tsParticles.load("particles-js", {
+      particles: {
+        number: {
+          value: 100,
+          density: {
+            enable: true,
+            value_area: 800
+          }
+        },
+        shape: {
+          type: "circle",
+        },
+        color: {
+          value: "#fff"
+        },
+        opacity: {
+          value: 0.5,
+          random: true,
+          anim: {
+            enable: true,
+            speed: 1,
+            opacity_min: 0.1
+          }
+        },
+        size: {
+          value: 2,
+          random: true,
+          anim: {
+            enable: true,
+            speed: 1,
+            size_min: 0.1
+          }
+        },
+        move: {
+          enable: true,
+          speed: 1,
+          direction: "none",
+          random: true,
+          straight: false,
+          out_mode: "out",
+          bounce: false
+        }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: {
+            enable: true,
+            mode: "repulse"
+          },
+          onclick: {
+            enable: true,
+            mode: "push"
+          }
+        }
+      }
+    });
+  </script>
 
 </body>
 </html>
