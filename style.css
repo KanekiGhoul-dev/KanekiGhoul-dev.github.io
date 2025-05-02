@@ -1,74 +1,224 @@
-/* Importazione font */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+/* Impostazioni di base */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500&family=Poppins:wght@300;400;600&display=swap');
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #2c3e50, #4ca1af);
-    color: #fff;
-    text-align: center;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0 20px;
+  color: #fff;
+  background: linear-gradient(135deg, #3a3a3a, #222);
+  overflow-x: hidden;
 }
 
+/* Particles background */
+#particles-js {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: url('space.jpg') no-repeat center center fixed;
+  background-size: cover;
+  z-index: -1;
+}
+
+/* Menu di navigazione */
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  background-color: rgba(0,0,0,0.7);
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  margin: 20px 0;
+}
+
+nav li {
+  margin: 0 15px;
+}
+
+nav a {
+  font-family: 'Orbitron', sans-serif;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 15px;
+  transition: transform 0.3s, background 0.3s;
+}
+
+nav a:hover {
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-4px);
+}
+
+/* Header */
 header {
-    padding: 50px 0;
-    font-size: 2rem;
+  text-align: center;
+  background-color: rgba(0,0,0,0.7);
+  padding: 50px 20px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  margin-bottom: 30px;
 }
 
-h1 {
-    font-size: 3rem;
-    font-weight: 600;
+header h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.skills {
-    display: flex;
-    justify-content: center;
-    gap: 50px;
-    padding: 50px 0;
+header p {
+  margin-top: 10px;
+  font-size: 1.2rem;
 }
 
-.skill {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    padding: 30px;
-    width: 200px;
-    text-align: center;
-    transition: transform 0.3s ease-in-out, background-color 0.3s;
+/* Section headings icons */
+.icon-header, .icon-section {
+  color: #00FFAA;
+  transition: transform 0.3s;
 }
 
-.skill i {
-    font-size: 3rem;
-    color: #4ca1af;
-    margin-bottom: 20px;
-    transition: transform 0.3s ease-in-out;
+header h1 .icon-header:hover,
+h2 .icon-section:hover {
+  transform: rotate(20deg) scale(1.2);
 }
 
-.skill h2 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 10px;
+/* Sezione Progetti */
+#progetti {
+  margin-bottom: 40px;
 }
 
-.skill p {
-    font-size: 1rem;
-    color: #b0b0b0;
+#progetti h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-.skill:hover {
-    transform: scale(1.1);
-    background-color: rgba(255, 255, 255, 0.2);
+.progetto {
+  background: rgba(50,50,50,0.8);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  transition: transform 0.3s, background 0.3s;
 }
 
-.skill:hover i {
-    transform: rotate(360deg);
-    color: #f39c12;
+.progetto:hover {
+  background: rgba(70,70,70,0.9);
+  transform: translateY(-8px);
 }
 
+.progetto h3 {
+  font-family: 'Orbitron', sans-serif;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.progetto .icon {
+  color: #00CCFF;
+  font-size: 1.5rem;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.progetto:hover .icon {
+  transform: rotate(360deg) scale(1.3);
+  color: #FFAA00;
+}
+
+.progetto img {
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 15px;
+}
+
+/* Sezione Chi Sono */
+#chi-sono {
+  background: rgba(50,50,50,0.8);
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  margin-bottom: 40px;
+}
+
+#chi-sono h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+/* Sezione Contatti */
+#contatti {
+  background: rgba(50,50,50,0.8);
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  margin-bottom: 40px;
+}
+
+#contatti h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+form {
+  max-width: 400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input, textarea {
+  padding: 12px;
+  border-radius: 5px;
+  border: none;
+  font-size: 1rem;
+}
+
+button {
+  font-family: 'Orbitron', sans-serif;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  background: #00CCFF;
+  color: #222;
+  cursor: pointer;
+  transition: transform 0.3s, background 0.3s;
+}
+
+button:hover {
+  background: #FFAA00;
+  transform: translateY(-4px);
+}
+
+/* Footer */
 footer {
-    padding: 20px 0;
-    background: #333;
+  text-align: center;
+  padding: 15px;
+  background: rgba(0,0,0,0.7);
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  margin-bottom: 20px;
+}
+
+/* Responsività */
+@media (max-width: 600px) {
+  nav ul { flex-direction: column; }
+  .progetto, #chi-sono, #contatti { padding: 15px; }
 }
