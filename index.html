@@ -2,53 +2,32 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KanekiGhoul-dev Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="stile.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Occhi animati -->
-  <div class="eye" id="eye1"></div>
-  <div class="eye" id="eye2"></div>
-
-  <div class="container">
-    <h1>KanekiGhoul-dev</h1>
-    <h2>Visual Designer & 3D Artist</h2>
-
-    <div class="section">
-      <div class="icon">👽</div>
-      <h3>Chi sono</h3>
-      <p>Creativo digitale con passione per l'universo sci-fi, modellazione 3D e design d'impatto visivo.</p>
-    </div>
-
-    <div class="section">
-      <div class="icon">🛸</div>
-      <h3>Modellazione 3D</h3>
-      <p>Realizzo modelli per animazioni, giochi e progetti futuristici. Dallo sketch all’oggetto finale.</p>
-    </div>
-
-    <div class="section">
-      <div class="icon">🚀</div>
-      <h3>Logo Design</h3>
-      <p>Disegno loghi dinamici e tecnici con forte identità visiva. Per brand terrestri e non!</p>
-    </div>
+  <div class="eye">
+    <div class="pupil" id="pupil"></div>
   </div>
 
+  <h1>Ciao, sono KanekiGhoul</h1>
+  <h2>Modellazione 3D | Logo Design</h2>
+
+  <section>
+    <h2>Chi sono</h2>
+    <p>Appassionato di universi alieni, tecnologia e arte digitale.</p>
+  </section>
+
   <script>
-    // Effetto occhi che seguono il mouse
-    const eyes = [document.getElementById("eye1"), document.getElementById("eye2")];
-    document.addEventListener("mousemove", (e) => {
-      eyes.forEach((eye, index) => {
-        const rect = eye.getBoundingClientRect();
-        const eyeX = rect.left + rect.width / 2;
-        const eyeY = rect.top + rect.height / 2;
-        const deltaX = e.clientX - eyeX;
-        const deltaY = e.clientY - eyeY;
-        const angle = Math.atan2(deltaY, deltaX);
-        const pupil = eye.querySelector(".pupil");
-        eye.style.transform = `translate(${index === 0 ? '-100px' : '100px'}, -50%) rotate(${angle}rad)`;
-      });
+    const eye = document.querySelector('.eye');
+    const pupil = document.getElementById('pupil');
+
+    document.addEventListener('mousemove', (e) => {
+      const x = e.clientX / window.innerWidth * 40 - 20;
+      const y = e.clientY / window.innerHeight * 40 - 20;
+      pupil.style.transform = `translate(${x}px, ${y}px)`;
     });
   </script>
 </body>
