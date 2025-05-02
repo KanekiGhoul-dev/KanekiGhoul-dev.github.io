@@ -3,13 +3,12 @@ body, html {
   padding: 0;
   height: 100%;
   font-family: 'Orbitron', sans-serif;
+  color: #89CFF0;
   background: url('sfondoportfolio.jpg') no-repeat center center fixed;
   background-size: cover;
-  color: #a0c4ff;
   overflow-x: hidden;
 }
 
-/* Esempio: Stile del contenitore principale */
 .container {
   text-align: center;
   padding-top: 100px;
@@ -17,39 +16,67 @@ body, html {
   padding-right: 20px;
 }
 
-/* Titoli */
 h1 {
   font-size: 3em;
   margin-bottom: 0.2em;
   color: #80d0ff;
+  text-shadow: 0 0 10px #0ff;
 }
 
 h2 {
   font-size: 2em;
   margin-top: 0;
   color: #66ccff;
+  text-shadow: 0 0 8px #0ff;
 }
 
-/* Paragrafi */
 p {
   font-size: 1.2em;
   color: #cce7ff;
 }
 
-/* Sezioni */
 .section {
   margin-bottom: 80px;
-  background-color: rgba(0, 0, 0, 0.5); /* effetto trasparente */
+  background-color: rgba(0, 0, 0, 0.6);
   padding: 20px;
   border-radius: 15px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 0 20px #0ff;
 }
 
-/* Icone */
 .icon {
   font-size: 4em;
   margin-bottom: 10px;
   transition: transform 0.3s ease, color 0.3s ease;
+  color: #00ffff;
 }
 
 .icon:hover {
-  transform:
+  transform: scale(1.2);
+  color: #ffffff;
+}
+
+/* Occhi */
+.eye {
+  position: fixed;
+  top: 50%;
+  width: 60px;
+  height: 60px;
+  background: white;
+  border-radius: 50%;
+  border: 3px solid #0ff;
+  box-shadow: 0 0 15px #0ff;
+  z-index: 10;
+}
+
+#eye1 {
+  left: 50%;
+  transform: translate(-200px, -50%);
+}
+
+#eye2 {
+  left: 50%;
+  transform: translate(140px, -50%);
+}
