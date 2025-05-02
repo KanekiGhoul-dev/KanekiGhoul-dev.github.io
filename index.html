@@ -3,47 +3,146 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kaneki - Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <title>Portfolio di KanekiGhoul-dev</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: url('https://images.unsplash.com/photo-1477201389073-1863f668fac4?auto=format&fit=crop&w=1500&q=80') no-repeat center center fixed;
+      background-size: cover;
+      color: #00ffcc;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 3rem 1rem;
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: #ccc;
+    }
+
+    .section {
+      padding: 2rem;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.6);
+      margin: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 0 15px #00ffcc;
+    }
+
+    .section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .icon {
+      font-size: 4rem;
+      display: inline-block;
+      margin: 1rem;
+      transition: transform 0.3s ease, color 0.3s ease;
+      cursor: pointer;
+    }
+
+    .icon:hover {
+      transform: scale(1.2) rotate(5deg);
+      color: #ffffff;
+      text-shadow: 0 0 15px #00ffcc;
+    }
+
+    .eyes {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 60px;
+      height: 30px;
+    }
+
+    .eye {
+      width: 25px;
+      height: 25px;
+      margin: 2px;
+      border-radius: 50%;
+      background: #000;
+      border: 2px solid #00ffcc;
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pupil {
+      width: 10px;
+      height: 10px;
+      background: #00ffcc;
+      border-radius: 50%;
+      position: absolute;
+      top: 7px;
+      left: 7px;
+      transition: all 0.1s ease;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      color: #999;
+      background: rgba(0, 0, 0, 0.8);
+      margin-top: 4rem;
+    }
+  </style>
 </head>
 <body>
-  <div class="overlay"></div>
-  
+  <div class="eyes">
+    <div class="eye"><div class="pupil"></div></div>
+    <div class="eye"><div class="pupil"></div></div>
+  </div>
+
   <header>
     <h1>KanekiGhoul-dev</h1>
-    <p>3D Modeler • Logo Designer • Visual Explorer</p>
+    <p>Modellatore 3D • Visual Designer • Creativo dallo spazio</p>
   </header>
 
-  <section class="eyes-container">
-    <div class="eye"><div class="pupil"></div></div>
-    <div class="eye"><div class="pupil"></div></div>
-  </section>
+  <div class="section">
+    <h2>Chi Sono</h2>
+    <p>Appassionato di tecnologia, design e forme aliene. Creo esperienze visive uniche che spaziano dal design grafico alla modellazione 3D.</p>
+  </div>
 
-  <section class="skills">
-    <div class="card">
-      <h2>👽 Modello 3D</h2>
-      <p>Creo oggetti e ambienti 3D realistici e fantascientifici.</p>
-    </div>
-    <div class="card">
-      <h2>🪐 Logo Design</h2>
-      <p>Progetto identità visive uniche e memorabili.</p>
-    </div>
-  </section>
+  <div class="section">
+    <h2>Competenze</h2>
+    <span class="icon">👽</span>
+    <span class="icon">🛸</span>
+    <span class="icon">✨</span>
+    <p>Modellazione 3D, Logo Design, UI futuristica, Animazioni spaziali</p>
+  </div>
+
+  <div class="section">
+    <h2>Contatti</h2>
+    <p>Email: kanekighoul.dev@galaxy.net</p>
+    <p>GitHub: <a href="https://github.com/KanekiGhoul-dev" target="_blank" style="color:#00ffcc;">KanekiGhoul-dev</a></p>
+  </div>
 
   <footer>
-    <p>© 2025 KanekiGhoul-dev</p>
+    © 2025 KanekiGhoul-dev. Tutti i diritti riservati intergalatticamente.
   </footer>
 
   <script>
-    const pupils = document.querySelectorAll('.pupil');
+    const pupils = document.querySelectorAll(".pupil");
 
-    document.addEventListener('mousemove', (e) => {
-      pupils.forEach((pupil) => {
-        const rect = pupil.getBoundingClientRect();
+    document.addEventListener("mousemove", (e) => {
+      pupils.forEach(pupil => {
+        const rect = pupil.parentElement.getBoundingClientRect();
         const x = e.clientX - rect.left - rect.width / 2;
         const y = e.clientY - rect.top - rect.height / 2;
-        pupil.style.transform = `translate(${x / 20}px, ${y / 20}px)`;
+        pupil.style.transform = `translate(${x / 10}px, ${y / 10}px)`;
       });
     });
   </script>
