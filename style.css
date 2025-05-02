@@ -1,101 +1,89 @@
-body {
+body, html {
   margin: 0;
+  padding: 0;
   font-family: 'Orbitron', sans-serif;
-  color: white;
- background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
-
-  background-size: cover;
-  position: relative;
+  color: #a0c4ff;
+  height: 100%;
   overflow-x: hidden;
 }
 
-.overlay {
+#background {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(10, 10, 30, 0.8);
-  z-index: 0;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+  background-size: cover;
+  z-index: -2;
+  filter: brightness(0.3) saturate(1.2);
+}
+
+.occhi {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 50px;
+  z-index: 1;
+}
+
+.occhio {
+  width: 60px;
+  height: 60px;
+  background: #111;
+  border: 2px solid #0ff;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+}
+
+.pupilla {
+  width: 20px;
+  height: 20px;
+  background: #00f;
+  border-radius: 50%;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  transition: transform 0.1s;
 }
 
 header {
   text-align: center;
-  padding: 80px 20px 40px;
-  z-index: 1;
-  position: relative;
+  padding: 100px 20px 30px;
 }
 
 h1 {
-  font-size: 3rem;
-  color: #00ffea;
-  text-shadow: 0 0 10px #00fff7;
+  font-size: 3em;
+  color: #7ec8e3;
+  text-shadow: 0 0 10px #00f;
 }
 
 p {
-  font-size: 1.2rem;
-  color: #ccc;
+  font-size: 1.2em;
+  color: #a0c4ff;
 }
 
-.skills {
+.servizi {
   display: flex;
   justify-content: center;
-  gap: 2rem;
-  padding: 40px 20px;
+  gap: 40px;
+  padding: 30px 20px;
   flex-wrap: wrap;
-  z-index: 1;
-  position: relative;
 }
 
 .card {
-  background: rgba(0, 0, 0, 0.7);
-  padding: 20px;
-  border: 1px solid #00fff7;
-  border-radius: 12px;
+  background-color: rgba(0, 0, 50, 0.5);
+  border: 1px solid #00f;
+  border-radius: 20px;
+  padding: 30px;
   width: 250px;
-  transition: transform 0.3s;
+  color: #d0eaff;
+  box-shadow: 0 0 15px #0ff;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .card:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 20px #00fff7;
-}
-
-.eyes-container {
-  display: flex;
-  justify-content: center;
-  gap: 80px;
-  margin-top: 30px;
-  z-index: 1;
-  position: relative;
-}
-
-.eye {
-  width: 80px;
-  height: 80px;
-  background: white;
-  border-radius: 50%;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 0 10px #00fff7;
-}
-
-.pupil {
-  width: 30px;
-  height: 30px;
-  background: #00ffea;
-  border-radius: 50%;
-  position: absolute;
-  top: 25px;
-  left: 25px;
-  transition: transform 0.1s;
-}
-
-footer {
-  text-align: center;
-  padding: 40px 20px;
-  font-size: 0.9rem;
-  z-index: 1;
-  position: relative;
-  color: #888;
+  transform: translateY(-10px);
+  box-shadow: 0 0 30px #0ff;
 }
