@@ -1,11 +1,96 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio di Kaneki</title>
-  <link rel="stylesheet" href="stile.css">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio di KanekiGhoul-dev</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet" />
+  <style>
+    /* Corpo e sfondo galassia */
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Orbitron', sans-serif;
+      color: #a0c4ff;
+      overflow: hidden;
+      background: url('https://wallpaperaccess.com/full/2249339.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    /* Stelle aggiuntive con overlay semi-trasparente */
+    #stars {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: url('https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/media/starfield.png') repeat;
+      opacity: 0.3;
+    }
+
+    /* Occhi alieni centrali */
+    .occhi {
+      position: absolute;
+      top: 35%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      gap: 50px;
+      z-index: 1;
+    }
+    .occhio {
+      width: 60px; height: 60px;
+      background: #111;
+      border: 2px solid #0ff;
+      border-radius: 50%;
+      position: relative;
+      overflow: hidden;
+    }
+    .pupilla {
+      width: 20px; height: 20px;
+      background: #00f;
+      border-radius: 50%;
+      position: absolute;
+      top: 20px; left: 20px;
+      transition: transform 0.1s;
+    }
+
+    header {
+      position: relative; z-index: 2;
+      text-align: center;
+      padding: 100px 20px 30px;
+    }
+    h1 {
+      font-size: 3em;
+      color: #7ec8e3;
+      text-shadow: 0 0 10px #00f;
+    }
+    p {
+      font-size: 1.2em;
+      color: #a0c4ff;
+    }
+    .servizi {
+      position: relative; z-index: 2;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      padding: 30px 20px;
+      flex-wrap: wrap;
+    }
+    .card {
+      background-color: rgba(0, 0, 50, 0.5);
+      border: 1px solid #00f;
+      border-radius: 20px;
+      padding: 30px;
+      width: 250px;
+      color: #d0eaff;
+      box-shadow: 0 0 15px #0ff;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 30px #0ff;
+    }
+  </style>
 </head>
 <body>
   <div id="stars"></div>
@@ -32,12 +117,12 @@
 
   <script>
     const occhi = document.querySelectorAll('.occhio');
-    document.addEventListener('mousemove', (e) => {
-      occhi.forEach(occhio => {
-        const r = occhio.getBoundingClientRect();
-        const x = e.clientX - r.left - r.width / 2;
-        const y = e.clientY - r.top - r.height / 2;
-        occhio.querySelector('.pupilla').style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
+    document.addEventListener('mousemove', e => {
+      occhi.forEach(o => {
+        const r = o.getBoundingClientRect();
+        const x = e.clientX - r.left - r.width/2;
+        const y = e.clientY - r.top - r.height/2;
+        o.querySelector('.pupilla').style.transform = `translate(${x*0.1}px, ${y*0.1}px)`;
       });
     });
   </script>
