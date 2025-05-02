@@ -1,34 +1,67 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="stile.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Il mio Portfolio</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="eye">
-    <div class="pupil" id="pupil"></div>
-  </div>
 
-  <h1>Ciao, sono KanekiGhoul</h1>
-  <h2>Modellazione 3D | Logo Design</h2>
+  <!-- Menu di navigazione -->
+  <nav>
+    <ul>
+      <li><a href="#progetti">Progetti</a></li>
+      <li><a href="#chi-sono">Chi sono</a></li>
+      <li><a href="#contatti">Contatti</a></li>
+    </ul>
+  </nav>
 
-  <section>
-    <h2>Chi sono</h2>
-    <p>Appassionato di universi alieni, tecnologia e arte digitale.</p>
+  <!-- Intestazione -->
+  <header>
+    <h1>Ciao, sono Elia Giordano</h1>
+    <p>Visual Designer & 3D Artist</p>
+  </header>
+
+  <!-- Sezione Progetti -->
+  <section id="progetti">
+    <h2>I miei progetti</h2>
+
+    <div class="progetto">
+      <h3>Logo Design</h3>
+      <img src="logo.jpg" alt="Logo esempio" width="200">
+      <p>Ho creato questo logo per un brand di moda contemporaneo.</p>
+    </div>
+
+    <div class="progetto">
+      <h3>Modello 3D</h3>
+      <img src="3d.jpg" alt="3D esempio" width="200">
+      <p>Un modello 3D realizzato con Blender per un videogioco indie.</p>
+    </div>
   </section>
 
-  <script>
-    const eye = document.querySelector('.eye');
-    const pupil = document.getElementById('pupil');
+  <!-- Sezione Chi Sono -->
+  <section id="chi-sono">
+    <h2>Chi sono</h2>
+    <p>Mi chiamo Elia Giordano e sono un Visual Designer con un forte interesse per la modellazione e l'animazione 3D. Uso strumenti come Adobe XD, Blender, Figma e altri per creare esperienze visive uniche.</p>
+  </section>
 
-    document.addEventListener('mousemove', (e) => {
-      const x = e.clientX / window.innerWidth * 40 - 20;
-      const y = e.clientY / window.innerHeight * 40 - 20;
-      pupil.style.transform = `translate(${x}px, ${y}px)`;
-    });
-  </script>
+  <!-- Sezione Contatti -->
+  <section id="contatti">
+    <h2>Contattami</h2>
+    <form action="https://formspree.io/f/tuoid" method="POST">
+      <input type="email" name="email" placeholder="La tua email" required>
+      <textarea name="message" placeholder="Il tuo messaggio" required></textarea>
+      <button type="submit">Invia</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>Contattami: eliagiordano@email.com</p>
+  </footer>
+
 </body>
 </html>
