@@ -4,125 +4,154 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Portfolio di KanekiGhoul-dev</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
   <style>
-    /* Corpo e sfondo galassia */
-    body, html {
+    body {
       margin: 0;
       padding: 0;
-      height: 100%;
       font-family: 'Orbitron', sans-serif;
-      color: #a0c4ff;
-      overflow: hidden;
-      background: url('https://wallpaperaccess.com/full/2249339.jpg') no-repeat center center fixed;
+      background: url('https://cdn.pixabay.com/photo/2017/07/05/10/33/space-2478576_1280.jpg') no-repeat center center fixed;
       background-size: cover;
-    }
-
-    /* Stelle aggiuntive con overlay semi-trasparente */
-    #stars {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: url('https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/media/starfield.png') repeat;
-      opacity: 0.3;
-    }
-
-    /* Occhi alieni centrali */
-    .occhi {
-      position: absolute;
-      top: 35%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      display: flex;
-      gap: 50px;
-      z-index: 1;
-    }
-    .occhio {
-      width: 60px; height: 60px;
-      background: #111;
-      border: 2px solid #0ff;
-      border-radius: 50%;
-      position: relative;
-      overflow: hidden;
-    }
-    .pupilla {
-      width: 20px; height: 20px;
-      background: #00f;
-      border-radius: 50%;
-      position: absolute;
-      top: 20px; left: 20px;
-      transition: transform 0.1s;
+      color: #00bfff; /* blu acceso */
+      overflow-x: hidden;
     }
 
     header {
-      position: relative; z-index: 2;
       text-align: center;
-      padding: 100px 20px 30px;
+      padding: 3rem 1rem;
+      background: rgba(0, 0, 0, 0.7);
     }
-    h1 {
-      font-size: 3em;
-      color: #7ec8e3;
-      text-shadow: 0 0 10px #00f;
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
     }
-    p {
-      font-size: 1.2em;
-      color: #a0c4ff;
+
+    header p {
+      font-size: 1.2rem;
+      color: #b0dfff;
     }
-    .servizi {
-      position: relative; z-index: 2;
+
+    .section {
+      padding: 2rem;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.6);
+      margin: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 0 15px #00bfff;
+    }
+
+    .section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .icon {
+      font-size: 4rem;
+      display: inline-block;
+      margin: 1rem;
+      transition: transform 0.3s ease, color 0.3s ease;
+      cursor: pointer;
+    }
+
+    .icon:hover {
+      transform: scale(1.2) rotate(5deg);
+      color: #ffffff;
+      text-shadow: 0 0 15px #00bfff;
+    }
+
+    .eyes {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
       display: flex;
-      justify-content: center;
-      gap: 40px;
-      padding: 30px 20px;
-      flex-wrap: wrap;
+      gap: 15px;
     }
-    .card {
-      background-color: rgba(0, 0, 50, 0.5);
-      border: 1px solid #00f;
-      border-radius: 20px;
-      padding: 30px;
-      width: 250px;
-      color: #d0eaff;
-      box-shadow: 0 0 15px #0ff;
-      transition: transform 0.3s, box-shadow 0.3s;
+
+    .eye {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #000;
+      border: 2px solid #00bfff;
+      overflow: hidden;
+      position: relative;
     }
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 0 30px #0ff;
+
+    .pupil {
+      width: 12px;
+      height: 12px;
+      background: #00bfff;
+      border-radius: 50%;
+      position: absolute;
+      top: 9px;
+      left: 9px;
+      transition: all 0.1s ease;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      color: #ccc;
+      background: rgba(0, 0, 0, 0.8);
+      margin-top: 4rem;
+    }
+
+    a {
+      color: #00bfff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-shadow: 0 0 10px #00bfff;
     }
   </style>
 </head>
 <body>
-  <div id="stars"></div>
-  <div class="occhi">
-    <div class="occhio"><div class="pupilla"></div></div>
-    <div class="occhio"><div class="pupilla"></div></div>
+  <div class="eyes">
+    <div class="eye"><div class="pupil"></div></div>
+    <div class="eye"><div class="pupil"></div></div>
   </div>
 
   <header>
     <h1>KanekiGhoul-dev</h1>
-    <p>Modellazione 3D • Logo Design • Creatività Spaziale</p>
+    <p>Modellatore 3D • Visual Designer • Creativo dallo spazio</p>
   </header>
 
-  <section class="servizi">
-    <div class="card">
-      <h2>👽 Modellazione 3D</h2>
-      <p>Creo modelli spaziali per progetti digitali e videogiochi.</p>
-    </div>
-    <div class="card">
-      <h2>🚀 Logo Design</h2>
-      <p>Design alieni unici per brand originali e visionari.</p>
-    </div>
-  </section>
+  <div class="section">
+    <h2>Chi Sono</h2>
+    <p>Appassionato di tecnologia, design e forme aliene. Creo esperienze visive uniche che spaziano dal design grafico alla modellazione 3D.</p>
+  </div>
+
+  <div class="section">
+    <h2>Competenze</h2>
+    <span class="icon">👽</span>
+    <span class="icon">🛸</span>
+    <span class="icon">✨</span>
+    <p>Modellazione 3D, Logo Design, UI futuristica, Animazioni spaziali</p>
+  </div>
+
+  <div class="section">
+    <h2>Contatti</h2>
+    <p>Email: kanekighoul.dev@galaxy.net</p>
+    <p>GitHub: <a href="https://github.com/KanekiGhoul-dev" target="_blank">KanekiGhoul-dev</a></p>
+  </div>
+
+  <footer>
+    © 2025 KanekiGhoul-dev. Tutti i diritti riservati intergalatticamente.
+  </footer>
 
   <script>
-    const occhi = document.querySelectorAll('.occhio');
-    document.addEventListener('mousemove', e => {
-      occhi.forEach(o => {
-        const r = o.getBoundingClientRect();
-        const x = e.clientX - r.left - r.width/2;
-        const y = e.clientY - r.top - r.height/2;
-        o.querySelector('.pupilla').style.transform = `translate(${x*0.1}px, ${y*0.1}px)`;
+    const pupils = document.querySelectorAll(".pupil");
+
+    document.addEventListener("mousemove", (e) => {
+      pupils.forEach(pupil => {
+        const rect = pupil.parentElement.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        pupil.style.transform = `translate(${x / 10}px, ${y / 10}px)`;
       });
     });
   </script>
