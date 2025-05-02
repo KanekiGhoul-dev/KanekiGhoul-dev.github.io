@@ -1,36 +1,93 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - KanekiGhoul-dev</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio - Elia Giordano</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-mQb4x9t+X3zL+e1+8F53lXx8XK5E+OQePZ0p5y5x5hy0t6riV+Yl4VQ1o7kTr4+9gZW1x5NyzBHnA3uP3w1C2Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- style.css -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header>
-        <h1>KanekiGhoul - Dev Portfolio</h1>
-        <p>Esplora il mio lavoro e la mia passione per la tecnologia e il design</p>
-    </header>
+  <!-- Background particles -->
+  <div id="particles-js"></div>
 
-    <section class="skills">
-        <div class="skill">
-            <i class="fas fa-cogs"></i>
-            <h2>Modello 3D</h2>
-            <p>Realizzazione di modelli 3D per la visualizzazione e l'animazione.</p>
-        </div>
-        <div class="skill">
-            <i class="fas fa-paint-brush"></i>
-            <h2>Logo Design</h2>
-            <p>Creazione di loghi unici e personalizzati per ogni brand.</p>
-        </div>
-    </section>
+  <!-- Menu di navigazione -->
+  <nav>
+    <ul>
+      <li><a href="#progetti">Progetti</a></li>
+      <li><a href="#chi-sono">Chi sono</a></li>
+      <li><a href="#contatti">Contatti</a></li>
+    </ul>
+  </nav>
 
-    <footer>
-        <p>KanekiGhoul - Dev Portfolio © 2025</p>
-    </footer>
+  <!-- Intestazione -->
+  <header>
+    <h1><i class="fas fa-user-astronaut icon-header"></i> Ciao, sono Elia Giordano</h1>
+    <p>Visual Designer & 3D Artist</p>
+  </header>
 
+  <!-- Sezione Progetti -->
+  <section id="progetti">
+    <h2><i class="fas fa-layer-group icon-section"></i> I miei progetti</h2>
+
+    <div class="progetto">
+      <h3><i class="fas fa-paint-brush icon"></i> Logo Design</h3>
+      <img src="logo.jpg" alt="Logo esempio">
+      <p>Ho creato questo logo per un brand di moda contemporaneo.</p>
+    </div>
+
+    <div class="progetto">
+      <h3><i class="fas fa-cube icon"></i> Modello 3D</h3>
+      <img src="3d.jpg" alt="3D esempio">
+      <p>Un modello 3D realizzato con Blender per un videogioco indie.</p>
+    </div>
+  </section>
+
+  <!-- Sezione Chi Sono -->
+  <section id="chi-sono">
+    <h2><i class="fas fa-user icon-section"></i> Chi sono</h2>
+    <p>Mi chiamo Elia Giordano e sono un Visual Designer con un forte interesse per la modellazione e l'animazione 3D. Uso strumenti come Adobe XD, Blender, Figma e altri per creare esperienze visive uniche.</p>
+  </section>
+
+  <!-- Sezione Contatti -->
+  <section id="contatti">
+    <h2><i class="fas fa-envelope icon-section"></i> Contattami</h2>
+    <form action="https://formspree.io/f/tuoid" method="POST">
+      <input type="email" name="email" placeholder="La tua email" required>
+      <textarea name="message" placeholder="Il tuo messaggio" required></textarea>
+      <button type="submit"><i class="fas fa-paper-plane"></i> Invia</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Elia Giordano</p>
+  </footer>
+
+  <!-- tsParticles Script -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@1.37.0/tsparticles.min.js"></script>
+  <script>
+    tsParticles.load("particles-js", {
+      particles: {
+        number: { value: 80, density: { enable: true, value_area: 800 } },
+        shape: { type: "circle" },
+        color: { value: "#fff" },
+        opacity: { value: 0.5, random: true },
+        size: { value: 2, random: true },
+        move: { enable: true, speed: 1, out_mode: "out" }
+      },
+      interactivity: {
+        events: {
+          onhover: { enable: true, mode: "repulse" },
+          onclick: { enable: true, mode: "push" }
+        }
+      }
+    });
+  </script>
 </body>
 </html>
