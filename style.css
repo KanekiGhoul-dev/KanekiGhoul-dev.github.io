@@ -1,46 +1,140 @@
+/* Font: Poppins per il testo, Orbitron per titoli e menu */
 body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #3a3a3a, #222); /* Gradiente 3D scuro */
+  color: #fff;
   margin: 0;
-  font-family: 'Orbitron', sans-serif;
-  color: #66ccff;
-  background: url('sfondoportfolio.jpg') no-repeat center center fixed;
-  background-size: cover;
-  height: 100vh;
+  padding: 20px;
   overflow-x: hidden;
 }
 
-h1, h2 {
-  text-align: center;
-  margin-top: 2rem;
-  text-shadow: 0 0 10px #000;
+/* Titoli e menu in Orbitron */
+h1, h2, h3, nav a, button {
+  font-family: 'Orbitron', sans-serif;
 }
 
-section {
-  margin: 2rem auto;
-  padding: 1rem;
-  background-color: rgba(0, 0, 0, 0.5);
-  width: 80%;
+/* Menu di navigazione */
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  background-color: rgba(34, 34, 34, 0.8);
+  margin: 0 0 20px;
   border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-.eye {
-  width: 60px;
-  height: 60px;
-  background: #000;
-  border-radius: 50%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin: -30px;
-  box-shadow: 0 0 20px #00f;
-  z-index: 1;
+nav li {
+  margin: 0 15px;
 }
 
-.pupil {
-  width: 20px;
-  height: 20px;
-  background: #66ccff;
-  border-radius: 50%;
-  position: relative;
-  top: 20px;
-  left: 20px;
+nav a {
+  text-decoration: none;
+  color: #fff;
+  padding: 10px 15px;
+  transition: transform 0.3s ease-in-out;
+}
+
+nav a:hover {
+  background-color: #444;
+  text-decoration: underline;
+  transform: translateY(-5px);
+}
+
+/* Intestazione e Footer */
+header, footer {
+  text-align: center;
+  background-color: #222;
+  color: #fff;
+  padding: 20px 0;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  margin-bottom: 20px;
+}
+
+/* Sezione Progetti */
+.progetto {
+  background: #fff;
+  color: #333;
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 10px;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+}
+
+.progetto:hover {
+  transform: translateY(-10px);
+}
+
+img {
+  display: block;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+/* Sezione Chi Sono */
+#chi-sono {
+  background: #fff;
+  color: #333;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+}
+
+/* Sezione Contatti */
+#contatti {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+input, textarea {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+input:focus, textarea:focus {
+  box-shadow: 0 0 10px rgba(0, 0, 255, 0.7);
+}
+
+button {
+  padding: 10px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: #444;
+  transform: translateY(-5px);
+}
+
+/* Responsività */
+@media (max-width: 600px) {
+  .progetto {
+    padding: 10px;
+    margin: 10px 0;
+  }
+  nav ul {
+    flex-direction: column;
+  }
 }
