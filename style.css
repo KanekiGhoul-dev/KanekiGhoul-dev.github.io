@@ -1,11 +1,20 @@
 /* Impostazioni di base */
 body {
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #3a3a3a, #222); /* Gradiente scuro */
-  color: #fff;
   margin: 0;
-  padding: 20px;
+  padding: 0;
   overflow-x: hidden;
+  color: #fff;
+}
+
+/* Particles background */
+#particles-js {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url('space.jpg') no-repeat center center fixed;
+  background-size: cover;
+  z-index: -1;
 }
 
 /* Menu di navigazione */
@@ -14,8 +23,8 @@ nav ul {
   display: flex;
   justify-content: center;
   padding: 0;
-  background-color: rgba(34, 34, 34, 0.8);
-  margin: 0 0 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  margin: 20px 0;
   border-radius: 10px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
@@ -49,7 +58,7 @@ header {
 header h1 {
   font-size: 3em;
   font-family: 'Orbitron', sans-serif;
-  color: #ffcc00;
+  color: #00FF00; /* Verde spaziale */
 }
 
 header p {
@@ -84,7 +93,6 @@ header p {
   border-radius: 10px;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
   margin-bottom: 20px;
-  color: #fff;
 }
 
 /* Sezione Contatti */
@@ -113,7 +121,7 @@ input, textarea {
 }
 
 input:focus, textarea:focus {
-  box-shadow: 0 0 10px rgba(0, 0, 255, 0.7);
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
 }
 
 button {
