@@ -2,156 +2,52 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Portfolio di KanekiGhoul-dev</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Orbitron', sans-serif;
-      background: url('https://cdn.pixabay.com/photo/2017/07/05/10/33/space-2478576_1280.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: #00bfff; /* blu acceso */
-      overflow-x: hidden;
-    }
-
-    header {
-      text-align: center;
-      padding: 3rem 1rem;
-      background: rgba(0, 0, 0, 0.7);
-    }
-
-    header h1 {
-      font-size: 3rem;
-      margin-bottom: 0.5rem;
-    }
-
-    header p {
-      font-size: 1.2rem;
-      color: #b0dfff;
-    }
-
-    .section {
-      padding: 2rem;
-      text-align: center;
-      background: rgba(0, 0, 0, 0.6);
-      margin: 2rem;
-      border-radius: 15px;
-      box-shadow: 0 0 15px #00bfff;
-    }
-
-    .section h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-
-    .icon {
-      font-size: 4rem;
-      display: inline-block;
-      margin: 1rem;
-      transition: transform 0.3s ease, color 0.3s ease;
-      cursor: pointer;
-    }
-
-    .icon:hover {
-      transform: scale(1.2) rotate(5deg);
-      color: #ffffff;
-      text-shadow: 0 0 15px #00bfff;
-    }
-
-    .eyes {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 10;
-      display: flex;
-      gap: 15px;
-    }
-
-    .eye {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background: #000;
-      border: 2px solid #00bfff;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .pupil {
-      width: 12px;
-      height: 12px;
-      background: #00bfff;
-      border-radius: 50%;
-      position: absolute;
-      top: 9px;
-      left: 9px;
-      transition: all 0.1s ease;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      color: #ccc;
-      background: rgba(0, 0, 0, 0.8);
-      margin-top: 4rem;
-    }
-
-    a {
-      color: #00bfff;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-shadow: 0 0 10px #00bfff;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KanekiGhoul-dev Portfolio</title>
+  <link rel="stylesheet" href="stile.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="eyes">
-    <div class="eye"><div class="pupil"></div></div>
-    <div class="eye"><div class="pupil"></div></div>
-  </div>
+  <!-- Occhi animati -->
+  <div class="eye" id="eye1"></div>
+  <div class="eye" id="eye2"></div>
 
-  <header>
+  <div class="container">
     <h1>KanekiGhoul-dev</h1>
-    <p>Modellatore 3D • Visual Designer • Creativo dallo spazio</p>
-  </header>
+    <h2>Visual Designer & 3D Artist</h2>
 
-  <div class="section">
-    <h2>Chi Sono</h2>
-    <p>Appassionato di tecnologia, design e forme aliene. Creo esperienze visive uniche che spaziano dal design grafico alla modellazione 3D.</p>
+    <div class="section">
+      <div class="icon">👽</div>
+      <h3>Chi sono</h3>
+      <p>Creativo digitale con passione per l'universo sci-fi, modellazione 3D e design d'impatto visivo.</p>
+    </div>
+
+    <div class="section">
+      <div class="icon">🛸</div>
+      <h3>Modellazione 3D</h3>
+      <p>Realizzo modelli per animazioni, giochi e progetti futuristici. Dallo sketch all’oggetto finale.</p>
+    </div>
+
+    <div class="section">
+      <div class="icon">🚀</div>
+      <h3>Logo Design</h3>
+      <p>Disegno loghi dinamici e tecnici con forte identità visiva. Per brand terrestri e non!</p>
+    </div>
   </div>
-
-  <div class="section">
-    <h2>Competenze</h2>
-    <span class="icon">👽</span>
-    <span class="icon">🛸</span>
-    <span class="icon">✨</span>
-    <p>Modellazione 3D, Logo Design, UI futuristica, Animazioni spaziali</p>
-  </div>
-
-  <div class="section">
-    <h2>Contatti</h2>
-    <p>Email: kanekighoul.dev@galaxy.net</p>
-    <p>GitHub: <a href="https://github.com/KanekiGhoul-dev" target="_blank">KanekiGhoul-dev</a></p>
-  </div>
-
-  <footer>
-    © 2025 KanekiGhoul-dev. Tutti i diritti riservati intergalatticamente.
-  </footer>
 
   <script>
-    const pupils = document.querySelectorAll(".pupil");
-
+    // Effetto occhi che seguono il mouse
+    const eyes = [document.getElementById("eye1"), document.getElementById("eye2")];
     document.addEventListener("mousemove", (e) => {
-      pupils.forEach(pupil => {
-        const rect = pupil.parentElement.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        pupil.style.transform = `translate(${x / 10}px, ${y / 10}px)`;
+      eyes.forEach((eye, index) => {
+        const rect = eye.getBoundingClientRect();
+        const eyeX = rect.left + rect.width / 2;
+        const eyeY = rect.top + rect.height / 2;
+        const deltaX = e.clientX - eyeX;
+        const deltaY = e.clientY - eyeY;
+        const angle = Math.atan2(deltaY, deltaX);
+        const pupil = eye.querySelector(".pupil");
+        eye.style.transform = `translate(${index === 0 ? '-100px' : '100px'}, -50%) rotate(${angle}rad)`;
       });
     });
   </script>
