@@ -1,3 +1,4 @@
+/* Stile Generale */
 body {
   font-family: Arial, sans-serif;
   background: #f4f4f4;
@@ -17,6 +18,32 @@ h1, h2 {
   color: #333;
 }
 
+/* Menu di navigazione */
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  background-color: #222;
+  margin: 0;
+}
+
+nav li {
+  margin: 0 15px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #fff;
+  padding: 10px 15px;
+}
+
+nav a:hover {
+  background-color: #444;
+  text-decoration: underline;
+}
+
+/* Sezione Progetti */
 .progetto {
   background: white;
   padding: 15px;
@@ -27,4 +54,51 @@ h1, h2 {
 img {
   display: block;
   margin-top: 10px;
+}
+
+/* Sezione Chi Sono */
+#chi-sono {
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+/* Sezione Contatti */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+input, textarea {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #444;
+}
+
+/* Responsività */
+@media (max-width: 600px) {
+  .progetto {
+    padding: 10px;
+    margin: 10px 0;
+  }
+  nav ul {
+    flex-direction: column;
+  }
 }
