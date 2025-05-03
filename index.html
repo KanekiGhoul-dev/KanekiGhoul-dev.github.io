@@ -69,8 +69,10 @@
     #popup {
       position: fixed;
       display: none;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      top: 0; 
+      left: 0;
+      width: 100%; 
+      height: 100%;
       background-color: rgba(0, 0, 0, 0.9);
       justify-content: center;
       align-items: center;
@@ -85,123 +87,163 @@
   </style>
 </head>
 <body>
-<canvas id="stars"></canvas>
+  <!-- Il canvas per lo sfondo 3D -->
+  <canvas id="stars"></canvas>
 
-<section id="home">
-  <h1>Benvenuto nel mio Portfolio</h1>
-</section>
+  <section id="home">
+    <h1>Benvenuto nel mio Portfolio</h1>
+  </section>
 
-<section id="competenze">
-  <h2>Competenze</h2>
-  <p>Blender, Photoshop, Illustrator, After Effects, Premiere</p>
-</section>
+  <section id="competenze">
+    <h2>Competenze</h2>
+    <p>Blender, Photoshop, Illustrator, After Effects, Premiere</p>
+  </section>
 
-<section id="progetti">
-  <h2>Progetti</h2>
-  <label for="software-select">Scegli un software:</label>
-  <select id="software-select" onchange="showProjects()">
-    <option value="">-- Seleziona --</option>
-    <option value="blender">Blender</option>
-    <option value="photoshop">Photoshop</option>
-    <option value="illustrator">Illustrator</option>
-    <option value="aftereffects">After Effects</option>
-    <option value="premiere">Premiere</option>
-  </select>
-  <div id="projects-container">
-    <div class="project-group" id="blender-projects" style="display: none;">
-      <h3>Progetti realizzati con Blender</h3>
-      <div class="project"><img src="spherelumsimg.jpg" alt="Spherelums" onclick="showPopup('spherelumsvdo.gif')"></div>
-      <div class="project"><img src="tazzinaimg.jpg" alt="Tazzina" onclick="showPopup('tazzinavdo.gif')"></div>
-      <div class="project"><img src="rubikimg.jpg" alt="Rubik" onclick="showPopup('rubikvdo.gif')"></div>
-      <div class="project"><img src="magicimg.jpg" alt="Magic" onclick="showPopup('magicvdo.gif')"></div>
-      <div class="project"><img src="pallaimg.jpg" alt="Palla" onclick="showPopup('pallavdo.gif')"></div>
-      <div class="project"><img src="wtrimg.jpg" alt="Wtr" onclick="showPopup('wtrvdo.gif')"></div>
+  <section id="progetti">
+    <h2>Progetti</h2>
+    <label for="software-select">Scegli un software:</label>
+    <select id="software-select" onchange="showProjects()">
+      <option value="">-- Seleziona --</option>
+      <option value="blender">Blender</option>
+      <option value="photoshop">Photoshop</option>
+      <option value="illustrator">Illustrator</option>
+      <option value="aftereffects">After Effects</option>
+      <option value="premiere">Premiere</option>
+    </select>
+    <div id="projects-container">
+      <div class="project-group" id="blender-projects" style="display: none;">
+        <h3>Progetti realizzati con Blender</h3>
+        <div class="project">
+          <img src="spherelumsimg.jpg" alt="Spherelums" onclick="showPopup('spherelumsvdo.gif')">
+        </div>
+        <div class="project">
+          <img src="tazzinaimg.jpg" alt="Tazzina" onclick="showPopup('tazzinavdo.gif')">
+        </div>
+        <div class="project">
+          <img src="rubikimg.jpg" alt="Rubik" onclick="showPopup('rubikvdo.gif')">
+        </div>
+        <div class="project">
+          <img src="magicimg.jpg" alt="Magic" onclick="showPopup('magicvdo.gif')">
+        </div>
+        <div class="project">
+          <img src="pallaimg.jpg" alt="Palla" onclick="showPopup('pallavdo.gif')">
+        </div>
+        <div class="project">
+          <img src="wtrimg.jpg" alt="Wtr" onclick="showPopup('wtrvdo.gif')">
+        </div>
+      </div>
+      <div class="project-group" id="photoshop-projects" style="display: none;">
+        <h3>Progetti Photoshop</h3>
+      </div>
+      <div class="project-group" id="illustrator-projects" style="display: none;">
+        <h3>Progetti Illustrator</h3>
+      </div>
+      <div class="project-group" id="aftereffects-projects" style="display: none;">
+        <h3>Progetti After Effects</h3>
+      </div>
+      <div class="project-group" id="premiere-projects" style="display: none;">
+        <h3>Progetti Premiere</h3>
+      </div>
     </div>
-    <div class="project-group" id="photoshop-projects" style="display: none;"><h3>Progetti Photoshop</h3></div>
-    <div class="project-group" id="illustrator-projects" style="display: none;"><h3>Progetti Illustrator</h3></div>
-    <div class="project-group" id="aftereffects-projects" style="display: none;"><h3>Progetti After Effects</h3></div>
-    <div class="project-group" id="premiere-projects" style="display: none;"><h3>Progetti Premiere</h3></div>
+  </section>
+
+  <section id="contatti">
+    <h2>Contatti</h2>
+    <p>Email: esempio@email.com</p>
+  </section>
+
+  <div id="popup" onclick="hidePopup()">
+    <img id="popup-img" src="" alt="Animazione progetto">
   </div>
-</section>
 
-<section id="contatti">
-  <h2>Contatti</h2>
-  <p>Email: esempio@email.com</p>
-</section>
-
-<div id="popup" onclick="hidePopup()">
-  <img id="popup-img" src="" alt="Animazione progetto">
-</div>
-
-<script>
-  const canvas = document.getElementById('stars');
-  const ctx = canvas.getContext('2d');
-  let stars = [];
-  const numStars = 100;
-  let mouse = { x: 0, y: 0 };
-
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  for (let i = 0; i < numStars; i++) {
-    stars.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      radius: Math.random() * 1.5,
-      vx: 0,
-      vy: 0
+  <!-- Importa Three.js da CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>
+    // Inizializziamo il renderer usando il canvas già presente
+    const canvas = document.getElementById('stars');
+    const renderer = new THREE.WebGLRenderer({
+      canvas: canvas,
+      antialias: true,
+      alpha: true
     });
-  }
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(window.innerWidth, window.innerHeight);
 
-  window.addEventListener('mousemove', e => {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
-  });
+    // Creazione della scena e della camera
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1000);
+    camera.position.z = 1;
 
-  function animateStars() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    for (let star of stars) {
-      let dx = star.x - mouse.x;
-      let dy = star.y - mouse.y;
-      let dist = Math.sqrt(dx*dx + dy*dy);
-      if (dist < 100) {
-        let force = (100 - dist) / 100;
-        let angle = Math.atan2(dy, dx);
-        star.vx += Math.cos(angle) * force;
-        star.vy += Math.sin(angle) * force;
+    // Creazione di un sistema di particelle (stelle) distribuite in uno spazio 3D
+    const starGeometry = new THREE.BufferGeometry();
+    const starMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.7 });
+    const starVertices = [];
+    const starCount = 10000;
+
+    for (let i = 0; i < starCount; i++) {
+      const x = THREE.MathUtils.randFloatSpread(600);
+      const y = THREE.MathUtils.randFloatSpread(600);
+      const z = THREE.MathUtils.randFloatSpread(600);
+      starVertices.push(x, y, z);
+    }
+    starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
+    const stars = new THREE.Points(starGeometry, starMaterial);
+    scene.add(stars);
+
+    // Effetto parallax: la posizione della camera reagisce al movimento del mouse
+    let mouseX = 0, mouseY = 0;
+    document.addEventListener('mousemove', (event) => {
+      mouseX = (event.clientX - window.innerWidth / 2);
+      mouseY = (event.clientY - window.innerHeight / 2);
+    });
+
+    // Aggiornamento del canvas per le variazioni di dimensione della finestra
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    // Loop di animazione
+    function animate() {
+      requestAnimationFrame(animate);
+
+      // Transizione graduale nella posizione della camera per l'effetto parallax
+      camera.position.x += ((mouseX * 0.001) - camera.position.x) * 0.05;
+      camera.position.y += ((-mouseY * 0.001) - camera.position.y) * 0.05;
+      camera.lookAt(scene.position);
+
+      // Leggera rotazione delle stelle per rendere l'effetto "in movimento"
+      stars.rotation.x += 0.0005;
+      stars.rotation.y += 0.0005;
+
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    // Funzione per visualizzare i progetti in base alla selezione dello strumento
+    function showProjects() {
+      const software = document.getElementById('software-select').value;
+      document.querySelectorAll('.project-group').forEach(group => {
+        group.style.display = 'none';
+      });
+      if (software) {
+        document.getElementById(`${software}-projects`).style.display = 'block';
       }
-      star.vx *= 0.95;
-      star.vy *= 0.95;
-      star.x += star.vx;
-      star.y += star.vy;
-      ctx.beginPath();
-      ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-      ctx.fillStyle = 'white';
-      ctx.fill();
     }
-    requestAnimationFrame(animateStars);
-  }
-  animateStars();
 
-  function showProjects() {
-    const software = document.getElementById('software-select').value;
-    document.querySelectorAll('.project-group').forEach(group => group.style.display = 'none');
-    if (software) {
-      document.getElementById(`${software}-projects`).style.display = 'block';
+    // Funzioni per la gestione del popup delle immagini dei progetti
+    function showPopup(src) {
+      const popup = document.getElementById("popup");
+      const popupImg = document.getElementById("popup-img");
+      popupImg.src = src;
+      popup.style.display = "flex";
     }
-  }
 
-  function showPopup(src) {
-    const popup = document.getElementById("popup");
-    const popupImg = document.getElementById("popup-img");
-    popupImg.src = src;
-    popup.style.display = "flex";
-  }
-
-  function hidePopup() {
-    document.getElementById("popup").style.display = "none";
-    document.getElementById("popup-img").src = "";
-  }
-</script>
+    function hidePopup() {
+      document.getElementById("popup").style.display = "none";
+      document.getElementById("popup-img").src = "";
+    }
+  </script>
 </body>
 </html>
