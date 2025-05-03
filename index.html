@@ -7,14 +7,47 @@
   <style>
     body {
       margin: 0;
-      overflow: hidden;
+      overflow-x: hidden;
       font-family: 'Orbitron', sans-serif;
       background: black;
       color: #6db2ff;
     }
 
-    h1, h2, p, li {
-      margin: 0 0 20px 0;
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+      z-index: 10;
+    }
+
+    nav a {
+      color: #6db2ff;
+      margin: 0 15px;
+      text-decoration: none;
+      font-size: 1.2em;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    .section {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 120px auto 80px;
+      padding: 0 20px;
     }
 
     h1 {
@@ -29,21 +62,7 @@
 
     p, li {
       font-size: 1.2em;
-    }
-
-    .section {
-      position: relative;
-      z-index: 2;
-      max-width: 800px;
-      margin: 100px auto;
-      padding: 0 20px;
-    }
-
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 1;
+      line-height: 1.6em;
     }
 
     ul {
@@ -56,9 +75,18 @@
       color: #6db2ff;
     }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
   <canvas id="stars"></canvas>
+
+  <header>
+    <nav>
+      <a href="#intro">Home</a>
+      <a href="#chi-sono">Chi sono</a>
+      <a href="#competenze">Competenze</a>
+    </nav>
+  </header>
 
   <div class="section" id="intro">
     <h1>Benvenuto nel mio universo</h1>
@@ -92,7 +120,6 @@
   <script>
     const canvas = document.getElementById('stars');
     const ctx = canvas.getContext('2d');
-
     let width = canvas.width = window.innerWidth;
     let height = canvas.height = window.innerHeight;
 
@@ -135,8 +162,5 @@
 
     animate();
   </script>
-
-  <!-- Font Orbitron da Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
 </body>
 </html>
