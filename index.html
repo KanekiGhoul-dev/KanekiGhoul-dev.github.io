@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio - Sfondo 3D Dinamico</title>
+  <title>Portfolio</title>
   <style>
     html, body {
       margin: 0;
@@ -13,7 +13,7 @@
       color: white;
       font-family: Arial, sans-serif;
     }
-    /* Il canvas copre tutto lo schermo e sta sotto i contenuti */
+
     canvas {
       position: fixed;
       top: 0;
@@ -22,6 +22,7 @@
       height: 100%;
       z-index: -1;
     }
+
     section {
       padding: 100px 20px;
       text-align: center;
@@ -29,24 +30,29 @@
       margin: 0;
       transition: background 0.3s ease;
     }
+
     section:hover {
       background: rgba(0, 0, 0, 0.85);
     }
+
     h1, h2, h3 {
       color: #00f;
       margin-bottom: 20px;
     }
+
     select {
       padding: 10px;
       font-size: 16px;
       margin-bottom: 20px;
     }
+
     .project-group {
       margin-top: 1rem;
       padding: 1rem;
       border: 1px solid #444;
       border-radius: 10px;
     }
+
     .project img {
       width: 200px;
       margin: 10px;
@@ -54,10 +60,12 @@
       cursor: pointer;
       transition: transform 0.3s ease;
     }
+
     .project img:hover {
       transform: scale(1.05);
       box-shadow: 0 0 15px #00f;
     }
+
     #popup {
       position: fixed;
       display: none;
@@ -68,6 +76,7 @@
       align-items: center;
       z-index: 1000;
     }
+
     #popup img {
       max-width: 90%;
       max-height: 90%;
@@ -76,179 +85,123 @@
   </style>
 </head>
 <body>
+<canvas id="stars"></canvas>
 
-  <!-- Canvas per lo sfondo 3D -->
-  <canvas id="stars"></canvas>
+<section id="home">
+  <h1>Benvenuto nel mio Portfolio</h1>
+</section>
 
-  <section id="home">
-    <h1>Benvenuto nel mio Portfolio</h1>
-  </section>
+<section id="competenze">
+  <h2>Competenze</h2>
+  <p>Blender, Photoshop, Illustrator, After Effects, Premiere</p>
+</section>
 
-  <section id="competenze">
-    <h2>Competenze</h2>
-    <p>Blender, Photoshop, Illustrator, After Effects, Premiere</p>
-  </section>
-
-  <section id="progetti">
-    <h2>Progetti</h2>
-    <label for="software-select">Scegli un software:</label>
-    <select id="software-select" onchange="showProjects()">
-      <option value="">-- Seleziona --</option>
-      <option value="blender">Blender</option>
-      <option value="photoshop">Photoshop</option>
-      <option value="illustrator">Illustrator</option>
-      <option value="aftereffects">After Effects</option>
-      <option value="premiere">Premiere</option>
-    </select>
-    <div id="projects-container">
-      <div class="project-group" id="blender-projects" style="display: none;">
-        <h3>Progetti realizzati con Blender</h3>
-        <div class="project">
-          <img src="spherelumsimg.jpg" alt="Spherelums" onclick="showPopup('spherelumsvdo.gif')">
-        </div>
-        <div class="project">
-          <img src="tazzinaimg.jpg" alt="Tazzina" onclick="showPopup('tazzinavdo.gif')">
-        </div>
-        <div class="project">
-          <img src="rubikimg.jpg" alt="Rubik" onclick="showPopup('rubikvdo.gif')">
-        </div>
-        <div class="project">
-          <img src="magicimg.jpg" alt="Magic" onclick="showPopup('magicvdo.gif')">
-        </div>
-        <div class="project">
-          <img src="pallaimg.jpg" alt="Palla" onclick="showPopup('pallavdo.gif')">
-        </div>
-        <div class="project">
-          <img src="wtrimg.jpg" alt="Wtr" onclick="showPopup('wtrvdo.gif')">
-        </div>
-      </div>
-      <div class="project-group" id="photoshop-projects" style="display: none;">
-        <h3>Progetti Photoshop</h3>
-      </div>
-      <div class="project-group" id="illustrator-projects" style="display: none;">
-        <h3>Progetti Illustrator</h3>
-      </div>
-      <div class="project-group" id="aftereffects-projects" style="display: none;">
-        <h3>Progetti After Effects</h3>
-      </div>
-      <div class="project-group" id="premiere-projects" style="display: none;">
-        <h3>Progetti Premiere</h3>
-      </div>
+<section id="progetti">
+  <h2>Progetti</h2>
+  <label for="software-select">Scegli un software:</label>
+  <select id="software-select" onchange="showProjects()">
+    <option value="">-- Seleziona --</option>
+    <option value="blender">Blender</option>
+    <option value="photoshop">Photoshop</option>
+    <option value="illustrator">Illustrator</option>
+    <option value="aftereffects">After Effects</option>
+    <option value="premiere">Premiere</option>
+  </select>
+  <div id="projects-container">
+    <div class="project-group" id="blender-projects" style="display: none;">
+      <h3>Progetti realizzati con Blender</h3>
+      <div class="project"><img src="spherelumsimg.jpg" alt="Spherelums" onclick="showPopup('spherelumsvdo.gif')"></div>
+      <div class="project"><img src="tazzinaimg.jpg" alt="Tazzina" onclick="showPopup('tazzinavdo.gif')"></div>
+      <div class="project"><img src="rubikimg.jpg" alt="Rubik" onclick="showPopup('rubikvdo.gif')"></div>
+      <div class="project"><img src="magicimg.jpg" alt="Magic" onclick="showPopup('magicvdo.gif')"></div>
+      <div class="project"><img src="pallaimg.jpg" alt="Palla" onclick="showPopup('pallavdo.gif')"></div>
+      <div class="project"><img src="wtrimg.jpg" alt="Wtr" onclick="showPopup('wtrvdo.gif')"></div>
     </div>
-  </section>
-
-  <section id="contatti">
-    <h2>Contatti</h2>
-    <p>Email: esempio@email.com</p>
-  </section>
-
-  <div id="popup" onclick="hidePopup()">
-    <img id="popup-img" src="" alt="Animazione progetto">
+    <div class="project-group" id="photoshop-projects" style="display: none;"><h3>Progetti Photoshop</h3></div>
+    <div class="project-group" id="illustrator-projects" style="display: none;"><h3>Progetti Illustrator</h3></div>
+    <div class="project-group" id="aftereffects-projects" style="display: none;"><h3>Progetti After Effects</h3></div>
+    <div class="project-group" id="premiere-projects" style="display: none;"><h3>Progetti Premiere</h3></div>
   </div>
+</section>
 
-  <!-- Importa Three.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script>
-    // UTILIZZO DI THREE.JS PER UN SFONDO 3D DINAMICO
+<section id="contatti">
+  <h2>Contatti</h2>
+  <p>Email: esempio@email.com</p>
+</section>
 
-    // Otteniamo il canvas e creiamo il renderer WebGL
-    const canvas = document.getElementById('stars');
-    const renderer = new THREE.WebGLRenderer({
-      canvas: canvas,
-      antialias: true,
-      alpha: true
+<div id="popup" onclick="hidePopup()">
+  <img id="popup-img" src="" alt="Animazione progetto">
+</div>
+
+<script>
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
+  let stars = [];
+  const numStars = 100;
+  let mouse = { x: 0, y: 0 };
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  for (let i = 0; i < numStars; i++) {
+    stars.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      radius: Math.random() * 1.5,
+      vx: 0,
+      vy: 0
     });
-    renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(window.innerWidth, window.innerHeight);
+  }
 
-    // Creiamo la scena e la camera
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(
-      75, window.innerWidth / window.innerHeight, 1, 2000);
-    camera.position.z = 100;
+  window.addEventListener('mousemove', e => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  });
 
-    // Creazione di un sistema di particelle (stelle)
-    const starCount = 10000;
-    const positions = new Float32Array(starCount * 3);
-    for (let i = 0; i < starCount; i++) {
-      const i3 = i * 3;
-      positions[i3]     = THREE.MathUtils.randFloatSpread(600);
-      positions[i3 + 1] = THREE.MathUtils.randFloatSpread(600);
-      positions[i3 + 2] = THREE.MathUtils.randFloatSpread(600);
-    }
-    const starGeometry = new THREE.BufferGeometry();
-    starGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    const starMaterial = new THREE.PointsMaterial({
-      color: 0xffffff,
-      size: 0.7,
-      sizeAttenuation: true
-    });
-    const starField = new THREE.Points(starGeometry, starMaterial);
-    scene.add(starField);
-
-    // (Opzionale) Aggiunta di un cubo rotante per evidenziare la profondità
-    const cubeGeometry = new THREE.BoxGeometry(20, 20, 20);
-    const cubeMaterial = new THREE.MeshNormalMaterial();
-    const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
-    cube.position.set(0, 0, 0);
-    // Se preferisci vedere anche il cubo, rimuovi il commento alla seguente riga:
-    // scene.add(cube);
-
-    // Variabili per l'effetto parallax con il mouse
-    let mouseX = 0, mouseY = 0;
-    document.addEventListener('mousemove', (event) => {
-      mouseX = event.clientX - window.innerWidth / 2;
-      mouseY = event.clientY - window.innerHeight / 2;
-    });
-
-    // Aggiornamento delle dimensioni in caso di resize
-    window.addEventListener('resize', () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    });
-
-    // Loop di animazione: effetto movimento della camera e rotazione dello sfondo
-    function animate() {
-      requestAnimationFrame(animate);
-
-      // Effetto parallax: la camera segue leggermente il movimento del mouse
-      camera.position.x += ((mouseX / 100) - camera.position.x) * 0.05;
-      camera.position.y += ((-mouseY / 100) - camera.position.y) * 0.05;
-      camera.lookAt(scene.position);
-
-      // Rotazione della costellazione per accentuare il senso di 3D
-      starField.rotation.x += 0.0008;
-      starField.rotation.y += 0.0008;
-
-      // (Opzionale) Rotazione del cubo
-      // cube.rotation.x += 0.005;
-      // cube.rotation.y += 0.005;
-      
-      renderer.render(scene, camera);
-    }
-    animate();
-
-    // FUNZIONALITÀ DEL PORTFOLIO (progetti e popup)
-    function showProjects() {
-      const software = document.getElementById('software-select').value;
-      document.querySelectorAll('.project-group').forEach(group => {
-        group.style.display = 'none';
-      });
-      if (software) {
-        document.getElementById(`${software}-projects`).style.display = 'block';
+  function animateStars() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let star of stars) {
+      let dx = star.x - mouse.x;
+      let dy = star.y - mouse.y;
+      let dist = Math.sqrt(dx*dx + dy*dy);
+      if (dist < 100) {
+        let force = (100 - dist) / 100;
+        let angle = Math.atan2(dy, dx);
+        star.vx += Math.cos(angle) * force;
+        star.vy += Math.sin(angle) * force;
       }
+      star.vx *= 0.95;
+      star.vy *= 0.95;
+      star.x += star.vx;
+      star.y += star.vy;
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+      ctx.fillStyle = 'white';
+      ctx.fill();
     }
-    function showPopup(src) {
-      const popup = document.getElementById("popup");
-      const popupImg = document.getElementById("popup-img");
-      popupImg.src = src;
-      popup.style.display = "flex";
+    requestAnimationFrame(animateStars);
+  }
+  animateStars();
+
+  function showProjects() {
+    const software = document.getElementById('software-select').value;
+    document.querySelectorAll('.project-group').forEach(group => group.style.display = 'none');
+    if (software) {
+      document.getElementById(`${software}-projects`).style.display = 'block';
     }
-    function hidePopup() {
-      document.getElementById("popup").style.display = "none";
-      document.getElementById("popup-img").src = "";
-    }
-  </script>
+  }
+
+  function showPopup(src) {
+    const popup = document.getElementById("popup");
+    const popupImg = document.getElementById("popup-img");
+    popupImg.src = src;
+    popup.style.display = "flex";
+  }
+
+  function hidePopup() {
+    document.getElementById("popup").style.display = "none";
+    document.getElementById("popup-img").src = "";
+  }
+</script>
 </body>
 </html>
