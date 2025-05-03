@@ -6,200 +6,93 @@
     <title>Portfolio - Elia Giordano</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        /* Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* Reset e stili base */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Orbitron', sans-serif;
             background-color: black;
             color: white;
             overflow-x: hidden;
         }
-
-        /* Sfondo dinamico */
+        /* Sfondo stelle */
         .background {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             pointer-events: none;
             z-index: -1;
         }
-
         .star {
             position: absolute;
             border-radius: 50%;
             background-color: white;
             opacity: 0.8;
-            animation: moveStars 10s infinite linear;
-            transform: scale(1);
+            width: 3px; height: 3px;
+            will-change: transform;
         }
-
-        @keyframes moveStars {
-            0% {
-                transform: scale(1);
-            }
-            100% {
-                transform: scale(1.5) translateX(100px) translateY(100px);
-            }
-        }
-
         /* Menu */
         nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.8);
-            z-index: 10;
-            display: flex;
-            justify-content: space-around;
+            position: fixed; top: 0; left: 0;
+            width: 100%; padding: 20px;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 10; display: flex; justify-content: space-around;
         }
-
         nav a {
-            text-decoration: none;
-            color: white;
-            font-size: 20px;
-            font-weight: bold;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
+            text-decoration: none; color: white;
+            font-size: 20px; font-weight: bold;
+            text-transform: uppercase; transition: color 0.3s ease;
         }
-
-        nav a:hover {
-            color: #00f;
+        nav a:hover { color: #00f; }
+        /* Sezioni */
+        section {
+            padding: 100px 20px 60px;
+            text-align: center; position: relative; z-index: 1;
         }
-
-        /* Sezione intro */
-        .intro {
-            text-align: center;
-            padding: 100px 20px;
-        }
-
-        .intro h1 {
-            font-size: 3em;
-            color: #00f;
-            margin-bottom: 20px;
+        /* Intro */
+        #home h1 {
+            font-size: 3em; color: #00f; margin-bottom: 20px;
             animation: textAnimation 1s forwards;
         }
-
+        #home p {
+            font-size: 1.2em; color: #bbb; max-width: 800px; margin: 0 auto;
+        }
         @keyframes textAnimation {
-            0% {
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-            100% {
-                transform: translateY(0);
-                opacity: 1;
-            }
+            0% { transform: translateY(-50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
         }
-
-        .intro p {
-            font-size: 1.2em;
-            color: #bbb;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        /* Sezione chi sono */
-        #chi-sono {
-            padding: 80px 20px;
-            text-align: center;
-        }
-
-        #chi-sono h2 {
-            font-size: 2.5em;
-            color: #00f;
-            margin-bottom: 20px;
-        }
-
-        #chi-sono p {
-            font-size: 1.2em;
-            color: #bbb;
-            margin-bottom: 30px;
-            line-height: 1.5;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        /* Sezione competenze */
-        #competenze {
-            background-color: #111;
-            padding: 80px 20px;
-            text-align: center;
-        }
-
-        #competenze h2 {
-            font-size: 2.5em;
-            color: #00f;
-            margin-bottom: 20px;
-        }
-
-        #competenze ul {
-            list-style-type: none;
-        }
-
-        #competenze ul li {
-            font-size: 1.2em;
-            color: #bbb;
-            margin: 10px 0;
-        }
-
-        /* Sezione contatti */
-        #contatti {
-            padding: 80px 20px;
-            text-align: center;
-            background-color: #222;
-        }
-
-        #contatti h2 {
-            font-size: 2.5em;
-            color: #00f;
-            margin-bottom: 20px;
-        }
-
-        #contatti p {
-            font-size: 1.2em;
-            color: #bbb;
-            margin: 10px 0;
-        }
+        /* Titoli */
+        h2 { font-size: 2.5em; color: #00f; margin-bottom: 20px; }
+        p { font-size: 1.2em; color: #bbb; margin-bottom: 30px; line-height: 1.5; max-width: 900px; margin: 0 auto 30px; }
+        ul { list-style: none; padding: 0; }
+        ul li { font-size: 1.2em; color: #bbb; margin: 10px 0; transition: color 0.3s; }
+        ul li:hover { color: #00f; }
+        /* Sezioni semi-trasparenti per vedere le stelle */
+        #chi-sono { background-color: rgba(17,17,17,0.5); }
+        #competenze { background-color: rgba(17,17,17,0.5); }
+        #contatti { background-color: rgba(17,17,17,0.5); }
     </style>
 </head>
 <body>
-
-    <!-- Menu -->
     <nav>
         <a href="#home">Home</a>
         <a href="#chi-sono">Chi sono</a>
         <a href="#competenze">Competenze</a>
         <a href="#contatti">Contatti</a>
     </nav>
-
-    <!-- Sezione intro -->
-    <div id="home" class="intro">
+    <section id="home">
         <h1>Benvenuto nel mio universo</h1>
         <p>Presto troverai qui i miei progetti</p>
-    </div>
-
-    <!-- Sezione Chi sono -->
-    <div id="chi-sono">
+    </section>
+    <section id="chi-sono">
         <h2>Chi sono</h2>
         <p>
-            Sono un appassionato di tecnologia, con un interesse particolare per il 3D e l'animazione. 
-            Da autodidatta, ho approfondito diverse aree legate alla grafica 3D, modellazione e rendering, 
-            cercando di unire la mia curiosità per l'intelligenza artificiale. 
-            Sebbene non sia un esperto, sono entusiasta di apprendere continuamente e portare avanti la mia passione per la creatività digitale. 
-            Adoro esplorare nuove tecnologie, e il mio obiettivo è far evolvere le mie competenze in queste aree, imparando ogni giorno.
+            Sono un appassionato di tecnologia, con un interesse particolare per il 3D e l'animazione.
+            Da autodidatta, ho sperimentato modellazione, rendering e animazioni, esplorando anche l’intelligenza artificiale.
+            Sebbene non abbia una formazione formale, sono determinato a imparare sempre cose nuove e a mettere in pratica ogni giorno le mie competenze.
+            La mia voglia di crescere mi spinge a studiare nuovi strumenti, tutorial e a partecipare a community online per migliorare continuamente.
         </p>
-    </div>
-
-    <!-- Sezione Competenze -->
-    <div id="competenze">
+    </section>
+    <section id="competenze">
         <h2>Competenze</h2>
         <ul>
             <li>Photoshop</li>
@@ -210,42 +103,37 @@
             <li>AutoCAD</li>
             <li>Blender</li>
         </ul>
-    </div>
-
-    <!-- Sezione Contatti -->
-    <div id="contatti">
+    </section>
+    <section id="contatti">
         <h2>Contatti</h2>
         <p>Telefono: +39 3515749331</p>
-        <p>Email: elgio0926@gmail.com</p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/elia-giordano" target="_blank" style="color: #00f;">Elia Giordano</a></p>
-    </div>
-
-    <!-- Sfondo con stelle -->
+        <p>Email: <a href="mailto:elgio0926@gmail.com" style="color:#00f;">elgio0926@gmail.com</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/elia-giordano" target="_blank" style="color:#00f;">Elia Giordano</a></p>
+    </section>
     <div class="background"></div>
-
     <script>
-        // Movimento stelle
+        const background = document.querySelector('.background');
         const starCount = 200;
         const stars = [];
-
-        // Generazione stelle
+        // Crea stelle
         for (let i = 0; i < starCount; i++) {
             const star = document.createElement('div');
-            star.classList.add('star');
+            star.className = 'star';
             star.style.width = `${Math.random() * 3 + 2}px`;
             star.style.height = star.style.width;
             star.style.top = `${Math.random() * window.innerHeight}px`;
             star.style.left = `${Math.random() * window.innerWidth}px`;
-            document.querySelector('.background').appendChild(star);
+            background.appendChild(star);
             stars.push(star);
         }
-
-        // Effetto parallax con movimento lento delle stelle
-        document.addEventListener('mousemove', (e) => {
+        // Muovi stelle al mouse
+        document.addEventListener('mousemove', e => {
+            const cx = window.innerWidth/2;
+            const cy = window.innerHeight/2;
             stars.forEach(star => {
-                let offsetX = (e.clientX - window.innerWidth / 2) * 0.03;
-                let offsetY = (e.clientY - window.innerHeight / 2) * 0.03;
-                star.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+                const dx = (star.offsetLeft - e.clientX) * 0.02;
+                const dy = (star.offsetTop - e.clientY) * 0.02;
+                star.style.transform = `translate(${dx}px, ${dy}px)`;
             });
         });
     </script>
