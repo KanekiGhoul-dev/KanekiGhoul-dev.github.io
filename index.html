@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Elia Giordano</title>
+    <title>Portfolio - Elia Giordano</n<title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500&display=swap" rel="stylesheet">
     <style>
         /* Reset e stili base */
@@ -47,29 +47,39 @@
         section {
             padding: 100px 20px 60px;
             text-align: center; position: relative; z-index: 1;
+            /* rimosso background semitrasparente */
         }
         /* Intro */
         #home h1 {
             font-size: 3em; color: #00f; margin-bottom: 20px;
             animation: textAnimation 1s forwards;
+            text-shadow: 0 0 10px #00f;
         }
         #home p {
             font-size: 1.2em; color: #bbb; max-width: 800px; margin: 0 auto;
+            text-shadow: 0 0 5px #00f;
         }
         @keyframes textAnimation {
             0% { transform: translateY(-50px); opacity: 0; }
             100% { transform: translateY(0); opacity: 1; }
         }
         /* Titoli */
-        h2 { font-size: 2.5em; color: #00f; margin-bottom: 20px; }
-        p { font-size: 1.2em; color: #bbb; margin-bottom: 30px; line-height: 1.5; max-width: 900px; margin: 0 auto 30px; }
+        h2 {
+            font-size: 2.5em; color: #00f; margin-bottom: 20px;
+            text-shadow: 0 0 10px #00f;
+        }
+        p {
+            font-size: 1.2em; color: #bbb; margin-bottom: 30px;
+            line-height: 1.5; max-width: 900px; margin: 0 auto 30px;
+            text-shadow: 0 0 5px #00f;
+        }
         ul { list-style: none; padding: 0; }
-        ul li { font-size: 1.2em; color: #bbb; margin: 10px 0; transition: color 0.3s; }
+        ul li {
+            font-size: 1.2em; color: #bbb; margin: 10px 0;
+            transition: color 0.3s;
+            text-shadow: 0 0 5px #00f;
+        }
         ul li:hover { color: #00f; }
-        /* Sezioni semi-trasparenti per vedere le stelle */
-        #chi-sono { background-color: rgba(17,17,17,0.5); }
-        #competenze { background-color: rgba(17,17,17,0.5); }
-        #contatti { background-color: rgba(17,17,17,0.5); }
     </style>
 </head>
 <body>
@@ -115,7 +125,6 @@
         const background = document.querySelector('.background');
         const starCount = 200;
         const stars = [];
-        // Crea stelle
         for (let i = 0; i < starCount; i++) {
             const star = document.createElement('div');
             star.className = 'star';
@@ -126,14 +135,19 @@
             background.appendChild(star);
             stars.push(star);
         }
-        // Muovi stelle al mouse
         document.addEventListener('mousemove', e => {
-            const cx = window.innerWidth/2;
-            const cy = window.innerHeight/2;
+            const cx = window.innerWidth / 2;
+            const cy = window.innerHeight / 2;
             stars.forEach(star => {
-                const dx = (star.offsetLeft - e.clientX) * 0.02;
-                const dy = (star.offsetTop - e.clientY) * 0.02;
+                const dx = (star.offsetLeft - e.clientX) * 0.03;
+                const dy = (star.offsetTop - e.clientY) * 0.03;
                 star.style.transform = `translate(${dx}px, ${dy}px)`;
+            });
+        });
+        window.addEventListener('resize', () => {
+            stars.forEach(star => {
+                star.style.top = `${Math.random() * window.innerHeight}px`;
+                star.style.left = `${Math.random() * window.innerWidth}px`;
             });
         });
     </script>
