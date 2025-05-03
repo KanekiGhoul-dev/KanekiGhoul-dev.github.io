@@ -2,93 +2,87 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Il mio universo creativo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Il mio universo</title>
   <style>
     body {
       margin: 0;
       font-family: 'Orbitron', sans-serif;
-      color: #8ab4f8;
       background-color: black;
+      color: #99ccff;
       overflow-x: hidden;
     }
 
     header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
-      padding: 1rem;
+      position: relative;
+      text-align: center;
+      padding: 100px 20px 50px;
+      z-index: 1;
+    }
+
+    h1, p {
+      margin: 0;
+      font-size: 2em;
+    }
+
+    nav {
       display: flex;
       justify-content: center;
-      z-index: 10;
+      gap: 20px;
+      margin-top: 20px;
+      z-index: 1;
     }
 
     nav a {
-      color: #8ab4f8;
-      margin: 0 1.5rem;
       text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s;
+      color: #99ccff;
+      font-size: 1.2em;
+      transition: color 0.3s ease;
     }
 
     nav a:hover {
-      color: white;
+      color: #ffffff;
     }
 
-    section {
-      padding: 100px 20px 60px;
-      text-align: center;
-    }
-
-    h1, h2 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    p {
-      font-size: 1.3rem;
+    .section {
+      padding: 100px 20px;
       max-width: 800px;
-      margin: 0 auto 2rem;
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
-      font-size: 1.3rem;
+      margin: 0 auto;
+      z-index: 1;
     }
 
     canvas {
       position: fixed;
       top: 0;
       left: 0;
-      z-index: -1;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+    }
+
+    .parallax {
+      transition: transform 0.2s ease-out;
     }
   </style>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <canvas id="stars"></canvas>
-
   <header>
-    <nav>
-      <a href="#home">Home</a>
+    <h1 class="parallax">Benvenuto nel mio universo</h1>
+    <p class="parallax">Presto troverai qui i miei progetti</p>
+    <nav class="parallax">
       <a href="#chi-sono">Chi sono</a>
       <a href="#competenze">Competenze</a>
     </nav>
   </header>
 
-  <section id="home">
-    <h1>Benvenuto nel mio universo</h1>
-    <p>Presto troverai qui i miei progetti</p>
-  </section>
-
-  <section id="chi-sono">
+  <section id="chi-sono" class="section">
     <h2>Chi sono</h2>
-    <p>Sono un appassionato di modellazione 3D e animazione, con un forte interesse per l’intelligenza artificiale. Anche se non ho una formazione formale nel settore, sto costruendo le mie competenze da autodidatta, un passo alla volta.</p>
+    <p>Sono un appassionato di modellazione 3D, animazione e intelligenza artificiale. Anche se non ho una formazione accademica formale in questi settori, ho imparato da autodidatta e continuo a esplorare e sviluppare le mie competenze con grande entusiasmo.</p>
   </section>
 
-  <section id="competenze">
+  <section id="competenze" class="section">
     <h2>Competenze</h2>
     <ul>
       <li>Photoshop</li>
@@ -104,9 +98,7 @@
   <script>
     const canvas = document.getElementById("stars");
     const ctx = canvas.getContext("2d");
-
     let stars = [];
-    const numStars = 100;
 
     function resizeCanvas() {
       canvas.width = window.innerWidth;
@@ -115,64 +107,74 @@
 
     function createStars() {
       stars = [];
-      for (let i = 0; i < numStars; i++) {
+      for (let i = 0; i < 200; i++) {
         stars.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          radius: Math.random() * 2 + 1,
-          speedX: 0,
-          speedY: 0
+          r: Math.random() * 2 + 1,
+          dx: (Math.random() - 0.5) * 0.2,
+          dy: (Math.random() - 0.5) * 0.2
         });
       }
     }
 
     function drawStars() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = "#8ab4f8";
-      stars.forEach(star => {
+      ctx.fillStyle = "white";
+      for (let star of stars) {
         ctx.beginPath();
-        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
         ctx.fill();
-      });
+      }
     }
 
     function updateStars() {
-      stars.forEach(star => {
-        star.x += star.speedX;
-        star.y += star.speedY;
-
-        if (star.x < 0 || star.x > canvas.width) star.x = Math.random() * canvas.width;
-        if (star.y < 0 || star.y > canvas.height) star.y = Math.random() * canvas.height;
-
-        // Diminuisci lentamente l'effetto
-        star.speedX *= 0.95;
-        star.speedY *= 0.95;
-      });
+      for (let star of stars) {
+        star.x += star.dx;
+        star.y += star.dy;
+        if (star.x < 0 || star.x > canvas.width || star.y < 0 || star.y > canvas.height) {
+          star.x = Math.random() * canvas.width;
+          star.y = Math.random() * canvas.height;
+        }
+      }
     }
 
     function animate() {
-      updateStars();
       drawStars();
+      updateStars();
       requestAnimationFrame(animate);
     }
 
+    resizeCanvas();
+    createStars();
+    animate();
     window.addEventListener("resize", () => {
       resizeCanvas();
       createStars();
     });
 
+    // Movimento stelle al movimento del mouse
     document.addEventListener("mousemove", (e) => {
-      const dx = (e.clientX - canvas.width / 2) * 0.001;
-      const dy = (e.clientY - canvas.height / 2) * 0.001;
-      stars.forEach(star => {
-        star.speedX += dx;
-        star.speedY += dy;
-      });
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+      const deltaX = (e.clientX - centerX) / 100;
+      const deltaY = (e.clientY - centerY) / 100;
+
+      for (let star of stars) {
+        star.dx = deltaX * (Math.random() * 0.5);
+        star.dy = deltaY * (Math.random() * 0.5);
+      }
     });
 
-    resizeCanvas();
-    createStars();
-    animate();
+    // Effetto parallasse per testi
+    const elements = document.querySelectorAll(".parallax");
+    document.addEventListener("mousemove", (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 20;
+      const y = (e.clientY / window.innerHeight - 0.5) * 20;
+      elements.forEach((el) => {
+        el.style.transform = `translate(${x}px, ${y}px)`;
+      });
+    });
   </script>
 </body>
 </html>
