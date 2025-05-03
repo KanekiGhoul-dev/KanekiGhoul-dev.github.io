@@ -39,9 +39,10 @@
     <p>Presto troverai qui i miei progetti</p>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.150.1/examples/js/loaders/GLTFLoader.js"></script>
-  <script>
+  <script type="module">
+    import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.module.js';
+    import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.150.1/examples/jsm/loaders/GLTFLoader.js';
+
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
     camera.position.z = 5;
@@ -54,14 +55,14 @@
     light.position.set(5, 5, 5);
     scene.add(light);
 
-    const loader = new THREE.GLTFLoader();
+    const loader = new GLTFLoader();
     loader.load('mano_aliena.glb', function (gltf) {
-       console.log(gltf.scene);
+      console.log(gltf.scene); // Controlla nella console se il modello viene caricato
+
       const model = gltf.scene;
       model.scale.set(2, 2, 2);
+      model.position.set(0, 0, 0); // Assicura che il modello sia visibile
       scene.add(model);
-model.position.set(0, 0, 0);
-camera.lookAt(model.position);
 
       const animate = function () {
         requestAnimationFrame(animate);
