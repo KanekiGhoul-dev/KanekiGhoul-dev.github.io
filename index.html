@@ -3,83 +3,74 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio 3D</title>
+  <title>Il Mio Universo</title>
   <style>
     body {
       margin: 0;
+      padding: 0;
       overflow: hidden;
-      font-family: 'Arial', sans-serif;
       background: url('sfondoportfolio.jpg') no-repeat center center fixed;
       background-size: cover;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #66ccff; /* blu acceso */
+      font-size: 3rem;
     }
 
-    h1 {
+    .overlay {
       position: absolute;
-      top: 10%;
-      width: 100%;
+      top: 5%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
       text-align: center;
-      font-size: 3.5rem; /* aumentato */
-      color: #3399ff; /* blu acceso */
-      text-shadow: 0 0 20px #3399ff;
-      z-index: 1;
+      text-shadow: 2px 2px 8px #000000;
     }
 
-    #canvas-container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 0;
+    canvas {
+      display: block;
     }
   </style>
 </head>
 <body>
-  <h1>Benvenuto nel mio universo!<br>Presto troverai qui i miei progetti.</h1>
-  <div id="canvas-container"></div>
+  <div class="overlay">
+    <h1>Benvenuto nel mio universo</h1>
+    <p>Presto troverai qui i miei progetti</p>
+  </div>
 
-  <!-- Importa Three.js e GLTFLoader -->
   <script src="https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.150.1/examples/js/loaders/GLTFLoader.js"></script>
   <script>
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    camera.position.z = 5;
+
+    const renderer = new THREE.WebGLRenderer({ alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    document.getElementById('canvas-container').appendChild(renderer.domElement);
+    document.body.appendChild(renderer.domElement);
 
     const light = new THREE.DirectionalLight(0xffffff, 2);
-    light.position.set(2, 2, 5);
+    light.position.set(5, 5, 5);
     scene.add(light);
-
-    const ambientLight = new THREE.AmbientLight(0x404040, 2); 
-    scene.add(ambientLight);
 
     const loader = new THREE.GLTFLoader();
     loader.load('mano_aliena.glb', function (gltf) {
       const model = gltf.scene;
       model.scale.set(2, 2, 2);
-      model.position.set(0, 0, 0);
       scene.add(model);
 
-      // Animazione di rotazione
-      function animate() {
+      const animate = function () {
         requestAnimationFrame(animate);
-        model.rotation.y += 0.005;
+        model.rotation.y += 0.01;
         renderer.render(scene, camera);
-      }
+      };
+
       animate();
     }, undefined, function (error) {
       console.error('Errore nel caricamento del modello:', error);
     });
-
-    camera.position.z = 5;
 
     window.addEventListener('resize', () => {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
     });
-  </script>
-</body>
-</html>
