@@ -59,6 +59,8 @@
       const model = gltf.scene;
       model.scale.set(2, 2, 2);
       scene.add(model);
+model.position.set(0, 0, 0);
+camera.lookAt(model.position);
 
       const animate = function () {
         requestAnimationFrame(animate);
