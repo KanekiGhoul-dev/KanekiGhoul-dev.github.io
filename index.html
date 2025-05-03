@@ -3,207 +3,205 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio - Progetti</title>
+  <title>Portfolio</title>
   <style>
-    body {
+    html, body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      padding: 0;
+      overflow-x: hidden;
       background: black;
       color: white;
-      overflow-x: hidden;
+      font-family: Arial, sans-serif;
     }
 
     canvas {
       position: fixed;
       top: 0;
       left: 0;
+      width: 100%;
+      height: 100%;
       z-index: -1;
     }
 
-    .section {
-      padding: 100px 20px 60px;
+    section {
+      padding: 100px 20px;
       text-align: center;
+      background: rgba(0, 0, 0, 0.6);
+      margin: 0;
+      transition: background 0.3s ease;
     }
 
-    h2 {
+    section:hover {
+      background: rgba(0, 0, 0, 0.85);
+    }
+
+    h1, h2, h3 {
       color: #00f;
-      margin-bottom: 30px;
-      font-size: 40px;
+      margin-bottom: 20px;
     }
 
     select {
-      padding: 12px 16px;
-      font-size: 18px;
-      margin-bottom: 30px;
-      background: #111;
-      color: #00f;
-      border: 2px solid #00f;
-      border-radius: 8px;
-      transition: all 0.3s ease;
-    }
-    select:hover {
-      background: #222;
-      box-shadow: 0 0 10px #00f;
-      cursor: pointer;
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 20px;
     }
 
     .project-group {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
+      margin-top: 1rem;
+      padding: 1rem;
+      border: 1px solid #444;
+      border-radius: 10px;
     }
 
     .project img {
-      width: 260px;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-      border: 2px solid #00f;
-      padding: 5px;
+      width: 200px;
+      margin: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
     }
 
     .project img:hover {
-      transform: rotateY(10deg) rotateX(10deg) scale(1.1);
-      box-shadow: 0 0 25px #00f;
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #00f;
     }
 
-    .modal {
-      display: none;
+    #popup {
       position: fixed;
-      z-index: 10;
-      left: 0;
-      top: 0;
-      width: 100vw;
-      height: 100vh;
+      display: none;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background-color: rgba(0, 0, 0, 0.9);
       justify-content: center;
       align-items: center;
+      z-index: 1000;
     }
 
-    .modal video {
-      max-width: 80vw;
-      max-height: 80vh;
-    }
-
-    .modal.show {
-      display: flex;
-    }
-
-    .close-btn {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      font-size: 30px;
-      color: white;
-      cursor: pointer;
+    #popup img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
     }
   </style>
 </head>
 <body>
-  <canvas id="starCanvas"></canvas>
+<canvas id="stars"></canvas>
 
-  <section class="section" id="progetti">
-    <h2>Progetti</h2>
-    <label for="softwareSelect">Seleziona Software:</label>
-    <select id="softwareSelect">
-      <option value="">-- Seleziona --</option>
-      <option value="blender">Blender</option>
-    </select>
+<section id="home">
+  <h1>Benvenuto nel mio Portfolio</h1>
+</section>
 
-    <div id="blender" class="project-group" style="display: none;">
-      <div class="project">
-        <img src="spherelumsvdo.jpg" data-video="spherelumsvdo.mp4" alt="Spherelum">
-      </div>
-      <div class="project">
-        <img src="tazzinavdo.jpg" data-video="tazzinavdo.mp4" alt="Tazzina">
-      </div>
-      <div class="project">
-        <img src="rubikvdo.jpg" data-video="rubikvdo.mp4" alt="Rubik">
-      </div>
-      <div class="project">
-        <img src="magicvdo.jpg" data-video="magicvdo.mp4" alt="Magic">
-      </div>
-      <div class="project">
-        <img src="pallavdo.jpg" data-video="pallavdo.mp4" alt="Palla">
-      </div>
-      <div class="project">
-        <img src="wtrvdo.jpg" data-video="wtrvdo.mp4" alt="Water">
-      </div>
+<section id="competenze">
+  <h2>Competenze</h2>
+  <p>Blender, Photoshop, Illustrator, After Effects, Premiere</p>
+</section>
+
+<section id="progetti">
+  <h2>Progetti</h2>
+  <label for="software-select">Scegli un software:</label>
+  <select id="software-select" onchange="showProjects()">
+    <option value="">-- Seleziona --</option>
+    <option value="blender">Blender</option>
+    <option value="photoshop">Photoshop</option>
+    <option value="illustrator">Illustrator</option>
+    <option value="aftereffects">After Effects</option>
+    <option value="premiere">Premiere</option>
+  </select>
+  <div id="projects-container">
+    <div class="project-group" id="blender-projects" style="display: none;">
+      <h3>Progetti realizzati con Blender</h3>
+      <div class="project"><img src="spherelumsimg.jpg" alt="Spherelums" onclick="showPopup('spherelumsvdo.gif')"></div>
+      <div class="project"><img src="tazzinaimg.jpg" alt="Tazzina" onclick="showPopup('tazzinavdo.gif')"></div>
+      <div class="project"><img src="rubikimg.jpg" alt="Rubik" onclick="showPopup('rubikvdo.gif')"></div>
+      <div class="project"><img src="magicimg.jpg" alt="Magic" onclick="showPopup('magicvdo.gif')"></div>
+      <div class="project"><img src="pallaimg.jpg" alt="Palla" onclick="showPopup('pallavdo.gif')"></div>
+      <div class="project"><img src="wtrimg.jpg" alt="Wtr" onclick="showPopup('wtrvdo.gif')"></div>
     </div>
-  </section>
-
-  <div class="modal" id="videoModal">
-    <span class="close-btn" id="closeModal">&times;</span>
-    <video id="modalVideo" controls></video>
+    <div class="project-group" id="photoshop-projects" style="display: none;"><h3>Progetti Photoshop</h3></div>
+    <div class="project-group" id="illustrator-projects" style="display: none;"><h3>Progetti Illustrator</h3></div>
+    <div class="project-group" id="aftereffects-projects" style="display: none;"><h3>Progetti After Effects</h3></div>
+    <div class="project-group" id="premiere-projects" style="display: none;"><h3>Progetti Premiere</h3></div>
   </div>
+</section>
 
-  <script>
-    const canvas = document.getElementById('starCanvas');
-    const ctx = canvas.getContext('2d');
-    const stars = [];
-    const numStars = 500;
+<section id="contatti">
+  <h2>Contatti</h2>
+  <p>Email: esempio@email.com</p>
+</section>
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+<div id="popup" onclick="hidePopup()">
+  <img id="popup-img" src="" alt="Animazione progetto">
+</div>
 
-    for (let i = 0; i < numStars; i++) {
-      stars.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        z: Math.random() * canvas.width,
-        radius: Math.random() * 1.5 + 0.5
-      });
-    }
+<script>
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
+  let stars = [];
+  const numStars = 100;
+  let mouse = { x: 0, y: 0 };
 
-    function animateStars() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (let star of stars) {
-        star.z -= 1;
-        if (star.z <= 0) {
-          star.z = canvas.width;
-          star.x = Math.random() * canvas.width;
-          star.y = Math.random() * canvas.height;
-        }
-        let k = 128.0 / star.z;
-        let x = (star.x - canvas.width / 2) * k + canvas.width / 2;
-        let y = (star.y - canvas.height / 2) * k + canvas.height / 2;
-        let radius = star.radius * k;
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 
-        ctx.beginPath();
-        ctx.arc(x, y, radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'white';
-        ctx.fill();
+  for (let i = 0; i < numStars; i++) {
+    stars.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      radius: Math.random() * 1.5,
+      vx: 0,
+      vy: 0
+    });
+  }
+
+  window.addEventListener('mousemove', e => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  });
+
+  function animateStars() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let star of stars) {
+      let dx = star.x - mouse.x;
+      let dy = star.y - mouse.y;
+      let dist = Math.sqrt(dx*dx + dy*dy);
+      if (dist < 100) {
+        let force = (100 - dist) / 100;
+        let angle = Math.atan2(dy, dx);
+        star.vx += Math.cos(angle) * force;
+        star.vy += Math.sin(angle) * force;
       }
-      requestAnimationFrame(animateStars);
+      star.vx *= 0.95;
+      star.vy *= 0.95;
+      star.x += star.vx;
+      star.y += star.vy;
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+      ctx.fillStyle = 'white';
+      ctx.fill();
     }
-    animateStars();
+    requestAnimationFrame(animateStars);
+  }
+  animateStars();
 
-    const softwareSelect = document.getElementById('softwareSelect');
-    softwareSelect.addEventListener('change', function () {
-      const groups = document.querySelectorAll('.project-group');
-      groups.forEach(group => group.style.display = 'none');
+  function showProjects() {
+    const software = document.getElementById('software-select').value;
+    document.querySelectorAll('.project-group').forEach(group => group.style.display = 'none');
+    if (software) {
+      document.getElementById(`${software}-projects`).style.display = 'block';
+    }
+  }
 
-      const selected = this.value;
-      if (selected) {
-        document.getElementById(selected).style.display = 'flex';
-      }
-    });
+  function showPopup(src) {
+    const popup = document.getElementById("popup");
+    const popupImg = document.getElementById("popup-img");
+    popupImg.src = src;
+    popup.style.display = "flex";
+  }
 
-    const modal = document.getElementById('videoModal');
-    const modalVideo = document.getElementById('modalVideo');
-    const closeModal = document.getElementById('closeModal');
-
-    document.querySelectorAll('.project img').forEach(img => {
-      img.addEventListener('click', () => {
-        modalVideo.src = img.dataset.video;
-        modal.classList.add('show');
-      });
-    });
-
-    closeModal.addEventListener('click', () => {
-      modal.classList.remove('show');
-      modalVideo.pause();
-      modalVideo.currentTime = 0;
-    });
-  </script>
+  function hidePopup() {
+    document.getElementById("popup").style.display = "none";
+    document.getElementById("popup-img").src = "";
+  }
+</script>
 </body>
 </html>
