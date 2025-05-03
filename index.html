@@ -57,11 +57,11 @@
 
     const loader = new GLTFLoader();
     loader.load('mano_aliena.glb', function (gltf) {
-      console.log(gltf.scene); // Controlla nella console se il modello viene caricato
+      console.log(gltf.scene); // Debug: Verifica se il modello viene caricato
 
       const model = gltf.scene;
       model.scale.set(2, 2, 2);
-      model.position.set(0, 0, 0); // Assicura che il modello sia visibile
+      model.position.set(0, 0, 0); // Assicura la visibilità del modello
       scene.add(model);
 
       const animate = function () {
