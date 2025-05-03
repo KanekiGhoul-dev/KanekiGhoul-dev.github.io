@@ -3,185 +3,140 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Portfolio Stellare</title>
-
+  <title>Portfolio</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
-
-    html {
-      scroll-behavior: smooth;
-    }
-    * {
-      margin: 0; padding: 0; box-sizing: border-box;
-    }
     body {
+      margin: 0;
+      overflow: hidden;
       font-family: 'Orbitron', sans-serif;
-      color: #66ccff;
       background: black;
-      overflow-x: hidden;
+      color: #6db2ff;
     }
 
-    nav {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      background: rgba(0,0,0,0.7);
-      display: flex;
-      justify-content: center;
-      padding: 1rem 0;
-      z-index: 20;
-    }
-    nav a {
-      color: #66ccff;
-      text-decoration: none;
-      margin: 0 1.5rem;
-      font-size: 1.2rem;
-      transition: color 0.3s;
-    }
-    nav a:hover {
-      color: #ffffff;
+    h1, h2, p, li {
+      margin: 0 0 20px 0;
     }
 
-    #home {
-      position: relative;
-      width: 100%; height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      z-index: 10;
+    h1 {
+      font-size: 3em;
+      margin-bottom: 40px;
     }
-    #home .overlay {
-      max-width: 80%;
+
+    h2 {
+      font-size: 2em;
+      margin-top: 60px;
     }
-    #home h1 {
-      font-size: 3rem;
-      text-shadow: 0 0 10px #3399ff;
-      margin-bottom: 0.5rem;
-    }
-    #home p {
-      font-size: 1.5rem;
-      text-shadow: 0 0 5px #3399ff;
+
+    p, li {
+      font-size: 1.2em;
     }
 
     .section {
       position: relative;
+      z-index: 2;
       max-width: 800px;
-      margin: 4rem auto;
-      padding: 2rem;
-      background: rgba(0,0,0,0.6);
-      border-radius: 10px;
-      box-shadow: 0 0 15px #3399ff55;
-      z-index: 10;
-    }
-    .section h2 {
-      margin-bottom: 1rem;
-      font-size: 2.2rem;
-      border-bottom: 2px solid #3399ff;
-      display: inline-block;
-    }
-    .section p {
-      margin-top: 1rem;
-      font-size: 1.1rem;
-      line-height: 1.4;
+      margin: 100px auto;
+      padding: 0 20px;
     }
 
-    #canvas-container {
+    canvas {
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: 0;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul li::before {
+      content: "• ";
+      color: #6db2ff;
     }
   </style>
 </head>
 <body>
+  <canvas id="stars"></canvas>
 
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#chi-sono">Chi Sono</a>
-    <a href="#competenze">Competenze</a>
-    <a href="#contatti">Contatti</a>
-  </nav>
+  <div class="section" id="intro">
+    <h1>Benvenuto nel mio universo</h1>
+    <p>Presto troverai qui i miei progetti</p>
+  </div>
 
-  <section id="home">
-    <div class="overlay">
-      <h1>Benvenuto nel mio universo</h1>
-      <p>Presto troverai qui i miei progetti</p>
-    </div>
-  </section>
+  <div class="section" id="chi-sono">
+    <h2>Chi sono</h2>
+    <p>
+      Sono un appassionato di modellazione e animazione 3D, un interesse che coltivo da autodidatta sperimentando con software come Blender e approfondendo giorno dopo giorno.  
+      <br><br>
+      Negli ultimi tempi mi sto avvicinando anche al mondo dell’intelligenza artificiale, esplorando come possa integrarsi nei processi creativi per dare vita a progetti originali e innovativi.  
+      <br><br>
+      Amo imparare, mettermi alla prova e cercare sempre nuove ispirazioni che uniscano arte e tecnologia.
+    </p>
+  </div>
 
-  <section id="chi-sono" class="section">
-    <h2>Chi Sono</h2>
-    <p>Sono un Visual Designer e 3D Artist appassionato di temi spaziali e futuristici. Amo esplorare nuovi modi di comunicare attraverso il design.</p>
-  </section>
+  <div class="section" id="competenze">
+    <h2>Competenze</h2>
+    <ul>
+      <li>Photoshop</li>
+      <li>Illustrator</li>
+      <li>InDesign</li>
+      <li>Inventor</li>
+      <li>3ds Max</li>
+      <li>AutoCAD</li>
+      <li>Blender</li>
+    </ul>
+  </div>
 
-<section id="competenze" class="section">
-  <h2>Competenze</h2>
-  <p>
-    Sono un appassionato di modellazione e animazione 3D, un interesse che coltivo da autodidatta sperimentando con software come Blender e approfondendo giorno dopo giorno.  
-    <br><br>
-    Negli ultimi tempi mi sto avvicinando anche al mondo dell’intelligenza artificiale, esplorando come possa integrarsi nei processi creativi per dare vita a progetti originali e innovativi.  
-    <br><br>
-    Amo imparare, mettermi alla prova e cercare sempre nuove ispirazioni che uniscano arte e tecnologia.
-  </p>
-</section>
+  <script>
+    const canvas = document.getElementById('stars');
+    const ctx = canvas.getContext('2d');
 
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
 
-  <section id="contatti" class="section">
-    <h2>Contatti</h2>
-    <p>Email: kanekighoul.dev@galaxy.net</p>
-    <p>GitHub: <a href="https://github.com/KanekiGhoul-dev" target="_blank" style="color:#66ccff;">KanekiGhoul-dev</a></p>
-  </section>
-
-  <div id="canvas-container"></div>
-
-  <script type="module">
-    import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
-
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.z = 50;
-
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.getElementById('canvas-container').appendChild(renderer.domElement);
-
-    // STARS
-    const starsGeometry = new THREE.BufferGeometry();
-    const starCount = 3000;
-    const positions = [];
-
-    for (let i = 0; i < starCount; i++) {
-      positions.push(
-        (Math.random() - 0.5) * 400,
-        (Math.random() - 0.5) * 400,
-        (Math.random() - 0.5) * 400
-      );
-    }
-
-    starsGeometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
-
-    const starMaterial = new THREE.PointsMaterial({
-      color: 0x3399ff,
-      size: 1.2,
-    });
-
-    const stars = new THREE.Points(starsGeometry, starMaterial);
-    scene.add(stars);
-
-    function animate() {
-      requestAnimationFrame(animate);
-      stars.rotation.y += 0.0007;
-      stars.rotation.x += 0.0003;
-      renderer.render(scene, camera);
-    }
-    animate();
+    const stars = Array.from({ length: 200 }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      radius: Math.random() * 2 + 1,
+      speed: Math.random() * 0.5 + 0.2
+    }));
 
     window.addEventListener('resize', () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
     });
+
+    canvas.addEventListener('mousemove', (e) => {
+      const dx = e.clientX - width / 2;
+      const dy = e.clientY - height / 2;
+      for (let star of stars) {
+        star.x += dx * 0.0005;
+        star.y += dy * 0.0005;
+      }
+    });
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      for (let star of stars) {
+        star.y += star.speed;
+        if (star.y > height) {
+          star.y = 0;
+          star.x = Math.random() * width;
+        }
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        ctx.fillStyle = '#6db2ff';
+        ctx.fill();
+      }
+      requestAnimationFrame(animate);
+    }
+
+    animate();
   </script>
+
+  <!-- Font Orbitron da Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
 </body>
 </html>
