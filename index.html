@@ -3,181 +3,181 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio Elia Giordano</title>
+  <title>Portfolio di Elia Giordano</title>
   <style>
-    body {
+    body, html {
       margin: 0;
+      padding: 0;
       overflow: hidden;
       font-family: 'Orbitron', sans-serif;
       background: black;
-      color: #66ccff;
+      color: #00bfff;
     }
 
     header {
-      text-align: center;
-      margin-top: 40px;
-      font-size: 2rem;
-    }
-
-    nav {
+      position: fixed;
+      width: 100%;
       display: flex;
       justify-content: center;
-      gap: 2rem;
-      margin: 20px;
+      gap: 3rem;
+      top: 0;
+      padding: 1.5rem;
+      z-index: 10;
+      background: rgba(0, 0, 0, 0.6);
     }
 
-    nav a {
-      color: #66ccff;
+    header a {
       text-decoration: none;
-      font-size: 1.2rem;
-      transition: color 0.3s ease;
+      color: #00bfff;
+      transition: color 0.3s;
     }
 
-    nav a:hover {
-      color: #ffffff;
+    header a:hover {
+      color: white;
+    }
+
+    main {
+      position: relative;
+      text-align: center;
+      padding-top: 10rem;
+      z-index: 1;
     }
 
     section {
-      max-width: 800px;
-      margin: 80px auto;
-      text-align: center;
+      margin-top: 6rem;
+      padding: 2rem;
     }
 
     canvas {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
+      z-index: 0;
+    }
+
+    .planet {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.7;
+      animation: float 20s infinite linear;
+    }
+
+    .planet.green { background: green; width: 40px; height: 40px; top: 20%; left: 10%; }
+    .planet.purple { background: purple; width: 60px; height: 60px; top: 40%; left: 80%; }
+    .planet.yellow { background: yellow; width: 30px; height: 30px; top: 70%; left: 50%; }
+
+    @keyframes float {
+      0% { transform: translateY(0) translateX(0); }
+      50% { transform: translateY(-20px) translateX(10px); }
+      100% { transform: translateY(0) translateX(0); }
     }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
   <canvas id="stars"></canvas>
-  <header>Benvenuto nel mio universo</header>
-  <nav>
-    <a href="#chi-sono">Chi sono</a>
+
+  <div class="planet green"></div>
+  <div class="planet purple"></div>
+  <div class="planet yellow"></div>
+
+  <header>
+    <a href="#home">Home</a>
+    <a href="#chi">Chi sono</a>
     <a href="#competenze">Competenze</a>
     <a href="#contatti">Contatti</a>
-  </nav>
+  </header>
 
-  <section id="chi-sono">
-    <h2>Chi sono</h2>
-    <p>
-      Mi chiamo Elia Giordano, sono un appassionato di modellazione e animazione 3D e mi sto avvicinando con entusiasmo al mondo dell'intelligenza artificiale. Anche se non sono ancora un esperto, mi piace imparare da autodidatta e sperimentare nuove tecnologie. Il mio obiettivo è crescere professionalmente seguendo le mie passioni e realizzare progetti creativi.
-    </p>
-  </section>
+  <main>
+    <h1 id="home">Benvenuto nel mio universo</h1>
+    <p>Presto troverai qui i miei progetti</p>
 
-  <section id="competenze">
-    <h2>Competenze</h2>
-    <ul>
-      <li>Photoshop</li>
-      <li>Illustrator</li>
-      <li>InDesign</li>
-      <li>Inventor</li>
-      <li>3ds Max</li>
-      <li>AutoCAD</li>
-      <li>Blender</li>
-    </ul>
-  </section>
+    <section id="chi">
+      <h2>Chi sono</h2>
+      <p>Sono un appassionato di modellazione 3D e animazione, affascinato anche dal mondo dell'intelligenza artificiale. Sebbene non sia ancora specializzato, sto imparando da autodidatta con grande entusiasmo e costanza. Mi piace esplorare nuove tecnologie e creare contenuti visivi coinvolgenti.</p>
+    </section>
 
-  <section id="contatti">
-    <h2>Contatti</h2>
-    <p>Email: elgio0926@gmail.com</p>
-    <p>Telefono: +39 3515749331</p>
-    <p>LinkedIn: Elia Giordano</p>
-  </section>
+    <section id="competenze">
+      <h2>Competenze</h2>
+      <ul>
+        <li>Photoshop</li>
+        <li>Illustrator</li>
+        <li>InDesign</li>
+        <li>Inventor</li>
+        <li>3ds Max</li>
+        <li>AutoCAD</li>
+        <li>Blender</li>
+      </ul>
+    </section>
+
+    <section id="contatti">
+      <h2>Contatti</h2>
+      <p>Telefono: +39 3515749331</p>
+      <p>Email: elgio0926@gmail.com</p>
+      <p>LinkedIn: <a href="https://www.linkedin.com/in/elia-giordano" target="_blank" style="color:#00bfff;">Elia Giordano</a></p>
+    </section>
+  </main>
 
   <script>
-    const canvas = document.getElementById('stars');
-    const ctx = canvas.getContext('2d');
-    let stars = [];
-    let planets = [];
+    const canvas = document.getElementById("stars");
+    const ctx = canvas.getContext("2d");
+    let width, height, stars = [];
 
-    function resize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+    function resizeCanvas() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
     }
 
-    window.addEventListener('resize', resize);
-    resize();
-
-    for (let i = 0; i < 300; i++) {
-      stars.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        radius: Math.random() * 1.5,
-        speed: Math.random() * 0.5 + 0.2,
-        vx: 0,
-        vy: 0
-      });
+    function createStars(num) {
+      stars = [];
+      for (let i = 0; i < num; i++) {
+        stars.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          r: Math.random() * 1.5 + 0.5,
+          dx: 0,
+          dy: 0
+        });
+      }
     }
 
-    // Pianeti (verde, viola, giallo)
-    const planetColors = ['#00ff99', '#cc66ff', '#ffcc00'];
-    for (let i = 0; i < 3; i++) {
-      planets.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        radius: Math.random() * 30 + 20,
-        color: planetColors[i],
-        angle: Math.random() * Math.PI * 2,
-        speed: 0.002 + Math.random() * 0.003
-      });
-    }
-
-    let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
-    window.addEventListener('mousemove', (e) => {
+    let mouse = { x: width / 2, y: height / 2 };
+    document.addEventListener("mousemove", e => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
     });
 
     function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+      ctx.clearRect(0, 0, width, height);
       for (let star of stars) {
         let dx = star.x - mouse.x;
         let dy = star.y - mouse.y;
         let dist = Math.sqrt(dx * dx + dy * dy);
-        let force = Math.min(150 / (dist * dist), 0.5);
-
-        star.vx += dx * force * 0.001;
-        star.vy += dy * force * 0.001;
-
-        star.vx *= 0.94;
-        star.vy *= 0.94;
-
-        star.x += star.vx;
-        star.y += star.vy;
-
-        if (star.x < 0 || star.x > canvas.width || star.y < 0 || star.y > canvas.height) {
-          star.x = Math.random() * canvas.width;
-          star.y = Math.random() * canvas.height;
-          star.vx = star.vy = 0;
+        if (dist < 150) {
+          star.dx += dx / dist;
+          star.dy += dy / dist;
         }
-
+        star.x += star.dx * 0.02;
+        star.y += star.dy * 0.02;
+        star.dx *= 0.95;
+        star.dy *= 0.95;
         ctx.beginPath();
-        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'white';
+        ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+        ctx.fillStyle = "white";
         ctx.fill();
       }
-
-      for (let planet of planets) {
-        planet.angle += planet.speed;
-        const orbit = 40;
-        const px = planet.x + Math.cos(planet.angle) * orbit;
-        const py = planet.y + Math.sin(planet.angle) * orbit;
-
-        ctx.beginPath();
-        ctx.arc(px, py, planet.radius, 0, Math.PI * 2);
-        ctx.fillStyle = planet.color;
-        ctx.fill();
-      }
-
       requestAnimationFrame(animate);
     }
 
+    window.addEventListener("resize", () => {
+      resizeCanvas();
+      createStars(300);
+    });
+
+    resizeCanvas();
+    createStars(300);
     animate();
   </script>
 </body>
