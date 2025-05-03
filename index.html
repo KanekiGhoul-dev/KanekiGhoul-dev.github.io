@@ -1,279 +1,207 @@
-# Creo il file HTML completo con la struttura approvata e i menu a tendina per ogni software
-html_code = """
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Elia Giordano</title>
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            font-family: 'Orbitron', sans-serif;
-            color: #00aaff;
-            background: black;
-            overflow-x: hidden;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      background: black;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
 
-        section {
-            padding: 80px 20px;
-            text-align: center;
-            transition: background 0.3s ease;
-        }
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
 
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(0,0,0,0.8);
-            padding: 10px 0;
-            display: flex;
-            justify-content: center;
-            z-index: 10;
-        }
+    section {
+      padding: 100px 20px;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.6);
+      margin: 0;
+      transition: background 0.3s ease;
+    }
 
-        nav a {
-            color: #00aaff;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 18px;
-            transition: color 0.3s ease;
-        }
+    section:hover {
+      background: rgba(0, 0, 0, 0.85);
+    }
 
-        nav a:hover {
-            color: #ffffff;
-        }
+    h1, h2, h3 {
+      color: #00f;
+      margin-bottom: 20px;
+    }
 
-        #hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
+    select {
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
 
-        .highlight {
-            color: #00ccff;
-            font-size: 2.5em;
-            margin-bottom: 20px;
-        }
+    .project-group {
+      margin-top: 1rem;
+      padding: 1rem;
+      border: 1px solid #444;
+      border-radius: 10px;
+    }
 
-        .stars {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
+    .project img {
+      width: 200px;
+      margin: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
 
-        .star {
-            position: absolute;
-            border-radius: 50%;
-            background: white;
-            width: 2px;
-            height: 2px;
-            opacity: 0.8;
-            transition: transform 0.1s;
-        }
+    .project img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #00f;
+    }
 
-        .project-preview {
-            display: inline-block;
-            margin: 10px;
-            cursor: pointer;
-        }
+    #popup {
+      position: fixed;
+      display: none;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
 
-        .project-preview img {
-            width: 200px;
-            height: auto;
-            border: 2px solid #00aaff;
-            border-radius: 8px;
-        }
-
-        .popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: black;
-            padding: 20px;
-            z-index: 20;
-            display: none;
-        }
-
-        .popup video {
-            max-width: 90vw;
-            max-height: 80vh;
-        }
-
-        .popup-close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-        }
-
-        select {
-            margin: 20px;
-            font-size: 16px;
-            padding: 5px 10px;
-            background-color: #111;
-            color: #00aaff;
-            border: 1px solid #00aaff;
-            border-radius: 5px;
-        }
-    </style>
+    #popup img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+    }
+  </style>
 </head>
 <body>
+<canvas id="stars"></canvas>
 
-<div class="stars"></div>
-
-<nav>
-    <a href="#hero">Home</a>
-    <a href="#chi-sono">Chi sono</a>
-    <a href="#competenze">Competenze</a>
-    <a href="#progetti">Progetti</a>
-    <a href="#contatti">Contatti</a>
-</nav>
-
-<section id="hero">
-    <h1 class="highlight">Benvenuto nel mio universo</h1>
-    <p>Presto troverai qui i miei progetti</p>
-</section>
-
-<section id="chi-sono">
-    <h2>Chi sono</h2>
-    <p>Sono Elia Giordano, un appassionato autodidatta di 3D, animazione e intelligenza artificiale. 
-    Mi piace esplorare nuove tecnologie e dare forma alle idee attraverso la grafica e il movimento. 
-    Anche se non sono specializzato, ho una grande voglia di imparare e migliorarmi ogni giorno in questo campo affascinante.</p>
+<section id="home">
+  <h1>Benvenuto nel mio Portfolio</h1>
 </section>
 
 <section id="competenze">
-    <h2>Competenze</h2>
-    <ul>
-        <li>Photoshop</li>
-        <li>Illustrator</li>
-        <li>InDesign</li>
-        <li>Inventor</li>
-        <li>3ds Max</li>
-        <li>AutoCAD</li>
-        <li>Blender</li>
-    </ul>
+  <h2>Competenze</h2>
+  <p>Blender, Photoshop, Illustrator, After Effects, Premiere</p>
 </section>
 
 <section id="progetti">
-    <h2>Progetti</h2>
-    <label for="software-select">Seleziona software:</label>
-    <select id="software-select" onchange="filterProjects()">
-        <option value="">-- Scegli un software --</option>
-        <option value="blender">Blender</option>
-        <option value="photoshop">Photoshop</option>
-        <option value="illustrator">Illustrator</option>
-        <option value="indesign">InDesign</option>
-        <option value="inventor">Inventor</option>
-        <option value="3dsmax">3ds Max</option>
-        <option value="autocad">AutoCAD</option>
-    </select>
-
-    <div id="project-gallery">
-        <div class="project-group" data-software="blender">
-            <div class="project-preview" onclick="showVideo('spherelumsvdo.mp4')">
-                <img src="spherelumsimg.jpg" alt="spherelum">
-            </div>
-            <div class="project-preview" onclick="showVideo('tazzinavdo.mp4')">
-                <img src="tazzinaimg.jpg" alt="tazzina">
-            </div>
-            <div class="project-preview" onclick="showVideo('rubikvdo.mp4')">
-                <img src="rubikimg.jpg" alt="rubik">
-            </div>
-            <div class="project-preview" onclick="showVideo('magicvdo.mp4')">
-                <img src="magicimg.jpg" alt="magic">
-            </div>
-            <div class="project-preview" onclick="showVideo('pallavdo.mp4')">
-                <img src="pallaimg.jpg" alt="palla">
-            </div>
-            <div class="project-preview" onclick="showVideo('wtrvdo.mp4')">
-                <img src="wtrimg.jpg" alt="wtr">
-            </div>
-        </div>
-        <div class="project-group" data-software="photoshop">Nessun progetto disponibile</div>
-        <div class="project-group" data-software="illustrator">Nessun progetto disponibile</div>
-        <div class="project-group" data-software="indesign">Nessun progetto disponibile</div>
-        <div class="project-group" data-software="inventor">Nessun progetto disponibile</div>
-        <div class="project-group" data-software="3dsmax">Nessun progetto disponibile</div>
-        <div class="project-group" data-software="autocad">Nessun progetto disponibile</div>
+  <h2>Progetti</h2>
+  <label for="software-select">Scegli un software:</label>
+  <select id="software-select" onchange="showProjects()">
+    <option value="">-- Seleziona --</option>
+    <option value="blender">Blender</option>
+    <option value="photoshop">Photoshop</option>
+    <option value="illustrator">Illustrator</option>
+    <option value="aftereffects">After Effects</option>
+    <option value="premiere">Premiere</option>
+  </select>
+  <div id="projects-container">
+    <div class="project-group" id="blender-projects" style="display: none;">
+      <h3>Progetti realizzati con Blender</h3>
+      <div class="project"><img src="spherelumsimg.jpg" alt="Spherelums" onclick="showPopup('spherelumsvdo.gif')"></div>
+      <div class="project"><img src="tazzinaimg.jpg" alt="Tazzina" onclick="showPopup('tazzinavdo.gif')"></div>
+      <div class="project"><img src="rubikimg.jpg" alt="Rubik" onclick="showPopup('rubikvdo.gif')"></div>
+      <div class="project"><img src="magicimg.jpg" alt="Magic" onclick="showPopup('magicvdo.gif')"></div>
+      <div class="project"><img src="pallaimg.jpg" alt="Palla" onclick="showPopup('pallavdo.gif')"></div>
+      <div class="project"><img src="wtrimg.jpg" alt="Wtr" onclick="showPopup('wtrvdo.gif')"></div>
     </div>
+    <div class="project-group" id="photoshop-projects" style="display: none;"><h3>Progetti Photoshop</h3></div>
+    <div class="project-group" id="illustrator-projects" style="display: none;"><h3>Progetti Illustrator</h3></div>
+    <div class="project-group" id="aftereffects-projects" style="display: none;"><h3>Progetti After Effects</h3></div>
+    <div class="project-group" id="premiere-projects" style="display: none;"><h3>Progetti Premiere</h3></div>
+  </div>
 </section>
 
 <section id="contatti">
-    <h2>Contatti</h2>
-    <p>Email: elgio0926@gmail.com</p>
-    <p>Telefono: +39 3515749331</p>
-    <p>LinkedIn: <a href="https://www.linkedin.com/in/elia-giordano" target="_blank">Elia Giordano</a></p>
+  <h2>Contatti</h2>
+  <p>Email: esempio@email.com</p>
 </section>
 
-<div class="popup" id="videoPopup">
-    <span class="popup-close" onclick="closeVideo()">✖</span>
-    <video id="popupVideo" controls autoplay></video>
+<div id="popup" onclick="hidePopup()">
+  <img id="popup-img" src="" alt="Animazione progetto">
 </div>
 
 <script>
-    const stars = [];
-    for (let i = 0; i < 150; i++) {
-        let star = document.createElement("div");
-        star.className = "star";
-        star.style.top = Math.random() * 100 + "vh";
-        star.style.left = Math.random() * 100 + "vw";
-        document.querySelector(".stars").appendChild(star);
-        stars.push(star);
-    }
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
+  let stars = [];
+  const numStars = 100;
+  let mouse = { x: 0, y: 0 };
 
-    document.addEventListener("mousemove", e => {
-        stars.forEach(star => {
-            const dx = e.clientX - star.offsetLeft;
-            const dy = e.clientY - star.offsetTop;
-            const dist = Math.sqrt(dx*dx + dy*dy);
-            const force = Math.max(0, 150 - dist) / 150;
-            const offsetX = dx * force * -0.05;
-            const offsetY = dy * force * -0.05;
-            star.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
-        });
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  for (let i = 0; i < numStars; i++) {
+    stars.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      radius: Math.random() * 1.5,
+      vx: 0,
+      vy: 0
     });
+  }
 
-    function filterProjects() {
-        const selected = document.getElementById("software-select").value;
-        document.querySelectorAll(".project-group").forEach(group => {
-            group.style.display = (group.dataset.software === selected) ? "block" : "none";
-        });
-    }
+  window.addEventListener('mousemove', e => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  });
 
-    function showVideo(filename) {
-        const popup = document.getElementById("videoPopup");
-        const video = document.getElementById("popupVideo");
-        video.src = filename;
-        popup.style.display = "block";
+  function animateStars() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let star of stars) {
+      let dx = star.x - mouse.x;
+      let dy = star.y - mouse.y;
+      let dist = Math.sqrt(dx*dx + dy*dy);
+      if (dist < 100) {
+        let force = (100 - dist) / 100;
+        let angle = Math.atan2(dy, dx);
+        star.vx += Math.cos(angle) * force;
+        star.vy += Math.sin(angle) * force;
+      }
+      star.vx *= 0.95;
+      star.vy *= 0.95;
+      star.x += star.vx;
+      star.y += star.vy;
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+      ctx.fillStyle = 'white';
+      ctx.fill();
     }
+    requestAnimationFrame(animateStars);
+  }
+  animateStars();
 
-    function closeVideo() {
-        const popup = document.getElementById("videoPopup");
-        const video = document.getElementById("popupVideo");
-        video.pause();
-        video.src = "";
-        popup.style.display = "none";
+  function showProjects() {
+    const software = document.getElementById('software-select').value;
+    document.querySelectorAll('.project-group').forEach(group => group.style.display = 'none');
+    if (software) {
+      document.getElementById(`${software}-projects`).style.display = 'block';
     }
+  }
+
+  function showPopup(src) {
+    const popup = document.getElementById("popup");
+    const popupImg = document.getElementById("popup-img");
+    popupImg.src = src;
+    popup.style.display = "flex";
+  }
+
+  function hidePopup() {
+    document.getElementById("popup").style.display = "none";
+    document.getElementById("popup-img").src = "";
+  }
 </script>
-
 </body>
 </html>
-"""
-
-# Salvo il file HTML
-file_path = "/mnt/data/portfolio_completo.html"
-with open(file_path, "w", encoding="utf-8") as f:
-    f.write(html_code)
-
-file_path
-
