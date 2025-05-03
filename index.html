@@ -1,165 +1,133 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio di Elia Giordano</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Orbitron', sans-serif;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: #0d0d0d;
-        }
-
-        /* Animazioni */
-        .highlight {
-            transition: color 0.3s, transform 0.3s;
-        }
-
-        .highlight:hover {
-            color: #00f5d4;
-            transform: scale(1.1);
-        }
-
-        h1, h2, p {
-            text-align: center;
-            color: #f5f5f5;
-            margin: 20px;
-        }
-
-        h1 {
-            font-size: 3rem;
-        }
-
-        h2 {
-            font-size: 2rem;
-        }
-
-        .content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 50px;
-        }
-
-        /* Sezione Chi sono */
-        #chi-sono {
-            padding: 50px;
-            background-color: #111;
-            margin-top: 30px;
-            color: #fff;
-        }
-
-        /* Sezione Competenze */
-        #competenze {
-            padding: 50px;
-            background-color: #222;
-            margin-top: 30px;
-            color: #fff;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        li {
-            font-size: 1.5rem;
-            padding: 10px 0;
-            text-align: center;
-        }
-
-        li:hover {
-            color: #00f5d4;
-            cursor: pointer;
-        }
-
-        /* Sezione Contatti */
-        #contatti {
-            padding: 50px;
-            background-color: #111;
-            margin-top: 30px;
-            color: #fff;
-        }
-
-        /* Effetto delle stelle */
-        .star {
-            position: absolute;
-            border-radius: 50%;
-            background-color: #fff;
-            opacity: 0.8;
-            animation: twinkle 2s infinite ease-in-out;
-        }
-
-        @keyframes twinkle {
-            0% { opacity: 0.8; }
-            50% { opacity: 1; }
-            100% { opacity: 0.8; }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Il mio universo creativo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: #0d0d0d;
+      color: #8ab4f8;
+      overflow-x: hidden;
+    }
+    header {
+      position: fixed; top: 0; width: 100%;
+      background: rgba(0,0,0,0.7); padding: 1rem;
+      display: flex; justify-content: center; z-index: 10;
+    }
+    nav a {
+      color: #8ab4f8; margin: 0 1.5rem;
+      text-decoration: none; font-weight: bold;
+      transition: color 0.3s;
+    }
+    nav a:hover { color: #ffffff; }
+    section {
+      padding: 100px 20px 60px;
+      text-align: center;
+      position: relative; z-index: 1;
+    }
+    h1 { font-size: 3rem; margin-bottom: 20px; }
+    h2 { font-size: 2.5rem; margin-bottom: 20px; }
+    p { font-size: 1.3rem; max-width: 800px; margin: 0 auto 40px; }
+    ul { list-style: none; padding: 0; }
+    ul li {
+      font-size: 1.3rem; margin: 10px 0;
+      transition: color 0.3s;
+    }
+    ul li:hover { color: #00f5d4; }
+    .highlight { transition: color 0.3s, transform 0.3s; }
+    .highlight:hover { color: #00f5d4; transform: scale(1.1); }
+    .star {
+      position: absolute; border-radius: 50%;
+      background: #fff; opacity: 0.8;
+      width: 3px; height: 3px;
+      will-change: transform;
+    }
+  </style>
 </head>
 <body>
+  <header>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#chi-sono">Chi sono</a>
+      <a href="#competenze">Competenze</a>
+      <a href="#contatti">Contatti</a>
+    </nav>
+  </header>
 
-    <!-- Sezione Benvenuto -->
-    <section class="content">
-        <h1 class="highlight">Benvenuto nel mio universo!</h1>
-        <p>Presto troverai qui i miei progetti più emozionanti. Scopri di più su di me e sulle mie competenze.</p>
-    </section>
+  <section id="home">
+    <h1 class="highlight">Benvenuto nel mio universo</h1>
+    <p class="highlight">Presto troverai qui i miei progetti</p>
+  </section>
 
-    <!-- Sezione Chi Sono -->
-    <section id="chi-sono">
-        <h2 class="highlight">Chi sono</h2>
-        <p>Sono un appassionato di 3D e animazioni, ma anche di intelligenza artificiale. Da autodidatta, mi impegno ogni giorno per imparare e migliorare le mie abilità in questi campi. Sono sempre curioso di esplorare nuove tecnologie e di metterle in pratica nei miei progetti.</p>
-    </section>
+  <section id="chi-sono">
+    <h2>Chi sono</h2>
+    <p>Sono un appassionato di 3D, animazioni e intelligenza artificiale. Da autodidatta, coltivo ogni giorno nuove competenze per realizzare progetti creativi e innovativi.</p>
+  </section>
 
-    <!-- Sezione Competenze -->
-    <section id="competenze">
-        <h2 class="highlight">Le mie competenze</h2>
-        <ul>
-            <li>Photoshop</li>
-            <li>Illustrator</li>
-            <li>InDesign</li>
-            <li>Inventor</li>
-            <li>3ds Max</li>
-            <li>AutoCAD</li>
-            <li>Blender</li>
-        </ul>
-    </section>
+  <section id="competenze">
+    <h2>Competenze</h2>
+    <ul>
+      <li>Photoshop</li>
+      <li>Illustrator</li>
+      <li>InDesign</li>
+      <li>Inventor</li>
+      <li>3ds Max</li>
+      <li>AutoCAD</li>
+      <li>Blender</li>
+    </ul>
+  </section>
 
-    <!-- Sezione Contatti -->
-    <section id="contatti">
-        <h2 class="highlight">Contattami</h2>
-        <p><strong>Telefono:</strong> +39 3515749331</p>
-        <p><strong>Email:</strong> <a href="mailto:elgio0926@gmail.com" class="highlight">elgio0926@gmail.com</a></p>
-        <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/elia-giordano-123456" target="_blank" class="highlight">Elia Giordano</a></p>
-    </section>
+  <section id="contatti">
+    <h2>Contattami</h2>
+    <p><strong>Telefono:</strong> +39 3515749331</p>
+    <p><strong>Email:</strong> <a href="mailto:elgio0926@gmail.com" class="highlight">elgio0926@gmail.com</a></p>
+    <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/elia-giordano" target="_blank" class="highlight">Elia Giordano</a></p>
+  </section>
 
-    <!-- Stelle dinamiche -->
-    <script>
-        // Crea stelle nel background
-        for (let i = 0; i < 100; i++) {
-            const star = document.createElement('div');
-            star.classList.add('star');
-            star.style.width = Math.random() * 5 + 'px';
-            star.style.height = star.style.width;
-            star.style.left = Math.random() * window.innerWidth + 'px';
-            star.style.top = Math.random() * window.innerHeight + 'px';
-            document.body.appendChild(star);
-        }
+  <script>
+    const numStars = 150;
+    const stars = [];
+    const body = document.body;
 
-        // Movimento delle stelle
-        document.addEventListener('mousemove', function(e) {
-            const stars = document.querySelectorAll('.star');
-            stars.forEach(star => {
-                let speed = star.style.width.replace('px', '') / 10;
-                let dx = e.clientX * speed / window.innerWidth;
-                let dy = e.clientY * speed / window.innerHeight;
-                star.style.transform = `translate(${dx}px, ${dy}px)`;
-            });
-        });
-    </script>
+    function createStars() {
+      for (let i = 0; i < numStars; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        resetStar(star);
+        body.appendChild(star);
+        stars.push(star);
+      }
+    }
 
+    function resetStar(star) {
+      star.x = Math.random() * window.innerWidth;
+      star.y = Math.random() * window.innerHeight;
+      star.style.left = star.x + 'px';
+      star.style.top = star.y + 'px';
+      star.size = Math.random() * 2 + 1;
+      star.style.width = star.size + 'px';
+      star.style.height = star.size + 'px';
+    }
+
+    document.addEventListener('mousemove', e => {
+      const cx = window.innerWidth / 2;
+      const cy = window.innerHeight / 2;
+      stars.forEach(star => {
+        const dx = (star.x - e.clientX) * 0.02;
+        const dy = (star.y - e.clientY) * 0.02;
+        star.style.transform = `translate(${dx}px, ${dy}px)`;
+      });
+    });
+
+    window.addEventListener('resize', () => {
+      stars.forEach(resetStar);
+    });
+
+    createStars();
+  </script>
 </body>
 </html>
