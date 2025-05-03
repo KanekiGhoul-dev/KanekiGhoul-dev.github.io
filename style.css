@@ -1,9 +1,0 @@
-/* Messaggio di errore nel caricamento del modello 3D */
-model-viewer p.error {
-  color: red;
-  text-align: center;
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-top: 20px;
-  display: block;
-}
