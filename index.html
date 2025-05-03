@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio - Universo</title>
+  <title>Portfolio - Universum</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Orbitron', sans-serif;
-      background: #000;
-      color: #1e90ff;
       overflow: hidden;
+      font-family: 'Orbitron', sans-serif;
+      background-color: #000;
+      color: #1e90ff;
     }
 
     header {
       position: fixed;
       top: 0;
       width: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      z-index: 10;
+      background: rgba(0,0,0,0.7);
       display: flex;
       justify-content: center;
       gap: 2rem;
       padding: 1rem 0;
+      z-index: 10;
     }
 
     header a {
@@ -34,29 +34,92 @@
 
     header a:hover {
       color: #fff;
+      text-shadow: 0 0 10px #fff;
     }
 
     section {
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      padding: 8rem 2rem 2rem;
       text-align: center;
-      padding: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1, h2 {
+      margin-bottom: 1rem;
+      text-shadow: 0 0 10px #1e90ff;
     }
 
     h1 {
       font-size: 3rem;
       color: #1e90ff;
-      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      color: #1e90ff;
     }
 
     p {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       max-width: 800px;
+      margin: 0 auto 2rem;
+      color: #bbb;
     }
 
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul li {
+      font-size: 1.2rem;
+      margin: 0.5rem 0;
+      color: #bbb;
+      transition: color 0.3s;
+    }
+
+    ul li:hover {
+      color: #fff;
+    }
+
+    /* Progetti: video preview */
+    .project {
+      max-width: 640px;
+      margin: 2rem auto;
+      position: relative;
+    }
+
+    .project video {
+      width: 100%;
+      border: 2px solid #1e90ff;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .project .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.5rem;
+      opacity: 1;
+      transition: opacity 0.3s;
+      border-radius: 8px;
+    }
+
+    .project video.playing + .overlay {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Stars background */
     .stars {
       position: fixed;
       top: 0;
@@ -64,25 +127,24 @@
       width: 100vw;
       height: 100vh;
       z-index: -1;
-      overflow: hidden;
     }
 
     .star {
       position: absolute;
       width: 3px;
       height: 3px;
-      background: white;
+      background: #fff;
       border-radius: 50%;
       transition: transform 0.2s ease-out;
     }
   </style>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
     <a href="#home">Home</a>
     <a href="#chi-sono">Chi sono</a>
     <a href="#competenze">Competenze</a>
+    <a href="#progetti">Progetti</a>
     <a href="#contatti">Contatti</a>
   </header>
 
@@ -90,18 +152,21 @@
 
   <section id="home">
     <h1>Benvenuto nel mio universo</h1>
-    <p>Presto troverai qui i miei progetti</p>
+    <p>Presto troverai qui i miei progetti più significativi.</p>
   </section>
 
   <section id="chi-sono">
-    <h1>Chi sono</h1>
-    <p>Sono un appassionato autodidatta di grafica 3D, animazione e intelligenza artificiale. Mi piace esplorare nuovi strumenti creativi e imparare ogni giorno qualcosa di nuovo per migliorarmi. Non sono un esperto, ma metto passione e curiosità in tutto quello che faccio.</p>
+    <h2>Chi sono</h2>
+    <p>
+      Sono un appassionato autodidatta di grafica 3D, animazione e intelligenza artificiale.  
+      Ogni giorno mi dedico a imparare nuovi strumenti e tecniche, partecipando a community e tutorial online.  
+      Pur non avendo una formazione accademica nel settore, la mia curiosità e determinazione guidano il mio percorso di crescita.
+    </p>
   </section>
 
   <section id="competenze">
-    <h1>Competenze</h1>
-    <p>Conosco e utilizzo i seguenti software:</p>
-    <ul style="list-style: none; padding: 0; font-size: 1.3rem;">
+    <h2>Competenze</h2>
+    <ul>
       <li>Photoshop</li>
       <li>Illustrator</li>
       <li>InDesign</li>
@@ -112,37 +177,58 @@
     </ul>
   </section>
 
+  <section id="progetti">
+    <h2>Progetti</h2>
+    <div class="project">
+      <video id="blenderVideo" poster="anteprima-blender.jpg">
+        <source src="spherelumsvdo.mp4" type="video/mp4">
+        Il tuo browser non supporta il video.
+      </video>
+      <div class="overlay">Clicca per riprodurre l'anteprima</div>
+    </div>
+  </section>
+
   <section id="contatti">
-    <h1>Contatti</h1>
-    <p>Telefono: +39 3515749331</p>
-    <p>Email: elgio0926@gmail.com</p>
-    <p>LinkedIn: Elia Giordano</p>
+    <h2>Contatti</h2>
+    <p>📞 +39 3515749331</p>
+    <p>📧 <a href="mailto:elgio0926@gmail.com" style="color: #1e90ff;">elgio0926@gmail.com</a></p>
+    <p>🔗 <a href="https://www.linkedin.com/in/elia-giordano" target="_blank" style="color: #1e90ff;">Elia Giordano</a></p>
   </section>
 
   <script>
+    // Stelle magnetiche
     const starsContainer = document.querySelector('.stars');
     const numStars = 150;
     const stars = [];
-
     for (let i = 0; i < numStars; i++) {
       const star = document.createElement('div');
       star.className = 'star';
-      star.style.top = Math.random() * window.innerHeight + 'px';
       star.style.left = Math.random() * window.innerWidth + 'px';
+      star.style.top = Math.random() * window.innerHeight + 'px';
       starsContainer.appendChild(star);
       stars.push(star);
     }
-
     document.addEventListener('mousemove', (e) => {
       stars.forEach(star => {
         const dx = star.offsetLeft - e.clientX;
         const dy = star.offsetTop - e.clientY;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        const force = Math.min(50 / dist, 5);
-        const x = dx * force;
-        const y = dy * force;
-        star.style.transform = `translate(${x}px, ${y}px)`;
+        const dist = Math.hypot(dx, dy);
+        const force = Math.min(100 / dist, 5);
+        star.style.transform = `translate(${dx * force * 0.01}px, ${dy * force * 0.01}px)`;
       });
+    });
+
+    // Anteprima video
+    const video = document.getElementById('blenderVideo');
+    const overlay = video.nextElementSibling;
+    overlay.addEventListener('click', () => {
+      if (video.paused) {
+        video.play();
+        overlay.style.opacity = '0';
+      }
+    });
+    video.addEventListener('ended', () => {
+      overlay.style.opacity = '1';
     });
   </script>
 </body>
