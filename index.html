@@ -1,22 +1,61 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Il mio universo creativo</title>
   <style>
-    * {
+    body {
       margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+      font-family: 'Orbitron', sans-serif;
+      color: #8ab4f8;
+      background-color: black;
+      overflow-x: hidden;
     }
 
-    body {
-      background: black;
-      color: #6db2ff;
-      font-family: 'Orbitron', sans-serif;
-      overflow-x: hidden;
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    nav a {
+      color: #8ab4f8;
+      margin: 0 1.5rem;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: white;
+    }
+
+    section {
+      padding: 100px 20px 60px;
+      text-align: center;
+    }
+
+    h1, h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.3rem;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      font-size: 1.3rem;
     }
 
     canvas {
@@ -25,85 +64,32 @@
       left: 0;
       z-index: -1;
     }
-
-    header {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      padding: 20px;
-      background: rgba(0, 0, 0, 0.5);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-
-    header a {
-      color: #6db2ff;
-      text-decoration: none;
-      font-size: 1.2em;
-      transition: color 0.3s ease;
-    }
-
-    header a:hover {
-      color: white;
-    }
-
-    section {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 60px 20px;
-    }
-
-    h1 {
-      font-size: 3em;
-      margin-bottom: 20px;
-      text-shadow: 0 0 10px #6db2ff;
-    }
-
-    p {
-      font-size: 1.2em;
-      max-width: 700px;
-      text-shadow: 0 0 5px #6db2ff;
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
-      margin-top: 20px;
-    }
-
-    ul li {
-      font-size: 1.2em;
-      margin-bottom: 10px;
-      text-shadow: 0 0 5px #6db2ff;
-    }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
 </head>
 <body>
   <canvas id="stars"></canvas>
 
   <header>
-    <a href="#intro">Home</a>
-    <a href="#chi-sono">Chi sono</a>
-    <a href="#competenze">Competenze</a>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#chi-sono">Chi sono</a>
+      <a href="#competenze">Competenze</a>
+    </nav>
   </header>
 
-  <section id="intro">
-    <h1>Benvenuti nel mio mondo</h1>
+  <section id="home">
+    <h1>Benvenuto nel mio universo</h1>
     <p>Presto troverai qui i miei progetti</p>
   </section>
 
   <section id="chi-sono">
-    <h1>Chi sono</h1>
-    <p>Sono un appassionato di modellazione e animazione 3D, un interesse che coltivo da autodidatta sperimentando con software come Blender e approfondendo giorno dopo giorno. Negli ultimi tempi mi sto avvicinando anche al mondo dell’intelligenza artificiale, esplorando come possa integrarsi nei processi creativi. Amo imparare, mettermi alla prova e cercare sempre nuove ispirazioni che uniscano arte e tecnologia.</p>
+    <h2>Chi sono</h2>
+    <p>Sono un appassionato di modellazione 3D e animazione, con un forte interesse per l’intelligenza artificiale. Anche se non ho una formazione formale nel settore, sto costruendo le mie competenze da autodidatta, un passo alla volta.</p>
   </section>
 
   <section id="competenze">
-    <h1>Competenze</h1>
+    <h2>Competenze</h2>
     <ul>
       <li>Photoshop</li>
       <li>Illustrator</li>
@@ -116,48 +102,76 @@
   </section>
 
   <script>
-    const canvas = document.getElementById('stars');
-    const ctx = canvas.getContext('2d');
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
+    const canvas = document.getElementById("stars");
+    const ctx = canvas.getContext("2d");
 
-    const stars = Array.from({ length: 200 }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      radius: Math.random() * 2 + 1,
-      speed: Math.random() * 0.5 + 0.2
-    }));
+    let stars = [];
+    const numStars = 100;
 
-    window.addEventListener('resize', () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    });
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
 
-    canvas.addEventListener('mousemove', (e) => {
-      const dx = e.clientX - width / 2;
-      const dy = e.clientY - height / 2;
-      for (let star of stars) {
-        star.x += dx * 0.0005;
-        star.y += dy * 0.0005;
+    function createStars() {
+      stars = [];
+      for (let i = 0; i < numStars; i++) {
+        stars.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          radius: Math.random() * 2 + 1,
+          speedX: 0,
+          speedY: 0
+        });
       }
-    });
+    }
 
-    function animate() {
-      ctx.clearRect(0, 0, width, height);
-      for (let star of stars) {
-        star.y += star.speed;
-        if (star.y > height) {
-          star.y = 0;
-          star.x = Math.random() * width;
-        }
+    function drawStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#8ab4f8";
+      stars.forEach(star => {
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-        ctx.fillStyle = '#6db2ff';
         ctx.fill();
-      }
+      });
+    }
+
+    function updateStars() {
+      stars.forEach(star => {
+        star.x += star.speedX;
+        star.y += star.speedY;
+
+        if (star.x < 0 || star.x > canvas.width) star.x = Math.random() * canvas.width;
+        if (star.y < 0 || star.y > canvas.height) star.y = Math.random() * canvas.height;
+
+        // Diminuisci lentamente l'effetto
+        star.speedX *= 0.95;
+        star.speedY *= 0.95;
+      });
+    }
+
+    function animate() {
+      updateStars();
+      drawStars();
       requestAnimationFrame(animate);
     }
 
+    window.addEventListener("resize", () => {
+      resizeCanvas();
+      createStars();
+    });
+
+    document.addEventListener("mousemove", (e) => {
+      const dx = (e.clientX - canvas.width / 2) * 0.001;
+      const dy = (e.clientY - canvas.height / 2) * 0.001;
+      stars.forEach(star => {
+        star.speedX += dx;
+        star.speedY += dy;
+      });
+    });
+
+    resizeCanvas();
+    createStars();
     animate();
   </script>
 </body>
