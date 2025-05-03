@@ -1,133 +1,252 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Il mio universo creativo</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Orbitron', sans-serif;
-      background: #0d0d0d;
-      color: #8ab4f8;
-      overflow-x: hidden;
-    }
-    header {
-      position: fixed; top: 0; width: 100%;
-      background: rgba(0,0,0,0.7); padding: 1rem;
-      display: flex; justify-content: center; z-index: 10;
-    }
-    nav a {
-      color: #8ab4f8; margin: 0 1.5rem;
-      text-decoration: none; font-weight: bold;
-      transition: color 0.3s;
-    }
-    nav a:hover { color: #ffffff; }
-    section {
-      padding: 100px 20px 60px;
-      text-align: center;
-      position: relative; z-index: 1;
-    }
-    h1 { font-size: 3rem; margin-bottom: 20px; }
-    h2 { font-size: 2.5rem; margin-bottom: 20px; }
-    p { font-size: 1.3rem; max-width: 800px; margin: 0 auto 40px; }
-    ul { list-style: none; padding: 0; }
-    ul li {
-      font-size: 1.3rem; margin: 10px 0;
-      transition: color 0.3s;
-    }
-    ul li:hover { color: #00f5d4; }
-    .highlight { transition: color 0.3s, transform 0.3s; }
-    .highlight:hover { color: #00f5d4; transform: scale(1.1); }
-    .star {
-      position: absolute; border-radius: 50%;
-      background: #fff; opacity: 0.8;
-      width: 3px; height: 3px;
-      will-change: transform;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Elia Giordano</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background-color: black;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Sfondo dinamico */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            border-radius: 50%;
+            background-color: white;
+            opacity: 0.8;
+            animation: moveStars 10s infinite linear;
+        }
+
+        @keyframes moveStars {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.5) translateX(100px) translateY(100px);
+            }
+        }
+
+        /* Menu */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 10;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #00f;
+        }
+
+        /* Sezione intro */
+        .intro {
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .intro h1 {
+            font-size: 3em;
+            color: #00f;
+            margin-bottom: 20px;
+            animation: textAnimation 1s forwards;
+        }
+
+        @keyframes textAnimation {
+            0% {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .intro p {
+            font-size: 1.2em;
+            color: #bbb;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Sezione chi sono */
+        #chi-sono {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        #chi-sono h2 {
+            font-size: 2.5em;
+            color: #00f;
+            margin-bottom: 20px;
+        }
+
+        #chi-sono p {
+            font-size: 1.2em;
+            color: #bbb;
+            margin-bottom: 30px;
+            line-height: 1.5;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Sezione competenze */
+        #competenze {
+            background-color: #111;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        #competenze h2 {
+            font-size: 2.5em;
+            color: #00f;
+            margin-bottom: 20px;
+        }
+
+        #competenze ul {
+            list-style-type: none;
+        }
+
+        #competenze ul li {
+            font-size: 1.2em;
+            color: #bbb;
+            margin: 10px 0;
+        }
+
+        /* Sezione contatti */
+        #contatti {
+            padding: 80px 20px;
+            text-align: center;
+            background-color: #222;
+        }
+
+        #contatti h2 {
+            font-size: 2.5em;
+            color: #00f;
+            margin-bottom: 20px;
+        }
+
+        #contatti p {
+            font-size: 1.2em;
+            color: #bbb;
+            margin: 10px 0;
+        }
+    </style>
 </head>
 <body>
-  <header>
+
+    <!-- Menu -->
     <nav>
-      <a href="#home">Home</a>
-      <a href="#chi-sono">Chi sono</a>
-      <a href="#competenze">Competenze</a>
-      <a href="#contatti">Contatti</a>
+        <a href="#home">Home</a>
+        <a href="#chi-sono">Chi sono</a>
+        <a href="#competenze">Competenze</a>
+        <a href="#contatti">Contatti</a>
     </nav>
-  </header>
 
-  <section id="home">
-    <h1 class="highlight">Benvenuto nel mio universo</h1>
-    <p class="highlight">Presto troverai qui i miei progetti</p>
-  </section>
+    <!-- Sezione intro -->
+    <div id="home" class="intro">
+        <h1>Benvenuto nel mio universo</h1>
+        <p>Presto troverai qui i miei progetti</p>
+    </div>
 
-  <section id="chi-sono">
-    <h2>Chi sono</h2>
-    <p>Sono un appassionato di 3D, animazioni e intelligenza artificiale. Da autodidatta, coltivo ogni giorno nuove competenze per realizzare progetti creativi e innovativi.</p>
-  </section>
+    <!-- Sezione Chi sono -->
+    <div id="chi-sono">
+        <h2>Chi sono</h2>
+        <p>
+            Sono un appassionato di tecnologia, con un interesse particolare per il 3D e l'animazione. 
+            Da autodidatta, ho approfondito diverse aree legate alla grafica 3D, modellazione e rendering, 
+            cercando di unire la mia curiosità per l'intelligenza artificiale. 
+            Sebbene non sia un esperto, sono entusiasta di apprendere continuamente e portare avanti la mia passione per la creatività digitale. 
+            Adoro esplorare nuove tecnologie, e il mio obiettivo è far evolvere le mie competenze in queste aree, imparando ogni giorno.
+        </p>
+    </div>
 
-  <section id="competenze">
-    <h2>Competenze</h2>
-    <ul>
-      <li>Photoshop</li>
-      <li>Illustrator</li>
-      <li>InDesign</li>
-      <li>Inventor</li>
-      <li>3ds Max</li>
-      <li>AutoCAD</li>
-      <li>Blender</li>
-    </ul>
-  </section>
+    <!-- Sezione Competenze -->
+    <div id="competenze">
+        <h2>Competenze</h2>
+        <ul>
+            <li>Photoshop</li>
+            <li>Illustrator</li>
+            <li>InDesign</li>
+            <li>Inventor</li>
+            <li>3ds Max</li>
+            <li>AutoCAD</li>
+            <li>Blender</li>
+        </ul>
+    </div>
 
-  <section id="contatti">
-    <h2>Contattami</h2>
-    <p><strong>Telefono:</strong> +39 3515749331</p>
-    <p><strong>Email:</strong> <a href="mailto:elgio0926@gmail.com" class="highlight">elgio0926@gmail.com</a></p>
-    <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/elia-giordano" target="_blank" class="highlight">Elia Giordano</a></p>
-  </section>
+    <!-- Sezione Contatti -->
+    <div id="contatti">
+        <h2>Contatti</h2>
+        <p>Telefono: +39 3515749331</p>
+        <p>Email: elgio0926@gmail.com</p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/elia-giordano" target="_blank" style="color: #00f;">Elia Giordano</a></p>
+    </div>
 
-  <script>
-    const numStars = 150;
-    const stars = [];
-    const body = document.body;
+    <!-- Sfondo con stelle -->
+    <div class="background"></div>
 
-    function createStars() {
-      for (let i = 0; i < numStars; i++) {
-        const star = document.createElement('div');
-        star.classList.add('star');
-        resetStar(star);
-        body.appendChild(star);
-        stars.push(star);
-      }
-    }
+    <script>
+        // Movimento stelle
+        const starCount = 100;
+        const stars = [];
 
-    function resetStar(star) {
-      star.x = Math.random() * window.innerWidth;
-      star.y = Math.random() * window.innerHeight;
-      star.style.left = star.x + 'px';
-      star.style.top = star.y + 'px';
-      star.size = Math.random() * 2 + 1;
-      star.style.width = star.size + 'px';
-      star.style.height = star.size + 'px';
-    }
+        // Generazione stelle
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.width = `${Math.random() * 3 + 1}px`;
+            star.style.height = star.style.width;
+            star.style.top = `${Math.random() * window.innerHeight}px`;
+            star.style.left = `${Math.random() * window.innerWidth}px`;
+            document.querySelector('.background').appendChild(star);
+            stars.push(star);
+        }
 
-    document.addEventListener('mousemove', e => {
-      const cx = window.innerWidth / 2;
-      const cy = window.innerHeight / 2;
-      stars.forEach(star => {
-        const dx = (star.x - e.clientX) * 0.02;
-        const dy = (star.y - e.clientY) * 0.02;
-        star.style.transform = `translate(${dx}px, ${dy}px)`;
-      });
-    });
-
-    window.addEventListener('resize', () => {
-      stars.forEach(resetStar);
-    });
-
-    createStars();
-  </script>
+        // Effetto parallax
+        document.addEventListener('mousemove', (e) => {
+            stars.forEach(star => {
+                let offsetX = (e.clientX - window.innerWidth / 2) * 0.05;
+                let offsetY = (e.clientY - window.innerHeight / 2) * 0.05;
+                star.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+            });
+        });
+    </script>
 </body>
 </html>
