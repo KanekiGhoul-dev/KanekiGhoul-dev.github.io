@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio di KanekiGhoul‑dev</title>
 
-  <!-- Font Orbitron -->
+  <!-- Font tecnico -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
 
   <style>
-    /* Sfondo e testo generale */
-    body, html {
+    /* Corpo e sfondo */
+    html, body {
       margin: 0; padding: 0;
       width: 100%; height: 100%;
       overflow: hidden;
@@ -19,19 +19,32 @@
       background-size: cover;
       color: #00aaff;
     }
-    /* Intro testuale */
-    .intro {
-      position: absolute; top: 10%; left: 50%;
-      transform: translateX(-50%);
-      text-align: center; z-index: 1;
-    }
-    .intro h1 { margin:0; font-size:2.5rem; text-shadow:0 0 10px #000; }
-    .intro p { margin:0.5rem 0 0; color:#a0c4ff; }
 
-    /* Container per three.js */
+    /* Testo introduttivo */
+    .intro {
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      z-index: 1;
+    }
+    .intro h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      text-shadow: 0 0 10px #000;
+    }
+    .intro p {
+      margin: 0.5rem 0 0;
+      color: #a0c4ff;
+    }
+
+    /* Container per il canvas 3D */
     #canvas-container {
-      position: absolute; top: 0; left: 0;
-      width: 100%; height: 100%; z-index: 0;
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
     }
   </style>
 </head>
@@ -44,12 +57,12 @@
 
   <div id="canvas-container"></div>
 
-  <!-- Three.js e GLTFLoader -->
+  <!-- three.js e GLTFLoader -->
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 
   <script>
-    // 1. Setup scena, camera e renderer
+    // 1) Setup scena, camera, renderer
     const container = document.getElementById('canvas-container');
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(55, window.innerWidth/window.innerHeight, 0.1, 1000);
@@ -60,24 +73,24 @@
     renderer.setPixelRatio(window.devicePixelRatio);
     container.appendChild(renderer.domElement);
 
-    // 2. Luci
+    // 2) Luci
     const ambient = new THREE.AmbientLight(0xffffff, 0.6);
     scene.add(ambient);
     const dirLight = new THREE.DirectionalLight(0xffffff, 0.6);
     dirLight.position.set(5, 10, 7.5);
     scene.add(dirLight);
 
-    // 3. Caricamento modello
+    // 3) Caricamento modello (stesso folder: percorso relativo)
     const loader = new THREE.GLTFLoader();
     loader.load(
-      'mano_aliena.glb',
+      'mano_aliena.glb',        // IL PERCORSO RELATIVO
       gltf => {
         const model = gltf.scene;
         model.scale.set(0.7, 0.7, 0.7);
         model.position.set(0, -0.5, 0);
         scene.add(model);
 
-        // Animazione rotazione
+        // animazione rotazione
         (function animate() {
           requestAnimationFrame(animate);
           model.rotation.y += 0.005;
@@ -85,15 +98,14 @@
         })();
       },
       xhr => {
-        // opzionale: log del progresso
-        console.log(`Modello caricato: ${(xhr.loaded/xhr.total*100).toFixed(1)}%`);
+        console.log(`Caricamento modello: ${(xhr.loaded/xhr.total*100).toFixed(1)}%`);
       },
-      error => {
-        console.error('Errore nel caricamento del modello 3D:', error);
+      err => {
+        console.error('Errore nel caricamento del modello 3D:', err);
       }
     );
 
-    // 4. Resize
+    // 4) Gestione resize finestra
     window.addEventListener('resize', () => {
       camera.aspect = window.innerWidth/window.innerHeight;
       camera.updateProjectionMatrix();
