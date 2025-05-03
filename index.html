@@ -27,7 +27,6 @@
       border-radius: 50%;
       background-color: white;
       opacity: 0.8;
-      width: 3px; height: 3px;
       will-change: transform;
     }
     /* Menu */
@@ -62,7 +61,7 @@
       0% { transform: translateY(-50px); opacity: 0; }
       100% { transform: translateY(0); opacity: 1; }
     }
-    /* Titoli */
+    /* Titoli e testo */
     h2 {
       font-size: 2.5em; color: #00f; margin-bottom: 20px;
       text-shadow: 0 0 10px #00f;
@@ -75,8 +74,7 @@
     ul { list-style: none; padding: 0; }
     ul li {
       font-size: 1.2em; color: #bbb; margin: 10px 0;
-      transition: color 0.3s;
-      text-shadow: 0 0 5px #00f;
+      transition: color 0.3s; text-shadow: 0 0 5px #00f;
     }
     ul li:hover { color: #00f; cursor: pointer; }
   </style>
@@ -130,35 +128,36 @@
     const background = document.querySelector('.background');
     const starCount = 200;
     const stars = [];
-    
-    // Genera stelle
+    // Genera stelle e salva posizioni iniziali
     for (let i = 0; i < starCount; i++) {
       const star = document.createElement('div');
       star.className = 'star';
+      star.dataset.x = Math.random() * window.innerWidth;
+      star.dataset.y = Math.random() * window.innerHeight;
       star.style.width = `${Math.random() * 3 + 1}px`;
       star.style.height = star.style.width;
-      star.style.top = `${Math.random() * window.innerHeight}px`;
-      star.style.left = `${Math.random() * window.innerWidth}px`;
+      star.style.left = `${star.dataset.x}px`;
+      star.style.top = `${star.dataset.y}px`;
       background.appendChild(star);
       stars.push(star);
     }
 
-    // Movimento stelle al mouse
+    // Movimento stelle al mouse: si allontanano
     document.addEventListener('mousemove', e => {
-      const cx = window.innerWidth / 2;
-      const cy = window.innerHeight / 2;
       stars.forEach(star => {
-        const dx = (star.offsetLeft - e.clientX) * 0.05;
-        const dy = (star.offsetTop - e.clientY) * 0.05;
-        star.style.transform = `translate(${dx}px, ${dy}px)`;
+        const dx = star.dataset.x - e.clientX;
+        const dy = star.dataset.y - e.clientY;
+        star.style.transform = `translate(${dx * 0.05}px, ${dy * 0.05}px)`;
       });
     });
 
     // Ridistribuisci stelle al resize
     window.addEventListener('resize', () => {
       stars.forEach(star => {
-        star.style.top = `${Math.random() * window.innerHeight}px`;
-        star.style.left = `${Math.random() * window.innerWidth}px`;
+        star.dataset.x = Math.random() * window.innerWidth;
+        star.dataset.y = Math.random() * window.innerHeight;
+        star.style.left = `${star.dataset.x}px`;
+        star.style.top = `${star.dataset.y}px`;
       });
     });
   </script>
