@@ -55,7 +55,7 @@
         }
 
         .project {
-            width: 200px;
+            width: 250px;
             text-align: center;
             position: relative;
         }
@@ -150,6 +150,18 @@
             margin-top: 30px;
             font-size: 1.2em;
         }
+
+        .project-title {
+            font-size: 1.5em;
+            margin-top: 10px;
+            color: #00BFFF;
+        }
+
+        .software-title {
+            font-size: 1.2em;
+            color: #1E90FF;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -157,7 +169,7 @@
 
     <div class="section">
         <h1>Benvenuto nel mio mondo</h1>
-        <p class="text">Sono un appassionato di 3D, animazioni e intelligenza artificiale. Imparo in modo autonomo e cerco sempre di evolvermi.</p>
+        <p class="text">Sono un appassionato autodidatta di 3D, animazioni e intelligenza artificiale. Mi piace esplorare nuove tecnologie e imparare continuamente, cercando di portare la mia creatività in ogni progetto.</p>
     </div>
 
     <div class="menu">
@@ -168,8 +180,10 @@
 
     <div class="section" id="progetti">
         <h1>Progetti</h1>
+
+        <!-- Blender Dropdown -->
         <div class="dropdown">
-            <button class="dropdown-btn">Blender</button>
+            <button class="dropdown-btn">Progetti Blender</button>
             <div class="dropdown-content">
                 <a href="#" class="project-link" data-project="spherelumsvdo">Spherelum</a>
                 <a href="#" class="project-link" data-project="tazzinavdo">Tazzina</a>
@@ -181,28 +195,51 @@
         </div>
 
         <div class="project-container">
+            <!-- Spherelum Project -->
             <div class="project" id="spherelumsvdo">
+                <div class="software-title">Blender</div>
                 <img src="spherelumsimg.jpg" alt="Spherelum" class="project-img">
+                <div class="project-title">Spherelum</div>
                 <video src="spherelumsvdo.mp4" class="project-video"></video>
             </div>
+
+            <!-- Tazzina Project -->
             <div class="project" id="tazzinavdo">
+                <div class="software-title">Blender</div>
                 <img src="tazzinaimg.jpg" alt="Tazzina" class="project-img">
+                <div class="project-title">Tazzina</div>
                 <video src="tazzinavdo.mp4" class="project-video"></video>
             </div>
+
+            <!-- Rubik Project -->
             <div class="project" id="rubikvdo">
+                <div class="software-title">Blender</div>
                 <img src="rubikimg.jpg" alt="Rubik" class="project-img">
+                <div class="project-title">Rubik</div>
                 <video src="rubikvdo.mp4" class="project-video"></video>
             </div>
+
+            <!-- Magic Project -->
             <div class="project" id="magicvdo">
+                <div class="software-title">Blender</div>
                 <img src="magicimg.jpg" alt="Magic" class="project-img">
+                <div class="project-title">Magic</div>
                 <video src="magicvdo.mp4" class="project-video"></video>
             </div>
+
+            <!-- Palla Project -->
             <div class="project" id="pallavdo">
+                <div class="software-title">Blender</div>
                 <img src="pallaimg.jpg" alt="Palla" class="project-img">
+                <div class="project-title">Palla</div>
                 <video src="pallavdo.mp4" class="project-video"></video>
             </div>
+
+            <!-- Water Project -->
             <div class="project" id="wtrvdo">
+                <div class="software-title">Blender</div>
                 <img src="wtrimg.jpg" alt="Water" class="project-img">
+                <div class="project-title">Water</div>
                 <video src="wtrvdo.mp4" class="project-video"></video>
             </div>
         </div>
@@ -222,35 +259,4 @@
 
     <script>
         document.querySelectorAll('.project-link').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const projectId = e.target.getAttribute('data-project');
-                document.querySelectorAll('.project-video').forEach(video => {
-                    video.classList.remove('active');
-                });
-                document.getElementById(projectId).querySelector('.project-video').classList.add('active');
-            });
-        });
-
-        // Movimento delle stelle
-        const stars = document.querySelector('.stars');
-        for (let i = 0; i < 100; i++) {
-            let star = document.createElement('div');
-            star.classList.add('star');
-            star.style.top = `${Math.random() * window.innerHeight}px`;
-            star.style.left = `${Math.random() * window.innerWidth}px`;
-            stars.appendChild(star);
-        }
-
-        document.addEventListener('mousemove', (e) => {
-            const mouseX = e.clientX;
-            const mouseY = e.clientY;
-            document.querySelectorAll('.star').forEach(star => {
-                const distance = Math.hypot(star.offsetLeft - mouseX, star.offsetTop - mouseY);
-                const moveDistance = distance / 30;
-                star.style.transform = `translate(-${moveDistance}px, -${moveDistance}px)`;
-            });
-        });
-    </script>
-</body>
-</html>
+            link.addEventListener('click',
