@@ -1,111 +1,109 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <style>
-    body {
+    * {
       margin: 0;
-      overflow-x: hidden;
-      font-family: 'Orbitron', sans-serif;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
       background: black;
       color: #6db2ff;
-    }
-
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background-color: rgba(0, 0, 0, 0.6);
-      display: flex;
-      justify-content: center;
-      padding: 10px 0;
-      z-index: 10;
-    }
-
-    nav a {
-      color: #6db2ff;
-      margin: 0 15px;
-      text-decoration: none;
-      font-size: 1.2em;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
+      font-family: 'Orbitron', sans-serif;
+      overflow-x: hidden;
     }
 
     canvas {
       position: fixed;
       top: 0;
       left: 0;
-      z-index: 0;
+      z-index: -1;
     }
 
-    .section {
-      position: relative;
-      z-index: 1;
-      max-width: 900px;
-      margin: 120px auto 80px;
-      padding: 0 20px;
+    header {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.5);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    header a {
+      color: #6db2ff;
+      text-decoration: none;
+      font-size: 1.2em;
+      transition: color 0.3s ease;
+    }
+
+    header a:hover {
+      color: white;
+    }
+
+    section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 60px 20px;
     }
 
     h1 {
       font-size: 3em;
-      margin-bottom: 40px;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px #6db2ff;
     }
 
-    h2 {
-      font-size: 2em;
-      margin-top: 60px;
-    }
-
-    p, li {
+    p {
       font-size: 1.2em;
-      line-height: 1.6em;
+      max-width: 700px;
+      text-shadow: 0 0 5px #6db2ff;
     }
 
     ul {
       list-style: none;
       padding: 0;
+      margin-top: 20px;
     }
 
-    ul li::before {
-      content: "• ";
-      color: #6db2ff;
+    ul li {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+      text-shadow: 0 0 5px #6db2ff;
     }
   </style>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
   <canvas id="stars"></canvas>
 
   <header>
-    <nav>
-      <a href="#intro">Home</a>
-      <a href="#chi-sono">Chi sono</a>
-      <a href="#competenze">Competenze</a>
-    </nav>
+    <a href="#intro">Home</a>
+    <a href="#chi-sono">Chi sono</a>
+    <a href="#competenze">Competenze</a>
   </header>
 
-  <div class="section" id="intro">
-    <h1>Benvenuto nel mio universo</h1>
+  <section id="intro">
+    <h1>Benvenuti nel mio mondo</h1>
     <p>Presto troverai qui i miei progetti</p>
-  </div>
+  </section>
 
-  <div class="section" id="chi-sono">
-    <h2>Chi sono</h2>
-    <p>
-      Sono un appassionato di modellazione e animazione 3D, un interesse che coltivo da autodidatta sperimentando con software come Blender e approfondendo giorno dopo giorno.  
-      <br><br>
-      Negli ultimi tempi mi sto avvicinando anche al mondo dell’intelligenza artificiale, esplorando come possa integrarsi nei processi creativi per dare vita a progetti originali e innovativi.  
-      <br><br>
-      Amo imparare, mettermi alla prova e cercare sempre nuove ispirazioni che uniscano arte e tecnologia.
-    </p>
-  </div>
+  <section id="chi-sono">
+    <h1>Chi sono</h1>
+    <p>Sono un appassionato di modellazione e animazione 3D, un interesse che coltivo da autodidatta sperimentando con software come Blender e approfondendo giorno dopo giorno. Negli ultimi tempi mi sto avvicinando anche al mondo dell’intelligenza artificiale, esplorando come possa integrarsi nei processi creativi. Amo imparare, mettermi alla prova e cercare sempre nuove ispirazioni che uniscano arte e tecnologia.</p>
+  </section>
 
-  <div class="section" id="competenze">
-    <h2>Competenze</h2>
+  <section id="competenze">
+    <h1>Competenze</h1>
     <ul>
       <li>Photoshop</li>
       <li>Illustrator</li>
@@ -115,7 +113,7 @@
       <li>AutoCAD</li>
       <li>Blender</li>
     </ul>
-  </div>
+  </section>
 
   <script>
     const canvas = document.getElementById('stars');
