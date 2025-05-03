@@ -2,83 +2,86 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio 3D</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio</title>
   <style>
-    body {
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
       overflow: hidden;
+      background: black;
       font-family: 'Orbitron', sans-serif;
-      color: #61b0ff;
-      font-size: 2rem;
-      background-color: black;
     }
 
     #overlay {
       position: absolute;
-      top: 20px;
-      left: 20px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #3399ff;
+      font-size: 2.8rem;
+      text-align: center;
       z-index: 10;
-    }
-
-    canvas {
-      display: block;
+      text-shadow: 0 0 10px #3399ff, 0 0 20px #3399ff;
     }
   </style>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div id="overlay">Benvenuto nel mio universo. Presto troverai qui i miei progetti.</div>
+  <div id="overlay">Benvenuto nel mio universo.<br>Presto troverai qui i miei progetti.</div>
 
-<script type="module">
-  import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
-  import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/controls/OrbitControls.js';
+  <script type="module">
+    import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
+    import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/controls/OrbitControls.js';
 
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-  const renderer = new THREE.WebGLRenderer({ antialias: true });
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  document.body.appendChild(renderer.domElement);
-
-  // Aggiungo luce debole ambientale (opzionale ma utile)
-  const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-  scene.add(ambientLight);
-
-  // Stelle
-  const starGeometry = new THREE.BufferGeometry();
-  const starCount = 2000; // meno stelle, ma più concentrate
-  const starVertices = [];
-
-  for (let i = 0; i < starCount; i++) {
-    starVertices.push((Math.random() - 0.5) * 100); // più vicino
-    starVertices.push((Math.random() - 0.5) * 100);
-    starVertices.push((Math.random() - 0.5) * 100);
-  }
-
-  starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
-  const starMaterial = new THREE.PointsMaterial({ color: 0x61b0ff, size: 0.5 }); // dimensione visibile
-  const starField = new THREE.Points(starGeometry, starMaterial);
-  scene.add(starField);
-
-  camera.position.z = 30;
-
-  const controls = new OrbitControls(camera, renderer.domElement);
-
-  function animate() {
-    requestAnimationFrame(animate);
-    starField.rotation.y += 0.0005;
-    starField.rotation.x += 0.0002;
-    renderer.render(scene, camera);
-  }
-
-  animate();
-
-  window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
-  });
-</script>
+    document.body.appendChild(renderer.domElement);
 
+    // Stelle
+    const starGeometry = new THREE.BufferGeometry();
+    const starCount = 2000;
+    const starVertices = [];
+
+    for (let i = 0; i < starCount; i++) {
+      starVertices.push((Math.random() - 0.5) * 100);
+      starVertices.push((Math.random() - 0.5) * 100);
+      starVertices.push((Math.random() - 0.5) * 100);
+    }
+
+    starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
+    const starMaterial = new THREE.PointsMaterial({ color: 0x3399ff, size: 0.5 });
+    const starField = new THREE.Points(starGeometry, starMaterial);
+    scene.add(starField);
+
+    camera.position.z = 30;
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableZoom = false;
+
+    function animate() {
+      requestAnimationFrame(animate);
+      starField.rotation.y += 0.0005;
+      starField.rotation.x += 0.0002;
+      renderer.render(scene, camera);
+    }
+
+    animate();
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
 </body>
 </html>
