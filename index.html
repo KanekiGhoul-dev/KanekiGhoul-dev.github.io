@@ -2,183 +2,181 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio di Elia Giordano</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio - Elia Giordano</title>
   <style>
-    body, html {
+    body {
       margin: 0;
-      padding: 0;
       overflow: hidden;
       font-family: 'Orbitron', sans-serif;
-      background: black;
-      color: #00bfff;
+      background-color: black;
+      color: #7de3ff;
     }
 
     header {
-      position: fixed;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      gap: 3rem;
-      top: 0;
-      padding: 1.5rem;
-      z-index: 10;
-      background: rgba(0, 0, 0, 0.6);
-    }
-
-    header a {
-      text-decoration: none;
-      color: #00bfff;
-      transition: color 0.3s;
-    }
-
-    header a:hover {
-      color: white;
-    }
-
-    main {
-      position: relative;
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
       text-align: center;
-      padding-top: 10rem;
-      z-index: 1;
+      font-size: 2rem;
+      z-index: 10;
+    }
+
+    nav {
+      position: absolute;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 40px;
+      z-index: 10;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #7de3ff;
+      transition: 0.3s;
+      font-size: 1.2rem;
+    }
+
+    nav a:hover {
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff;
     }
 
     section {
-      margin-top: 6rem;
-      padding: 2rem;
+      position: absolute;
+      top: 150px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      max-width: 800px;
+      text-align: center;
+      z-index: 10;
+      font-size: 1.2rem;
     }
 
     canvas {
       position: fixed;
       top: 0;
       left: 0;
-      z-index: 0;
-    }
-
-    .planet {
-      position: absolute;
-      border-radius: 50%;
-      opacity: 0.7;
-      animation: float 20s infinite linear;
-    }
-
-    .planet.green { background: green; width: 40px; height: 40px; top: 20%; left: 10%; }
-    .planet.purple { background: purple; width: 60px; height: 60px; top: 40%; left: 80%; }
-    .planet.yellow { background: yellow; width: 30px; height: 30px; top: 70%; left: 50%; }
-
-    @keyframes float {
-      0% { transform: translateY(0) translateX(0); }
-      50% { transform: translateY(-20px) translateX(10px); }
-      100% { transform: translateY(0) translateX(0); }
+      display: block;
+      z-index: 1;
     }
   </style>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
-  <canvas id="stars"></canvas>
-
-  <div class="planet green"></div>
-  <div class="planet purple"></div>
-  <div class="planet yellow"></div>
-
-  <header>
-    <a href="#home">Home</a>
-    <a href="#chi">Chi sono</a>
+  <header>Benvenuto nel mio universo</header>
+  <nav>
+    <a href="#chi-sono">Chi sono</a>
     <a href="#competenze">Competenze</a>
     <a href="#contatti">Contatti</a>
-  </header>
+  </nav>
 
-  <main>
-    <h1 id="home">Benvenuto nel mio universo</h1>
-    <p>Presto troverai qui i miei progetti</p>
+  <section id="chi-sono">
+    <h2>Chi sono</h2>
+    <p>
+      Sono Elia Giordano, un appassionato di 3D e animazione nonché di intelligenza artificiale.
+      Sebbene non sia uno specialista, sto imparando da autodidatta con grande curiosità e determinazione.
+      Mi affascina unire arte e tecnologia per creare esperienze visive coinvolgenti.
+    </p>
+  </section>
 
-    <section id="chi">
-      <h2>Chi sono</h2>
-      <p>Sono un appassionato di modellazione 3D e animazione, affascinato anche dal mondo dell'intelligenza artificiale. Sebbene non sia ancora specializzato, sto imparando da autodidatta con grande entusiasmo e costanza. Mi piace esplorare nuove tecnologie e creare contenuti visivi coinvolgenti.</p>
-    </section>
+  <section id="competenze" style="top: 350px;">
+    <h2>Competenze</h2>
+    <ul>
+      <li>Photoshop</li>
+      <li>Illustrator</li>
+      <li>InDesign</li>
+      <li>Inventor</li>
+      <li>3ds Max</li>
+      <li>AutoCAD</li>
+      <li>Blender</li>
+    </ul>
+  </section>
 
-    <section id="competenze">
-      <h2>Competenze</h2>
-      <ul>
-        <li>Photoshop</li>
-        <li>Illustrator</li>
-        <li>InDesign</li>
-        <li>Inventor</li>
-        <li>3ds Max</li>
-        <li>AutoCAD</li>
-        <li>Blender</li>
-      </ul>
-    </section>
+  <section id="contatti" style="top: 550px;">
+    <h2>Contatti</h2>
+    <p>📞 +39 3515749331</p>
+    <p>📧 elgio0926@gmail.com</p>
+    <p>🔗 <a href="https://www.linkedin.com/in/elia-giordano" style="color: #7de3ff;">Elia Giordano</a></p>
+  </section>
 
-    <section id="contatti">
-      <h2>Contatti</h2>
-      <p>Telefono: +39 3515749331</p>
-      <p>Email: elgio0926@gmail.com</p>
-      <p>LinkedIn: <a href="https://www.linkedin.com/in/elia-giordano" target="_blank" style="color:#00bfff;">Elia Giordano</a></p>
-    </section>
-  </main>
+  <canvas id="bg"></canvas>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script>
-    const canvas = document.getElementById("stars");
-    const ctx = canvas.getContext("2d");
-    let width, height, stars = [];
+    const canvas = document.getElementById('bg');
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas });
 
-    function resizeCanvas() {
-      width = window.innerWidth;
-      height = window.innerHeight;
-      canvas.width = width;
-      canvas.height = height;
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.position.z = 30;
+
+    const stars = [];
+    const mouse = new THREE.Vector2(0, 0);
+
+    function createStar() {
+      const geometry = new THREE.SphereGeometry(0.3, 12, 12);
+      const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+      const star = new THREE.Mesh(geometry, material);
+
+      star.position.x = (Math.random() - 0.5) * 200;
+      star.position.y = (Math.random() - 0.5) * 200;
+      star.position.z = (Math.random() - 0.5) * 200;
+      scene.add(star);
+      stars.push(star);
     }
 
-    function createStars(num) {
-      stars = [];
-      for (let i = 0; i < num; i++) {
-        stars.push({
-          x: Math.random() * width,
-          y: Math.random() * height,
-          r: Math.random() * 1.5 + 0.5,
-          dx: 0,
-          dy: 0
-        });
-      }
+    for (let i = 0; i < 500; i++) createStar();
+
+    // Pianeti
+    const colors = [0x00ff00, 0xff00ff, 0xffff00];
+    for (let i = 0; i < 6; i++) {
+      const geometry = new THREE.SphereGeometry(2, 32, 32);
+      const material = new THREE.MeshStandardMaterial({ color: colors[i % 3] });
+      const planet = new THREE.Mesh(geometry, material);
+      planet.position.set((Math.random() - 0.5) * 100, (Math.random() - 0.5) * 100, (Math.random() - 0.5) * 100);
+      scene.add(planet);
     }
 
-    let mouse = { x: width / 2, y: height / 2 };
-    document.addEventListener("mousemove", e => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-    });
+    const light = new THREE.PointLight(0xffffff, 1);
+    light.position.set(10, 10, 10);
+    scene.add(light);
 
     function animate() {
-      ctx.clearRect(0, 0, width, height);
-      for (let star of stars) {
-        let dx = star.x - mouse.x;
-        let dy = star.y - mouse.y;
-        let dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 150) {
-          star.dx += dx / dist;
-          star.dy += dy / dist;
-        }
-        star.x += star.dx * 0.02;
-        star.y += star.dy * 0.02;
-        star.dx *= 0.95;
-        star.dy *= 0.95;
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
-        ctx.fillStyle = "white";
-        ctx.fill();
-      }
       requestAnimationFrame(animate);
+
+      stars.forEach(star => {
+        const dx = star.position.x - mouse.x * 100;
+        const dy = star.position.y - mouse.y * 100;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 20) {
+          star.position.x += dx / dist;
+          star.position.y += dy / dist;
+        } else {
+          star.position.x += (Math.random() - 0.5) * 0.05;
+          star.position.y += (Math.random() - 0.5) * 0.05;
+        }
+      });
+
+      renderer.render(scene, camera);
     }
 
-    window.addEventListener("resize", () => {
-      resizeCanvas();
-      createStars(300);
+    animate();
+
+    document.addEventListener('mousemove', (event) => {
+      mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+      mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
     });
 
-    resizeCanvas();
-    createStars(300);
-    animate();
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
   </script>
 </body>
 </html>
