@@ -1,262 +1,279 @@
+# Creo il file HTML completo con la struttura approvata e i menu a tendina per ogni software
+html_code = """
 <!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+    <title>Portfolio - Elia Giordano</title>
     <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background: #000;
-            color: #fff;
+        html, body {
             margin: 0;
             padding: 0;
+            height: 100%;
+            font-family: 'Orbitron', sans-serif;
+            color: #00aaff;
+            background: black;
+            overflow-x: hidden;
         }
 
-        .section {
-            padding: 50px;
+        section {
+            padding: 80px 20px;
             text-align: center;
+            transition: background 0.3s ease;
         }
 
-        h1 {
-            font-size: 3em;
-            color: #1E90FF;
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.8);
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        nav a {
+            color: #00aaff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
             transition: color 0.3s ease;
         }
 
-        h1:hover {
-            color: #00BFFF;
+        nav a:hover {
+            color: #ffffff;
         }
 
-        .menu {
+        #hero {
+            height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
-            margin-bottom: 30px;
+            align-items: center;
         }
 
-        .menu a {
-            color: #fff;
-            font-size: 1.2em;
-            margin: 0 20px;
-            text-decoration: none;
-            padding: 10px;
-            transition: color 0.3s ease;
-        }
-
-        .menu a:hover {
-            color: #00BFFF;
-        }
-
-        .project-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .project {
-            width: 250px;
-            text-align: center;
-            position: relative;
-        }
-
-        .project img {
-            width: 100%;
-            border-radius: 10px;
-            transition: transform 0.3s ease;
-        }
-
-        .project img:hover {
-            transform: scale(1.1);
-        }
-
-        .project video {
-            width: 100%;
-            display: none;
-            border-radius: 10px;
-        }
-
-        .project video.active {
-            display: block;
-        }
-
-        .dropdown {
-            display: none;
-        }
-
-        .dropdown.open {
-            display: block;
-        }
-
-        .dropdown-btn {
-            background-color: #333;
-            color: white;
-            padding: 10px;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            width: 100%;
-            text-align: left;
-        }
-
-        .dropdown-content {
-            display: none;
-            background-color: #333;
-            min-width: 100%;
-            position: absolute;
-            z-index: 1;
-        }
-
-        .dropdown-content a {
-            color: white;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
-
-        .dropdown-content a:hover {
-            background-color: #575757;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
+        .highlight {
+            color: #00ccff;
+            font-size: 2.5em;
+            margin-bottom: 20px;
         }
 
         .stars {
             position: fixed;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none;
             z-index: -1;
+            overflow: hidden;
         }
 
         .star {
             position: absolute;
-            width: 5px;
-            height: 5px;
-            background-color: #fff;
             border-radius: 50%;
-            animation: moveStars 2s infinite linear;
+            background: white;
+            width: 2px;
+            height: 2px;
+            opacity: 0.8;
+            transition: transform 0.1s;
         }
 
-        @keyframes moveStars {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(100%, 100%); }
+        .project-preview {
+            display: inline-block;
+            margin: 10px;
+            cursor: pointer;
         }
 
-        .text {
-            margin-top: 30px;
-            font-size: 1.2em;
+        .project-preview img {
+            width: 200px;
+            height: auto;
+            border: 2px solid #00aaff;
+            border-radius: 8px;
         }
 
-        .project-title {
-            font-size: 1.5em;
-            margin-top: 10px;
-            color: #00BFFF;
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: black;
+            padding: 20px;
+            z-index: 20;
+            display: none;
         }
 
-        .software-title {
-            font-size: 1.2em;
-            color: #1E90FF;
-            margin-bottom: 10px;
+        .popup video {
+            max-width: 90vw;
+            max-height: 80vh;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        select {
+            margin: 20px;
+            font-size: 16px;
+            padding: 5px 10px;
+            background-color: #111;
+            color: #00aaff;
+            border: 1px solid #00aaff;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
-    <div class="stars"></div>
 
-    <div class="section">
-        <h1>Benvenuto nel mio mondo</h1>
-        <p class="text">Sono un appassionato autodidatta di 3D, animazioni e intelligenza artificiale. Mi piace esplorare nuove tecnologie e imparare continuamente, cercando di portare la mia creatività in ogni progetto.</p>
-    </div>
+<div class="stars"></div>
 
-    <div class="menu">
-        <a href="#progetti">Progetti</a>
-        <a href="#chi-sono">Chi Sono</a>
-        <a href="#contatti">Contatti</a>
-    </div>
+<nav>
+    <a href="#hero">Home</a>
+    <a href="#chi-sono">Chi sono</a>
+    <a href="#competenze">Competenze</a>
+    <a href="#progetti">Progetti</a>
+    <a href="#contatti">Contatti</a>
+</nav>
 
-    <div class="section" id="progetti">
-        <h1>Progetti</h1>
+<section id="hero">
+    <h1 class="highlight">Benvenuto nel mio universo</h1>
+    <p>Presto troverai qui i miei progetti</p>
+</section>
 
-        <!-- Blender Dropdown -->
-        <div class="dropdown">
-            <button class="dropdown-btn">Progetti Blender</button>
-            <div class="dropdown-content">
-                <a href="#" class="project-link" data-project="spherelumsvdo">Spherelum</a>
-                <a href="#" class="project-link" data-project="tazzinavdo">Tazzina</a>
-                <a href="#" class="project-link" data-project="rubikvdo">Rubik</a>
-                <a href="#" class="project-link" data-project="magicvdo">Magic</a>
-                <a href="#" class="project-link" data-project="pallavdo">Palla</a>
-                <a href="#" class="project-link" data-project="wtrvdo">Water</a>
+<section id="chi-sono">
+    <h2>Chi sono</h2>
+    <p>Sono Elia Giordano, un appassionato autodidatta di 3D, animazione e intelligenza artificiale. 
+    Mi piace esplorare nuove tecnologie e dare forma alle idee attraverso la grafica e il movimento. 
+    Anche se non sono specializzato, ho una grande voglia di imparare e migliorarmi ogni giorno in questo campo affascinante.</p>
+</section>
+
+<section id="competenze">
+    <h2>Competenze</h2>
+    <ul>
+        <li>Photoshop</li>
+        <li>Illustrator</li>
+        <li>InDesign</li>
+        <li>Inventor</li>
+        <li>3ds Max</li>
+        <li>AutoCAD</li>
+        <li>Blender</li>
+    </ul>
+</section>
+
+<section id="progetti">
+    <h2>Progetti</h2>
+    <label for="software-select">Seleziona software:</label>
+    <select id="software-select" onchange="filterProjects()">
+        <option value="">-- Scegli un software --</option>
+        <option value="blender">Blender</option>
+        <option value="photoshop">Photoshop</option>
+        <option value="illustrator">Illustrator</option>
+        <option value="indesign">InDesign</option>
+        <option value="inventor">Inventor</option>
+        <option value="3dsmax">3ds Max</option>
+        <option value="autocad">AutoCAD</option>
+    </select>
+
+    <div id="project-gallery">
+        <div class="project-group" data-software="blender">
+            <div class="project-preview" onclick="showVideo('spherelumsvdo.mp4')">
+                <img src="spherelumsimg.jpg" alt="spherelum">
+            </div>
+            <div class="project-preview" onclick="showVideo('tazzinavdo.mp4')">
+                <img src="tazzinaimg.jpg" alt="tazzina">
+            </div>
+            <div class="project-preview" onclick="showVideo('rubikvdo.mp4')">
+                <img src="rubikimg.jpg" alt="rubik">
+            </div>
+            <div class="project-preview" onclick="showVideo('magicvdo.mp4')">
+                <img src="magicimg.jpg" alt="magic">
+            </div>
+            <div class="project-preview" onclick="showVideo('pallavdo.mp4')">
+                <img src="pallaimg.jpg" alt="palla">
+            </div>
+            <div class="project-preview" onclick="showVideo('wtrvdo.mp4')">
+                <img src="wtrimg.jpg" alt="wtr">
             </div>
         </div>
-
-        <div class="project-container">
-            <!-- Spherelum Project -->
-            <div class="project" id="spherelumsvdo">
-                <div class="software-title">Blender</div>
-                <img src="spherelumsimg.jpg" alt="Spherelum" class="project-img">
-                <div class="project-title">Spherelum</div>
-                <video src="spherelumsvdo.mp4" class="project-video"></video>
-            </div>
-
-            <!-- Tazzina Project -->
-            <div class="project" id="tazzinavdo">
-                <div class="software-title">Blender</div>
-                <img src="tazzinaimg.jpg" alt="Tazzina" class="project-img">
-                <div class="project-title">Tazzina</div>
-                <video src="tazzinavdo.mp4" class="project-video"></video>
-            </div>
-
-            <!-- Rubik Project -->
-            <div class="project" id="rubikvdo">
-                <div class="software-title">Blender</div>
-                <img src="rubikimg.jpg" alt="Rubik" class="project-img">
-                <div class="project-title">Rubik</div>
-                <video src="rubikvdo.mp4" class="project-video"></video>
-            </div>
-
-            <!-- Magic Project -->
-            <div class="project" id="magicvdo">
-                <div class="software-title">Blender</div>
-                <img src="magicimg.jpg" alt="Magic" class="project-img">
-                <div class="project-title">Magic</div>
-                <video src="magicvdo.mp4" class="project-video"></video>
-            </div>
-
-            <!-- Palla Project -->
-            <div class="project" id="pallavdo">
-                <div class="software-title">Blender</div>
-                <img src="pallaimg.jpg" alt="Palla" class="project-img">
-                <div class="project-title">Palla</div>
-                <video src="pallavdo.mp4" class="project-video"></video>
-            </div>
-
-            <!-- Water Project -->
-            <div class="project" id="wtrvdo">
-                <div class="software-title">Blender</div>
-                <img src="wtrimg.jpg" alt="Water" class="project-img">
-                <div class="project-title">Water</div>
-                <video src="wtrvdo.mp4" class="project-video"></video>
-            </div>
-        </div>
+        <div class="project-group" data-software="photoshop">Nessun progetto disponibile</div>
+        <div class="project-group" data-software="illustrator">Nessun progetto disponibile</div>
+        <div class="project-group" data-software="indesign">Nessun progetto disponibile</div>
+        <div class="project-group" data-software="inventor">Nessun progetto disponibile</div>
+        <div class="project-group" data-software="3dsmax">Nessun progetto disponibile</div>
+        <div class="project-group" data-software="autocad">Nessun progetto disponibile</div>
     </div>
+</section>
 
-    <div class="section" id="chi-sono">
-        <h1>Chi Sono</h1>
-        <p>Sono un appassionato autodidatta di 3D, animazioni e intelligenza artificiale. Mi piace esplorare nuove tecnologie e imparare continuamente, cercando di portare la mia creatività in ogni progetto.</p>
-    </div>
+<section id="contatti">
+    <h2>Contatti</h2>
+    <p>Email: elgio0926@gmail.com</p>
+    <p>Telefono: +39 3515749331</p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/elia-giordano" target="_blank">Elia Giordano</a></p>
+</section>
 
-    <div class="section" id="contatti">
-        <h1>Contatti</h1>
-        <p>Email: elgio0926@gmail.com</p>
-        <p>Telefono: +39 3515749331</p>
-        <p><a href="https://www.linkedin.com/in/elia-giordano" target="_blank">LinkedIn</a></p>
-    </div>
+<div class="popup" id="videoPopup">
+    <span class="popup-close" onclick="closeVideo()">✖</span>
+    <video id="popupVideo" controls autoplay></video>
+</div>
 
-    <script>
-        document.querySelectorAll('.project-link').forEach(link => {
-            link.addEventListener('click',
+<script>
+    const stars = [];
+    for (let i = 0; i < 150; i++) {
+        let star = document.createElement("div");
+        star.className = "star";
+        star.style.top = Math.random() * 100 + "vh";
+        star.style.left = Math.random() * 100 + "vw";
+        document.querySelector(".stars").appendChild(star);
+        stars.push(star);
+    }
+
+    document.addEventListener("mousemove", e => {
+        stars.forEach(star => {
+            const dx = e.clientX - star.offsetLeft;
+            const dy = e.clientY - star.offsetTop;
+            const dist = Math.sqrt(dx*dx + dy*dy);
+            const force = Math.max(0, 150 - dist) / 150;
+            const offsetX = dx * force * -0.05;
+            const offsetY = dy * force * -0.05;
+            star.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+        });
+    });
+
+    function filterProjects() {
+        const selected = document.getElementById("software-select").value;
+        document.querySelectorAll(".project-group").forEach(group => {
+            group.style.display = (group.dataset.software === selected) ? "block" : "none";
+        });
+    }
+
+    function showVideo(filename) {
+        const popup = document.getElementById("videoPopup");
+        const video = document.getElementById("popupVideo");
+        video.src = filename;
+        popup.style.display = "block";
+    }
+
+    function closeVideo() {
+        const popup = document.getElementById("videoPopup");
+        const video = document.getElementById("popupVideo");
+        video.pause();
+        video.src = "";
+        popup.style.display = "none";
+    }
+</script>
+
+</body>
+</html>
+"""
+
+# Salvo il file HTML
+file_path = "/mnt/data/portfolio_completo.html"
+with open(file_path, "w", encoding="utf-8") as f:
+    f.write(html_code)
+
+file_path
+
