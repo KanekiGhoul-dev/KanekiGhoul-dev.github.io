@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Portfolio 3D</title>
+  <title>Portfolio Stellare</title>
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
@@ -21,7 +21,6 @@
       overflow-x: hidden;
     }
 
-    /* NAV */
     nav {
       position: fixed;
       top: 0; left: 0;
@@ -43,7 +42,6 @@
       color: #ffffff;
     }
 
-    /* Hero */
     #home {
       position: relative;
       width: 100%; height: 100vh;
@@ -66,7 +64,6 @@
       text-shadow: 0 0 5px #3399ff;
     }
 
-    /* Sezioni */
     .section {
       position: relative;
       max-width: 800px;
@@ -89,7 +86,6 @@
       line-height: 1.4;
     }
 
-    /* Canvas sotto le sezioni */
     #canvas-container {
       position: fixed;
       top: 0; left: 0;
@@ -100,7 +96,6 @@
 </head>
 <body>
 
-  <!-- NAV -->
   <nav>
     <a href="#home">Home</a>
     <a href="#chi-sono">Chi Sono</a>
@@ -108,7 +103,6 @@
     <a href="#contatti">Contatti</a>
   </nav>
 
-  <!-- HERO -->
   <section id="home">
     <div class="overlay">
       <h1>Benvenuto nel mio universo</h1>
@@ -116,7 +110,6 @@
     </div>
   </section>
 
-  <!-- SEZIONI DI ESEMPIO -->
   <section id="chi-sono" class="section">
     <h2>Chi Sono</h2>
     <p>Sono un Visual Designer e 3D Artist appassionato di temi spaziali e futuristici. Amo esplorare nuovi modi di comunicare attraverso il design.</p>
@@ -133,46 +126,52 @@
     <p>GitHub: <a href="https://github.com/KanekiGhoul-dev" target="_blank" style="color:#66ccff;">KanekiGhoul-dev</a></p>
   </section>
 
-  <!-- STARFIELD -->
   <div id="canvas-container"></div>
 
   <script type="module">
     import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
-    import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/controls/OrbitControls.js';
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-    camera.position.z = 30;
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 50;
 
-    const renderer = new THREE.WebGLRenderer({ antialias:true });
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.getElementById('canvas-container').appendChild(renderer.domElement);
 
-    // Crea il campo stellato
-    const starsGeo = new THREE.BufferGeometry();
-    const starCount = 2000;
-    const positions = new Float32Array(starCount * 3);
-    for (let i = 0; i < starCount * 3; i++) {
-      positions[i] = (Math.random() - 0.5) * 200;
-    }
-    starsGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    const starsMat = new THREE.PointsMaterial({ color:0x3399ff, size:0.5 });
-    const starField = new THREE.Points(starsGeo, starsMat);
-    scene.add(starField);
+    // STARS
+    const starsGeometry = new THREE.BufferGeometry();
+    const starCount = 3000;
+    const positions = [];
 
-    const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableZoom = false;
+    for (let i = 0; i < starCount; i++) {
+      positions.push(
+        (Math.random() - 0.5) * 400,
+        (Math.random() - 0.5) * 400,
+        (Math.random() - 0.5) * 400
+      );
+    }
+
+    starsGeometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+
+    const starMaterial = new THREE.PointsMaterial({
+      color: 0x3399ff,
+      size: 1.2,
+    });
+
+    const stars = new THREE.Points(starsGeometry, starMaterial);
+    scene.add(stars);
 
     function animate() {
       requestAnimationFrame(animate);
-      starField.rotation.y += 0.0007;
-      starField.rotation.x += 0.0003;
+      stars.rotation.y += 0.0007;
+      stars.rotation.x += 0.0003;
       renderer.render(scene, camera);
     }
     animate();
 
-    window.addEventListener('resize', ()=>{
-      camera.aspect = window.innerWidth/window.innerHeight;
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
     });
