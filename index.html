@@ -31,86 +31,99 @@
     header, .section, .projects-section, footer {
       position: relative;
       z-index: 1;
-      background-color: rgba(0, 0, 0, 0.7);
-      margin: 1.5rem;
+      background-color: rgba(255, 255, 255, 0.1);
+      margin: 1.5rem auto;
       padding: 2rem;
-      border-radius: 15px;
-      box-shadow: 0 0 15px #00bfff;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(0, 191, 255, 0.7);
+      max-width: 1000px;
       text-align: center;
     }
 
     header h1 {
       font-size: 3rem;
       margin-bottom: 0.5rem;
+      color: #e0f7ff;
     }
 
-    header p, .section p, .projects-section p, footer {
-      font-size: 1.1rem;
-      color: #b0dfff;
+    header p {
+      font-size: 1.2rem;
+      color: #c0eaff;
     }
 
     .flex-container {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
+      justify-content: space-between;
       gap: 2rem;
+      margin: 0 auto;
+      max-width: 1000px;
     }
 
     .half-section {
-      flex: 1 1 300px;
-      max-width: 45%;
+      flex: 1 1 45%;
+      background-color: rgba(255, 255, 255, 0.05);
+      padding: 1.5rem;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 191, 255, 0.5);
     }
 
-    @media (max-width: 768px) {
-      .half-section {
-        max-width: 100%;
-      }
+    .half-section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #00bfff;
+      text-shadow: 0 0 10px rgba(0, 191, 255, 0.7);
+    }
+
+    .half-section p {
+      font-size: 1rem;
+      color: #d0f0ff;
     }
 
     .icon {
       font-size: 2.5rem;
-      margin: 0.3rem;
+      margin: 0.5rem;
     }
 
-    a {
+    .projects-section {
+      margin: 1.5rem auto;
+      max-width: 1000px;
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(0, 191, 255, 0.7);
+    }
+
+    .projects-section h2 {
+      font-size: 2.5rem;
       color: #00bfff;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-shadow: 0 0 10px #00bfff;
-    }
-
-    /* Progetti */
-    .projects-section select {
-      padding: 0.5rem;
-      font-size: 1rem;
-      border: 1px solid #00bfff;
-      border-radius: 5px;
-      background: #000;
-      color: #00bfff;
-      margin-bottom: 1rem;
+      text-shadow: 0 0 12px rgba(0, 191, 255, 0.8);
+      margin-bottom: 1.5rem;
     }
 
     .projects-grid {
-      display: none;
+      display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 1rem;
     }
 
     .project-item {
-      width: 150px;
+      width: 180px;
       cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .project-item:hover {
+      transform: scale(1.05);
     }
 
     .project-item img {
       width: 100%;
       border-radius: 10px;
-      box-shadow: 0 0 10px #00bfff;
+      box-shadow: 0 0 15px rgba(0, 191, 255, 0.7);
     }
 
-    /* Modal */
     .modal {
       display: none;
       position: fixed;
@@ -118,7 +131,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.9);
+      background: rgba(0,0,0,0.95);
       align-items: center;
       justify-content: center;
       z-index: 2;
@@ -128,6 +141,7 @@
       max-width: 80%;
       max-height: 80%;
       border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.8);
     }
 
     .modal-close {
@@ -137,6 +151,17 @@
       font-size: 2rem;
       color: #fff;
       cursor: pointer;
+    }
+
+    footer {
+      margin: 2rem auto;
+      max-width: 1000px;
+      font-size: 0.9rem;
+      color: #888;
+    }
+
+    footer a {
+      color: #00bfff;
     }
   </style>
 </head>
@@ -150,11 +175,11 @@
   </header>
 
   <div class="flex-container">
-    <section class="section half-section">
+    <section class="half-section">
       <h2>Chi Sono</h2>
       <p>Sono un appassionato di animazione e modellazione 3D. Amo dare vita alle idee attraverso forme, colori e movimento. Ogni progetto è per me un viaggio creativo dove tecnica e immaginazione si fondono.</p>
     </section>
-    <section class="section half-section">
+    <section class="half-section">
       <h2>Competenze</h2>
       <div>
         <span class="icon" title="Photoshop">🖌️</span>
@@ -169,20 +194,9 @@
     </section>
   </div>
 
-  <section class="section">
-    <h2>Contatti</h2>
-    <p>Email: <a href="mailto:elgio0926@gmail.com">elgio0926@gmail.com</a></p>
-    <p>Telefono: <a href="tel:+393515749331">+39 351 574 9331</a></p>
-    <p>LinkedIn: <a href="https://www.linkedin.com/in/elia-giordano" target="_blank">Elia Giordano</a></p>
-  </section>
-
   <section class="projects-section">
-    <h2>Progetti</h2>
-    <select id="software-select">
-      <option value="">Seleziona software</option>
-      <option value="blender">Blender</option>
-    </select>
-    <div id="blender-projects" class="projects-grid">
+    <h2>Progetti Blender</h2>
+    <div class="projects-grid">
       <div class="project-item"><img src="spherelumvdo.jpg" alt="spherelumvdo" data-gif="spherelumvdo.gif"></div>
       <div class="project-item"><img src="tazzinavdo.jpg" alt="tazzinavdo" data-gif="tazzinavdo.gif"></div>
       <div class="project-item"><img src="rubikvdo.jpg" alt="rubikvdo" data-gif="rubikvdo.gif"></div>
@@ -190,6 +204,13 @@
       <div class="project-item"><img src="pallavdo.jpg" alt="pallavdo" data-gif="pallavdo.gif"></div>
       <div class="project-item"><img src="wtrvdo.jpg" alt="wtrvdo" data-gif="wtrvdo.gif"></div>
     </div>
+  </section>
+
+  <section class="section">
+    <h2>Contatti</h2>
+    <p>Email: <a href="mailto:elgio0926@gmail.com">elgio0926@gmail.com</a></p>
+    <p>Telefono: <a href="tel:+393515749331">+39 351 574 9331</a></p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/elia-giordano" target="_blank">Elia Giordano</a></p>
   </section>
 
   <footer>
@@ -202,7 +223,7 @@
     <img id="modal-gif" src="" alt="Project GIF">
   </div>
 
-  <!-- Three.js e script Progetti -->
+  <!-- Three.js e script -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r148/three.min.js"></script>
   <script>
     // Three.js background cube
@@ -224,25 +245,18 @@
     scene.add(pointLight);
     scene.add(new THREE.AmbientLight(0x404040));
 
-    function animateCube() {
-      requestAnimationFrame(animateCube);
+    function animate() {
+      requestAnimationFrame(animate);
       cube.rotation.x += 0.01;
       cube.rotation.y += 0.01;
       renderer.render(scene, camera);
     }
-    animateCube();
+    animate();
 
     window.addEventListener('resize', () => {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
-    });
-
-    // Gestione menu progetti
-    const softwareSelect = document.getElementById('software-select');
-    const blenderProjects = document.getElementById('blender-projects');
-    softwareSelect.addEventListener('change', () => {
-      blenderProjects.style.display = softwareSelect.value === 'blender' ? 'flex' : 'none';
     });
 
     // Popup GIF
