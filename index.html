@@ -1,425 +1,581 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Portfolio di Elia Giordano</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Orbitron', sans-serif;
-            background: #000;
-            color: #00bfff;
-            overflow-x: hidden;
-            position: relative;
-        }
+// FILE: app/page.tsx
+"use client"
 
-        .animated-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 200%;
-            height: 200%;
-            background: url('https://cdn.pixabay.com/photo/2016/11/29/04/17/space-1867616_1280.jpg') repeat;
-            background-size: cover;
-            animation: moveBg 120s linear infinite;
-            z-index: -1;
-            opacity: 0.3;
-        }
+import { useState } from "react"
+import Link from "next/link"
+import Image from "next/image"
+import { Mail, Linkedin } from 'lucide-react'
+import { Button } from "@/components/ui/button"
 
-        @keyframes moveBg {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(-500px, -500px); }
-        }
+export default function Home() {
+  const [activeSection, setActiveSection] = useState("chi-sono")
 
-        header {
-            text-align: center;
-            padding: 3rem 1rem;
-            background: rgba(0, 0, 0, 0.7);
-        }
+  return (
+    <div className="min-h-screen bg-black text-[#00bfff] font-orbitron relative overflow-x-hidden">
+      {/* Animated Background */}
+      <div className="animated-bg"></div>
 
-        header h1 {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-        }
+      {/* Stars */}
+      <div className="stars">
+        {Array.from({ length: 50 }).map((_, i) => (
+          <div
+            key={i}
+            className="star"
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              width: `${Math.random() * 3 + 1}px`,
+              height: `${Math.random() * 3 + 1}px`,
+              animationDelay: `${Math.random() * 3}s`,
+            }}
+          ></div>
+        ))}
+      </div>
 
-        header p {
-            font-size: 1.2rem;
-            color: #b0dfff;
-        }
+      {/* Planets */}
+      <div className="planet planet-1"></div>
+      <div className="planet planet-2"></div>
+      <div className="planet planet-3"></div>
 
-        .dynamic-menu {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 2rem;
-        }
+      {/* Header */}
+      <header className="text-center py-12 bg-black/50 backdrop-blur-sm relative z-10">
+        <h1 className="text-4xl md:text-5xl font-bold mb-2">Elia Giordano</h1>
+        <p className="text-xl text-[#b0dfff]">Modellatore 3D • Visual Designer • Creativo dallo spazio</p>
+      </header>
 
-        .dynamic-menu button {
-            padding: 10px 20px;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: #00bfff;
-            border: 2px solid #00bfff;
-            border-radius: 5px;
-            cursor: pointer;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1rem;
-            transition: background-color 0.3s ease;
-        }
+      {/* Navigation Menu */}
+      <div className="flex justify-center gap-4 md:gap-6 mt-8 px-4 relative z-10 flex-wrap">
+        {["chi-sono", "competenze", "progetti", "contatti"].map((section) => (
+          <Button
+            key={section}
+            variant="outline"
+            className={`border-2 border-[#00bfff] bg-black/70 text-[#00bfff] hover:bg-[#00bfff] hover:text-black transition-colors rounded-full w-[120px] h-[120px] flex items-center justify-center shadow-[0_0_15px_#00bfff] ${
+              activeSection === section ? "bg-[#00bfff]/30" : ""
+            }`}
+            onClick={() => setActiveSection(section)}
+          >
+            {section
+              .split("-")
+              .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+              .join(" ")}
+          </Button>
+        ))}
+      </div>
 
-        .dynamic-menu button:hover {
-            background-color: #00bfff;
-            color: #000;
-            text-shadow: none;
-        }
+      {/* Content Sections */}
+      <div className="px-4 py-8 relative z-10">
+        {/* Chi Sono Section */}
+        <section
+          className={`p-8 text-center bg-black/60 backdrop-blur-sm mx-auto max-w-4xl rounded-2xl shadow-[0_0_15px_#00bfff] my-8 transition-opacity duration-300 ${
+            activeSection === "chi-sono" ? "block" : "hidden"
+          }`}
+        >
+          <h2 className="text-3xl font-bold mb-6">Chi Sono</h2>
+          <p className="text-lg mb-4">
+            Appassionato di tecnologia, design e forme aliene. Creo esperienze visive uniche che spaziano dal design
+            grafico alla modellazione 3D.
+          </p>
+          <p className="text-lg mb-4">
+            La mia passione per il mondo tridimensionale è nata fin da giovane, quando ho scoperto la magia di dare vita
+            a oggetti e ambienti virtuali. Sono affascinato dalle infinite possibilità creative che il 3D offre, dalla
+            modellazione di oggetti realistici alla creazione di mondi fantastici.
+          </p>
+          <p className="text-lg mb-4">
+            Le animazioni sono il cuore del mio lavoro: adoro vedere come un modello statico prende vita attraverso il
+            movimento, raccontando storie e suscitando emozioni. Ogni progetto è un'opportunità per sperimentare nuove
+            tecniche e spingere i confini della creatività digitale.
+          </p>
+          <p className="text-lg">
+            Il mio approccio combina precisione tecnica e visione artistica, creando esperienze visive che catturano
+            l'attenzione e stimolano l'immaginazione. Che si tratti di un logo animato, un personaggio 3D o un ambiente
+            virtuale complesso, metto la stessa passione e dedizione in ogni creazione.
+          </p>
+        </section>
 
-        .content-section {
-            display: none; /* Nascondi le sezioni inizialmente */
-            padding: 2rem;
-            text-align: center;
-            background: rgba(0, 0, 0, 0.6);
-            margin: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 0 15px #00bfff;
-        }
+        {/* Competenze Section */}
+        <section
+          className={`p-8 text-center bg-black/60 backdrop-blur-sm mx-auto max-w-4xl rounded-2xl shadow-[0_0_15px_#00bfff] my-8 transition-opacity duration-300 ${
+            activeSection === "competenze" ? "block" : "hidden"
+          }`}
+        >
+          <h2 className="text-3xl font-bold mb-6">Competenze</h2>
+          <div className="flex justify-center gap-8 mb-6 flex-wrap">
+            {/* Simplified icons */}
+            <div className="text-5xl">🔷</div>
+            <div className="text-5xl">🔲</div>
+            <div className="text-5xl">⚪</div>
+            <div className="text-5xl">🗑️</div>
+          </div>
+          <p className="text-lg">
+            Modellazione 3D, Logo Design, UI futuristica, Animazioni spaziali, Blender, Photoshop, Illustrator,
+            InDesign, AutoCAD, Inventor, 3ds Max
+          </p>
+        </section>
 
-        .content-section.active {
-            display: block; /* Mostra la sezione attiva */
-        }
+        {/* Progetti Section */}
+        <section
+          className={`p-8 text-center bg-black/60 backdrop-blur-sm mx-auto max-w-4xl rounded-2xl shadow-[0_0_15px_#00bfff] my-8 transition-opacity duration-300 ${
+            activeSection === "progetti" ? "block" : "hidden"
+          }`}
+        >
+          <h2 className="text-3xl font-bold mb-6">Progetti</h2>
 
-        .competence-icons {
-            display: flex;
-            justify-content: center;
-            gap: 30px; /* Aumentato il gap per icone più grandi */
-            margin-bottom: 1rem;
-        }
-
-        .competence-icons span {
-            font-size: 3rem; /* Ridotto leggermente per un aspetto più tecnico */
-            cursor: default; /* Rimosso il cursore interattivo */
-            color: #00bfff; /* Assicurati che il colore sia definito */
-        }
-
-        .project {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .project img,
-        .project video {
-            width: 200px;
-            height: 200px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px #00bfff;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .project img:hover,
-        .project video:hover {
-            transform: scale(1.1);
-        }
-
-        footer {
-            text-align: center;
-            padding: 1rem;
-            color: #ccc;
-            background: rgba(0, 0, 0, 0.8);
-            margin-top: 4rem;
-        }
-
-        footer a {
-            color: #00bfff;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-shadow: 0 0 10px #00bfff;
-        }
-
-        .starry-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            /* Effetto di "attrazione" all'hover */
-            transition: transform 0.3s ease;
-        }
-
-        .starry-background:hover {
-            transform: scale(1.02); /* Leggero ingrandimento all'hover */
-        }
-
-        .starry-background .star {
-            position: absolute;
-            width: 3px; /* Stelle leggermente più piccole */
-            height: 3px;
-            background-color: #fff;
-            border-radius: 50%;
-            opacity: 0.7; /* Stelle leggermente più visibili */
-            animation: twinkle 2s linear infinite alternate;
-        }
-
-        /* Posizionamento di più stelle */
-        .star:nth-child(1) { top: 10%; left: 15%; }
-        .star:nth-child(2) { top: 70%; left: 85%; }
-        .star:nth-child(3) { top: 30%; left: 5%; }
-        .star:nth-child(4) { top: 90%; left: 40%; }
-        .star:nth-child(5) { top: 5%; left: 60%; }
-        .star:nth-child(6) { top: 55%; left: 20%; }
-        .star:nth-child(7) { top: 20%; left: 95%; }
-        .star:nth-child(8) { top: 80%; left: 30%; }
-        .star:nth-child(9) { top: 45%; left: 75%; }
-        .star:nth-child(10) { top: 15%; left: 45%; }
-        .star:nth-child(11) { top: 65%; left: 55%; }
-        .star:nth-child(12) { top: 35%; left: 80%; }
-        .star:nth-child(13) { top: 85%; left: 10%; }
-        .star:nth-child(14) { top: 50%; left: 90%; }
-        .star:nth-child(15) { top: 25%; left: 35%; }
-        /* Aggiungi altre stelle a piacere */
-
-        @keyframes twinkle {
-            0% { opacity: 0.7; transform: scale(1); }
-            100% { opacity: 1; transform: scale(1.1); }
-        }
-
-        /* Nascondi inizialmente la vecchia struttura delle sezioni */
-        .section {
-            display: none;
-        }
-
-        /* Stili specifici per la sezione progetti all'interno del content-section */
-        #progetti .menu-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        #progetti select {
-            font-size: 1rem;
-            padding: 10px;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: #00bfff;
-            border: 2px solid #00bfff;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        #progetti .project {
-            display: none; /* Nascosti di default, gestiti dallo script */
-            justify-content: center;
-            gap: 20px;
-            margin-top: 1rem;
-            flex-wrap: wrap;
-        }
-
-        #blender-projects {
-            display: flex; /* Mostra i progetti Blender all'inizio (se vuoi) */
-        }
-
-        /* Stili per la sezione Contatti */
-        #contatti p {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        #contatti p a {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-size: 1.2rem;
-        }
-    </style>
-</head>
-<body>
-    <div class="starry-background">
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-    </div>
-
-    <header>
-        <h1>Elia Giordano</h1>
-        <p>Modellatore 3D • Visual Designer • Creativo dallo spazio</p>
-    </header>
-
-    <div class="dynamic-menu">
-        <button data-section="chi-sono">Chi Sono</button>
-        <button data-section="competenze">Competenze</button>
-        <button data-section="progetti">Progetti</button>
-        <button data-section="contatti">Contatti</button>
-    </div>
-
-    <div id="chi-sono" class="content-section active">
-        <h2>Chi Sono</h2>
-        <p>Appassionato di tecnologia, design e forme aliene. Creo esperienze visive uniche che spaziano dal design grafico alla modellazione 3D.</p>
-    </div>
-
-    <div id="competenze" class="content-section">
-        <h2>Competenze</h2>
-        <div class="competence-icons">
-            <span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 71-.71L12 2z"/></svg></span>
-            <span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h18v18H3z"/></svg></span>
-            <span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"/></svg></span>
-            <span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg></span>
-        </div>
-        <p>Modellazione 3D, Logo Design, UI futuristica, Animazioni spaziali, Blender, Photoshop, Illustrator, InDesign, AutoCAD, Inventor, 3ds Max</p>
-    </div>
-
-    <div id="progetti" class="content-section">
-        <h2>Progetti</h2>
-        <div class="menu-container">
-            <select id="software-select">
-                <option value="">Seleziona un software</option>
-                <option value="blender">Blender</option>
-                <option value="photoshop">Photoshop</option>
-                <option value="illustrator">Illustrator</option>
+          <div className="mb-6">
+            <select
+              onChange={(e) => {
+                const projects = document.querySelectorAll(".project-group")
+                projects.forEach((project) => {
+                  ;(project as HTMLElement).style.display = "none"
+                })
+                if (e.target.value === "") {
+                  document.getElementById("blender-projects")!.style.display = "flex"
+                } else {
+                  document.getElementById(`${e.target.value}-projects`)!.style.display = "flex"
+                }
+              }}
+              className="px-4 py-2 bg-black/70 text-[#00bfff] border-2 border-[#00bfff] rounded-full cursor-pointer font-orbitron"
+              defaultValue=""
+            >
+              <option value="">Seleziona un software</option>
+              <option value="blender">Blender</option>
+              <option value="photoshop">Photoshop</option>
+              <option value="illustrator">Illustrator</option>
             </select>
-        </div>
-        <div id="blender-projects" class="project">
-            <img src="rubikimg.jpg" alt="Modello 3D di un cubo di Rubik" />
-            <video autoplay loop muted>
-                <source src="rubikvdo.gif" type="video/mp4" />
-            </video>
-            <img src="spherelumsimg.jpg" alt="Modello 3D di uno spherelum" />
-            <video autoplay loop muted>
-                <source src="spherelumsvdo.gif" type="video/mp4" />
-            </video>
-            <img src="tazzinaimg.jpg" alt="Modello 3D di una tazzina" />
-            <video autoplay loop muted>
-                <source src="tazzinavdo.gif" type="video/mp4" />
-            </video>
-        </div>
-        <div id="photoshop-projects" class="project">
-            <img src="placeholder_photoshop1.jpg" alt="Progetto Photoshop 1" />
-            <img src="placeholder_photoshop2.jpg" alt="Progetto Photoshop 2" />
-        </div>
-        <div id="illustrator-projects" class="project">
-            <img src="placeholder_illustrator1.jpg" alt="Progetto Illustrator 1" />
-            <img src="placeholder_illustrator2.jpg" alt="Progetto Illustrator 2" />
-        </div>
+          </div>
+
+          {/* Blender Projects */}
+          <div id="blender-projects" className="project-group flex justify-center gap-5 flex-wrap">
+            <div className="w-[200px] h-[200px] rounded-lg overflow-hidden shadow-[0_0_15px_#00bfff] transition-transform hover:scale-110 cursor-pointer">
+              <Image
+                src="/rubikimg.jpg"
+                alt="Modello 3D di un cubo di Rubik"
+                width={200}
+                height={200}
+                className="object-cover w-full h-full"
+              />
+            </div>
+            <div className="w-[200px] h-[200px] rounded-lg overflow-hidden shadow-[0_0_15px_#00bfff] transition-transform hover:scale-110 cursor-pointer">
+              <video autoPlay loop muted className="w-full h-full object-cover">
+                <source src="/rubikvdo.gif" type="video/mp4" />
+              </video>
+            </div>
+            <div className="w-[200px] h-[200px] rounded-lg overflow-hidden shadow-[0_0_15px_#00bfff] transition-transform hover:scale-110 cursor-pointer">
+              <Image
+                src="/spherelumsimg.jpg"
+                alt="Modello 3D di uno spherelum"
+                width={200}
+                height={200}
+                className="object-cover w-full h-full"
+              />
+            </div>
+            <div className="w-[200px] h-[200px] rounded-lg overflow-hidden shadow-[0_0_15px_#00bfff] transition-transform hover:scale-110 cursor-pointer">
+              <video autoPlay loop muted className="w-full h-full object-cover">
+                <source src="/spherelumsvdo.gif" type="video/mp4" />
+              </video>
+            </div>
+            <div className="w-[200px] h-[200px] rounded-lg overflow-hidden shadow-[0_0_15px_#00bfff] transition-transform hover:scale-110 cursor-pointer">
+              <Image
+                src="/tazzinaimg.jpg"
+                alt="Modello 3D di una tazzina"
+                width={200}
+                height={200}
+                className="object-cover w-full h-full"
+              />
+            </div>
+            <div className="w-[200px] h-[200px] rounded-lg overflow-hidden shadow-[0_0_15px_#00bfff] transition-transform hover:scale-110 cursor-pointer">
+              <video autoPlay loop muted className="w-full h-full object-cover">
+                <source src="/tazzinavdo.gif" type="video/mp4" />
+              </video>
+            </div>
+          </div>
+
+          {/* Photoshop Projects */}
+          <div id="photoshop-projects" className="project-group hidden justify-center gap-5 flex-wrap">
+            <div className="w-[200px] h-[200px] rounded-lg overflow-hidden shadow-[0_0_15px_#00bfff] transition-transform hover:scale-110 cursor-pointer">
+              <Image
+                src="/placeholder.svg?height=200&width=200&text=Photoshop+1"
+                alt="Progetto Photoshop 1"
+                width={200}
+                height={200}
+                className="object-cover w-full h-full"
+              />
+            </div>
+            <div className="w-[200px] h-[200px] rounded-lg overflow-hidden shadow-[0_0_15px_#00bfff] transition-transform hover:scale-110 cursor-pointer">
+              <Image
+                src="/placeholder.svg?height=200&width=200&text=Photoshop+2"
+                alt="Progetto Photoshop 2"
+                width={200}
+                height={200}
+                className="object-cover w-full h-full"
+              />
+            </div>
+          </div>
+
+          {/* Illustrator Projects */}
+          <div id="illustrator-projects" className="project-group hidden justify-center gap-5 flex-wrap">
+            <div className="w-[200px] h-[200px] rounded-lg overflow-hidden shadow-[0_0_15px_#00bfff] transition-transform hover:scale-110 cursor-pointer">
+              <Image
+                src="/placeholder.svg?height=200&width=200&text=Illustrator+1"
+                alt="Progetto Illustrator 1"
+                width={200}
+                height={200}
+                className="object-cover w-full h-full"
+              />
+            </div>
+            <div className="w-[200px] h-[200px] rounded-lg overflow-hidden shadow-[0_0_15px_#00bfff] transition-transform hover:scale-110 cursor-pointer">
+              <Image
+                src="/placeholder.svg?height=200&width=200&text=Illustrator+2"
+                alt="Progetto Illustrator 2"
+                width={200}
+                height={200}
+                className="object-cover w-full h-full"
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Contatti Section */}
+        <section
+          className={`p-8 text-center bg-black/60 backdrop-blur-sm mx-auto max-w-4xl rounded-2xl shadow-[0_0_15px_#00bfff] my-8 transition-opacity duration-300 ${
+            activeSection === "contatti" ? "block" : "hidden"
+          }`}
+        >
+          <h2 className="text-3xl font-bold mb-6">Contatti</h2>
+          <p className="text-lg mb-4">Mi puoi contattare tramite i seguenti canali:</p>
+
+          <div className="flex flex-col items-center gap-4 max-w-md mx-auto">
+            <Link
+              href="mailto:elgio0926@gmail.com"
+              className="flex items-center gap-3 text-xl hover:text-white transition-colors w-full justify-center py-2 border border-[#00bfff] rounded-lg hover:bg-[#00bfff]/20"
+            >
+              <Mail className="h-5 w-5" />
+              elgio0926@gmail.com
+            </Link>
+
+            <Link
+              href="https://www.linkedin.com/in/elia-giordano"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 text-xl hover:text-white transition-colors w-full justify-center py-2 border border-[#00bfff] rounded-lg hover:bg-[#00bfff]/20"
+            >
+              <Linkedin className="h-5 w-5" />
+              Elia Giordano
+            </Link>
+          </div>
+        </section>
+      </div>
+
+      {/* Footer */}
+      <footer className="text-center py-4 bg-black/80 backdrop-blur-sm mt-16 relative z-10">
+        <p className="text-[#ccc]">© {new Date().getFullYear()} Elia Giordano. Tutti i diritti riservati.</p>
+      </footer>
     </div>
+  )
+}
 
-    <div id="contatti" class="content-section">
-        <h2>Contatti</h2>
-        <p>Mi puoi contattare tramite i seguenti canali:</p>
-        <p><a href="mailto:your.email@example.com">✉️ La mia email</a></p>
-        <p>📞 Il mio numero di telefono: <a href="tel:+39XXXXXXXXXX">+39XXXXXXXXXX</a></p>
-        <p><a href="https://www.linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">🔗 LinkedIn</a></p>
-    </div>
+// FILE: app/globals.css
+/*
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-    <footer>
-        © 2025 Elia Giordano. Tutti i diritti riservati.
-    </footer>
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 195 100% 50%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 195 100% 50%;
+    --radius: 0.5rem;
+  }
 
-    <script>
-        const menuButtons = document.querySelectorAll('.dynamic-menu button');
-        const contentSections = document.querySelectorAll('.content-section');
-        const softwareSelect = document.getElementById("software-select");
-        const blenderProjects = document.getElementById("blender-projects");
-        const photoshopProjects = document.getElementById("photoshop-projects");
-        const illustratorProjects = document.getElementById("illustrator-projects");
-        const starryBackground = document.querySelector('.starry-background');
-        const stars = document.querySelectorAll('.starry-background .star');
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 195 100% 50%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 195 100% 50%;
+  }
+}
 
-        // Mostra la prima sezione (Chi Sono) all'inizio
-        if (contentSections.length > 0) {
-            contentSections[0].classList.add('active');
-        }
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+*/
 
-        menuButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const targetSectionId = this.getAttribute('data-section');
+.font-orbitron {
+  font-family: var(--font-orbitron), sans-serif;
+}
 
-                // Nascondi tutte le sezioni di contenuto
-                contentSections.forEach(section => {
-                    section.classList.remove('active');
-                });
+/* Animated Background */
+.animated-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background: url("https://cdn.pixabay.com/photo/2016/11/29/04/17/space-1867616_1280.jpg") repeat;
+  background-size: cover;
+  animation: moveBg 120s linear infinite;
+  z-index: -1;
+  opacity: 0.3;
+}
 
-                // Mostra la sezione target
-                const targetSection = document.getElementById(targetSectionId);
-                if (targetSection) {
-                    targetSection.classList.add('active');
-                }
-            });
-        });
+@keyframes moveBg {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-500px, -500px);
+  }
+}
 
-        // Gestione della selezione del software nella sezione Progetti
-        if (softwareSelect) {
-            softwareSelect.addEventListener("change", function() {
-                const selectedSoftware = this.value;
+/* Stars */
+.stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
 
-                // Nascondi tutte le sezioni di progetto
-                blenderProjects.style.display = "none";
-                if (photoshopProjects) photoshopProjects.style.display = "none";
-                if (illustratorProjects) illustratorProjects.style.display = "none";
+.star {
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: twinkle 2s linear infinite alternate;
+}
 
-                // Mostra la sezione di progetto corrispondente
-                if (selectedSoftware === "blender") {
-                    blenderProjects.style.display = "flex";
-                } else if (selectedSoftware === "photoshop") {
-                    if (
-                        photoshopProjects) photoshopProjects.style.display = "flex";
-                } else if (selectedSoftware === "illustrator") {
-                    if (illustratorProjects) illustratorProjects.style.display = "flex";
-                }
-            });
-        }
+@keyframes twinkle {
+  0% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
 
-        // Effetto "magnetico" delle stelle (semplice avvicinamento all'hover dello sfondo)
-        if (starryBackground) {
-            starryBackground.addEventListener('mousemove', (e) => {
-                const bgRect = starryBackground.getBoundingClientRect();
-                const mouseX = e.clientX - bgRect.left;
-                const mouseY = e.clientY - bgRect.top;
-                const bgWidth = bgRect.width;
-                const bgHeight = bgRect.height;
+/* Planets */
+.planet {
+  position: fixed;
+  border-radius: 50%;
+  opacity: 0.3;
+  z-index: -1;
+}
 
-                stars.forEach(star => {
-                    const starRect = star.getBoundingClientRect();
-                    const starX = starRect.left + starRect.width / 2 - bgRect.left;
-                    const starY = starRect.top + starRect.height / 2 - bgRect.top;
+.planet-1 {
+  width: 80px;
+  height: 80px;
+  background-color: #ff6b6b;
+  top: 15%;
+  left: 85%;
+  box-shadow: 0 0 30px #ff6b6b;
+  animation: float 15s ease-in-out infinite;
+}
 
-                    const distanceX = mouseX - starX;
-                    const distanceY = mouseY - starY;
-                    const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+.planet-2 {
+  width: 120px;
+  height: 120px;
+  background-color: #48dbfb;
+  top: 75%;
+  left: 10%;
+  box-shadow: 0 0 30px #48dbfb;
+  animation: float 20s ease-in-out infinite 1s;
+}
 
-                    const attractionRadius = 150; // Raggio entro cui le stelle sono "attratte"
-                    const scaleFactor = Math.max(1, 1 + (attractionRadius - distance) / (attractionRadius * 3)); // Scala in base alla distanza
+.planet-3 {
+  width: 60px;
+  height: 60px;
+  background-color: #feca57;
+  top: 40%;
+  left: 90%;
+  box-shadow: 0 0 30px #feca57;
+  animation: float 18s ease-in-out infinite 2s;
+}
 
-                    if (distance < attractionRadius) {
-                        star.style.transform = `translate(${distanceX / (attractionRadius / 5)}px, ${distanceY / (attractionRadius / 5)}px) scale(${scaleFactor})`;
-                    } else {
-                        star.style.transform = 'translate(0, 0) scale(1)';
-                    }
-                });
-            });
+@keyframes float {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(3deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
 
-            starryBackground.addEventListener('mouseleave', () => {
-                stars.forEach(star => {
-                    star.style.transform = 'translate(0, 0) scale(1)';
-                });
-            });
-        }
-    </script>
-</body>
-</html>
+/* Tailwind classes */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// FILE: app/layout.tsx
+import type React from "react"
+import type { Metadata } from "next"
+import { Orbitron } from 'next/font/google'
+import "./globals.css"
+import { ThemeProvider } from "@/components/theme-provider"
+
+const orbitron = Orbitron({
+  subsets: ["latin"],
+  variable: "--font-orbitron",
+})
+
+export const metadata: Metadata = {
+  title: "Portfolio di Elia Giordano",
+  description: "Visual Designer e Modellatore 3D",
+}
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode
+}>) {
+  return (
+    <html lang="it" suppressHydrationWarning>
+      <body className={`${orbitron.variable}`}>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+          {children}
+        </ThemeProvider>
+      </body>
+    </html>
+  )
+}
+
+// FILE: next.config.mjs
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  images: {
+    domains: ['cdn.pixabay.com'],
+    unoptimized: true,
+  },
+};
+
+export default nextConfig;
+
+// FILE: tailwind.config.ts
+import type { Config } from "tailwindcss"
+
+const config = {
+  darkMode: ["class"],
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+    "*.{js,ts,jsx,tsx,mdx}",
+  ],
+  prefix: "",
+  theme: {
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
+    },
+    extend: {
+      colors: {
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+      },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+      },
+    },
+  },
+  plugins: [require("tailwindcss-animate")],
+} satisfies Config
+
+export default config
