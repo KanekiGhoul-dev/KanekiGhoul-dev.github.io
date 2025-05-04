@@ -228,13 +228,13 @@
         /* Stili per la sezione Contatti */
         #contatti p {
             font-size: 1.1rem;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
 
-        #contatti a {
-            display: inline-block;
-            margin: 0 10px;
-            font-size: 1.5rem; /* Icone social più grandi */
+        #contatti p a {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
         }
     </style>
 </head>
@@ -255,7 +255,7 @@
         <div class="star"></div>
         <div class="star"></div>
         <div class="star"></div>
-        </div>
+    </div>
 
     <header>
         <h1>Elia Giordano</h1>
@@ -277,7 +277,11 @@
     <div id="competenze" class="content-section">
         <h2>Competenze</h2>
         <div class="competence-icons">
-            <span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 71-.71L12 2z"/></svg></span> <span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h18v18H3z"/></svg></span> <span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"/></svg></span> <span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg></span> </div>
+            <span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 71-.71L12 2z"/></svg></span>
+            <span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h18v18H3z"/></svg></span>
+            <span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"/></svg></span>
+            <span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg></span>
+        </div>
         <p>Modellazione 3D, Logo Design, UI futuristica, Animazioni spaziali, Blender, Photoshop, Illustrator, InDesign, AutoCAD, Inventor, 3ds Max</p>
     </div>
 
@@ -319,9 +323,9 @@
         <h2>Contatti</h2>
         <p>Mi puoi contattare tramite i seguenti canali:</p>
         <p><a href="mailto:your.email@example.com">✉️ La mia email</a></p>
+        <p>📞 Il mio numero di telefono: <a href="tel:+39XXXXXXXXXX">+39XXXXXXXXXX</a></p>
         <p><a href="https://www.linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">🔗 LinkedIn</a></p>
-        <p><a href="https://www.artstation.com/yourprofile" target="_blank" rel="noopener noreferrer">🎨 ArtStation</a></p>
-        </div>
+    </div>
 
     <footer>
         © 2025 Elia Giordano. Tutti i diritti riservati.
@@ -366,14 +370,15 @@
 
                 // Nascondi tutte le sezioni di progetto
                 blenderProjects.style.display = "none";
-                if (photphotoshopProjects) photoshopProjects.style.display = "none";
+                if (photoshopProjects) photoshopProjects.style.display = "none";
                 if (illustratorProjects) illustratorProjects.style.display = "none";
 
                 // Mostra la sezione di progetto corrispondente
                 if (selectedSoftware === "blender") {
                     blenderProjects.style.display = "flex";
                 } else if (selectedSoftware === "photoshop") {
-                    if (photoshopProjects) photoshopProjects.style.display = "flex";
+                    if (
+                        photoshopProjects) photoshopProjects.style.display = "flex";
                 } else if (selectedSoftware === "illustrator") {
                     if (illustratorProjects) illustratorProjects.style.display = "flex";
                 }
