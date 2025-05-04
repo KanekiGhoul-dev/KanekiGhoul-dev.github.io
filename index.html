@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Portfolio di KanekiGhoul-dev</title>
+  <title>Portfolio di Elia Giordano</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
   <style>
     body {
@@ -20,18 +20,18 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 200%;
-      height: 200%;
-      background: url('https://cdn.pixabay.com/photo/2016/11/29/04/17/space-1867616_1280.jpg') repeat;
-      background-size: cover;
-      animation: moveBg 120s linear infinite;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+      background-size: 600% 600%;
+      animation: gradientMove 20s ease infinite;
       z-index: -1;
-      opacity: 0.3;
     }
 
-    @keyframes moveBg {
-      0% { transform: translate(0, 0); }
-      100% { transform: translate(-500px, -500px); }
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     header {
@@ -65,48 +65,17 @@
     }
 
     .icon {
-      font-size: 4rem;
+      font-size: 3rem;
       display: inline-block;
-      margin: 1rem;
+      margin: 0.5rem;
       transition: transform 0.3s ease, color 0.3s ease;
-      cursor: pointer;
+      cursor: default;
     }
 
     .icon:hover {
-      transform: scale(1.2) rotate(5deg);
+      transform: scale(1.2);
       color: #ffffff;
       text-shadow: 0 0 15px #00bfff;
-    }
-
-    .eyes {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 10;
-      display: flex;
-      gap: 15px;
-    }
-
-    .eye {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background: #000;
-      border: 2px solid #00bfff;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .pupil {
-      width: 12px;
-      height: 12px;
-      background: #00bfff;
-      border-radius: 50%;
-      position: absolute;
-      top: 9px;
-      left: 9px;
-      transition: all 0.1s ease;
     }
 
     footer {
@@ -130,50 +99,39 @@
 <body>
   <div class="animated-bg"></div>
 
-  <div class="eyes">
-    <div class="eye"><div class="pupil"></div></div>
-    <div class="eye"><div class="pupil"></div></div>
-  </div>
-
   <header>
-    <h1>KanekiGhoul-dev</h1>
-    <p>Modellatore 3D • Visual Designer • Creativo dallo spazio</p>
+    <h1>Elia Giordano</h1>
+    <p>Modellatore 3D • Visual Designer • Creativo multidisciplinare</p>
   </header>
 
   <div class="section">
     <h2>Chi Sono</h2>
-    <p>Appassionato di tecnologia, design e forme aliene. Creo esperienze visive uniche che spaziano dal design grafico alla modellazione 3D.</p>
+    <p>Sono un appassionato di animazione e modellazione 3D. Amo dare vita alle idee attraverso forme, colori e movimento. Ogni progetto è per me un viaggio creativo dove tecnica e immaginazione si fondono.</p>
   </div>
 
   <div class="section">
     <h2>Competenze</h2>
-    <span class="icon">👽</span>
-    <span class="icon">🛸</span>
-    <span class="icon">✨</span>
-    <p>Modellazione 3D, Logo Design, UI futuristica, Animazioni spaziali</p>
+    <div>
+      <span class="icon" title="Photoshop">🖌️</span>
+      <span class="icon" title="Illustrator">🎨</span>
+      <span class="icon" title="InDesign">📄</span>
+      <span class="icon" title="AutoCAD">📐</span>
+      <span class="icon" title="Inventor">⚙️</span>
+      <span class="icon" title="3ds Max">🏗️</span>
+      <span class="icon" title="Blender">🧊</span>
+    </div>
+    <p>Photoshop, Illustrator, InDesign, AutoCAD, Inventor, 3ds Max, Blender</p>
   </div>
 
   <div class="section">
     <h2>Contatti</h2>
-    <p>Email: kanekighoul.dev@galaxy.net</p>
-    <p>GitHub: <a href="https://github.com/KanekiGhoul-dev" target="_blank">KanekiGhoul-dev</a></p>
+    <p>Email: <a href="mailto:elgio0926@gmail.com">elgio0926@gmail.com</a></p>
+    <p>Telefono: <a href="tel:+393515749331">+39 351 574 9331</a></p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/elia-giordano" target="_blank">Elia Giordano</a></p>
   </div>
 
   <footer>
-    © 2025 KanekiGhoul-dev. Tutti i diritti riservati intergalatticamente.
+    © 2025 Elia Giordano. Tutti i diritti riservati.
   </footer>
-
-  <script>
-    const pupils = document.querySelectorAll(".pupil");
-
-    document.addEventListener("mousemove", (e) => {
-      pupils.forEach(pupil => {
-        const rect = pupil.parentElement.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        pupil.style.transform = `translate(${x / 10}px, ${y / 10}px)`;
-      });
-    });
-  </script>
 </body>
 </html>
