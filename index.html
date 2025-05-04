@@ -6,31 +6,38 @@
   <title>Portfolio di Elia Giordano</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
   <style>
-    html, body {
+    body {
       margin: 0;
       padding: 0;
-      overflow-x: hidden;
       font-family: 'Orbitron', sans-serif;
-      color: #00bfff;
       background: #000;
+      color: #00bfff;
+      overflow-x: hidden;
+      position: relative;
     }
 
-    canvas {
+    .animated-bg {
       position: fixed;
       top: 0;
       left: 0;
+      width: 200%;
+      height: 200%;
+      background: url('https://cdn.pixabay.com/photo/2016/11/29/04/17/space-1867616_1280.jpg') repeat;
+      background-size: cover;
+      animation: moveBg 120s linear infinite;
       z-index: -1;
+      opacity: 0.3;
     }
 
-    header, .section, footer {
-      position: relative;
-      z-index: 1;
+    @keyframes moveBg {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(-500px, -500px); }
+    }
+
+    header {
       text-align: center;
-      padding: 2rem;
-      background-color: rgba(0, 0, 0, 0.7);
-      margin: 2rem;
-      border-radius: 15px;
-      box-shadow: 0 0 15px #00bfff;
+      padding: 3rem 1rem;
+      background: rgba(0, 0, 0, 0.7);
     }
 
     header h1 {
@@ -38,29 +45,85 @@
       margin-bottom: 0.5rem;
     }
 
-    header p, .section p, footer {
+    header p {
       font-size: 1.2rem;
       color: #b0dfff;
+    }
+
+    .section {
+      padding: 2rem;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.6);
+      margin: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 0 15px #00bfff;
     }
 
     .section h2 {
       font-size: 2rem;
       margin-bottom: 1rem;
-      color: #00bfff;
     }
 
     .icon {
-      font-size: 3rem;
+      font-size: 4rem;
       display: inline-block;
-      margin: 0.5rem;
+      margin: 1rem;
       transition: transform 0.3s ease, color 0.3s ease;
-      cursor: default;
+      cursor: pointer;
     }
 
     .icon:hover {
-      transform: scale(1.2);
+      transform: scale(1.2) rotate(5deg);
       color: #ffffff;
       text-shadow: 0 0 15px #00bfff;
+    }
+
+    .cube-container {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 200px;
+      height: 200px;
+      animation: rotateCube 5s linear infinite;
+      perspective: 1000px;
+    }
+
+    .cube {
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      animation: rotateCube 5s linear infinite;
+      position: absolute;
+    }
+
+    .cube-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #00bfff;
+      border: 2px solid #00bfff;
+      opacity: 0.8;
+    }
+
+    .front  { transform: rotateY(  0deg) translateZ(100px); }
+    .back   { transform: rotateY(180deg) translateZ(100px); }
+    .left   { transform: rotateY(-90deg) translateZ(100px); }
+    .right  { transform: rotateY( 90deg) translateZ(100px); }
+    .top    { transform: rotateX( 90deg) translateZ(100px); }
+    .bottom { transform: rotateX(-90deg) translateZ(100px); }
+
+    @keyframes rotateCube {
+      0% { transform: rotateY(0deg); }
+      100% { transform: rotateY(360deg); }
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      color: #ccc;
+      background: rgba(0, 0, 0, 0.8);
+      margin-top: 4rem;
     }
 
     a {
@@ -71,110 +134,46 @@
     a:hover {
       text-shadow: 0 0 10px #00bfff;
     }
-
-    /* Layout due colonne */
-    .flex-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-    }
-
-    .half-section {
-      flex: 1 1 400px;
-      max-width: 600px;
-    }
-
-    footer {
-      margin-bottom: 4rem;
-    }
   </style>
 </head>
 <body>
-
-  <canvas id="bg"></canvas>
+  <div class="animated-bg"></div>
 
   <header>
     <h1>Elia Giordano</h1>
-    <p>Modellatore 3D • Visual Designer • Creativo multidisciplinare</p>
+    <p>Modellatore 3D • Visual Designer • Creativo dallo spazio</p>
   </header>
 
-  <div class="flex-container">
-    <div class="section half-section">
-      <h2>Chi Sono</h2>
-      <p>Sono un appassionato di animazione e modellazione 3D. Amo dare vita alle idee attraverso forme, colori e movimento. Ogni progetto è per me un viaggio creativo dove tecnica e immaginazione si fondono.</p>
-    </div>
-
-    <div class="section half-section">
-      <h2>Competenze</h2>
-      <div>
-        <span class="icon" title="Photoshop">🖌️</span>
-        <span class="icon" title="Illustrator">🎨</span>
-        <span class="icon" title="InDesign">📄</span>
-        <span class="icon" title="AutoCAD">📐</span>
-        <span class="icon" title="Inventor">⚙️</span>
-        <span class="icon" title="3ds Max">🏗️</span>
-        <span class="icon" title="Blender">🧊</span>
-      </div>
-      <p>Photoshop, Illustrator, InDesign, AutoCAD, Inventor, 3ds Max, Blender</p>
+  <div class="cube-container">
+    <div class="cube">
+      <div class="cube-face front"></div>
+      <div class="cube-face back"></div>
+      <div class="cube-face left"></div>
+      <div class="cube-face right"></div>
+      <div class="cube-face top"></div>
+      <div class="cube-face bottom"></div>
     </div>
   </div>
 
   <div class="section">
+    <h2>Chi Sono</h2>
+    <p>Appassionato di tecnologia, design e forme aliene. Creo esperienze visive uniche che spaziano dal design grafico alla modellazione 3D.</p>
+  </div>
+
+  <div class="section">
+    <h2>Competenze</h2>
+    <p>Photoshop, Illustrator, InDesign, AutoCAD, Inventor, 3ds Max, Blender</p>
+  </div>
+
+  <div class="section">
     <h2>Contatti</h2>
-    <p>Email: <a href="mailto:elgio0926@gmail.com">elgio0926@gmail.com</a></p>
-    <p>Telefono: <a href="tel:+393515749331">+39 351 574 9331</a></p>
-    <p>LinkedIn: <a href="https://www.linkedin.com/in/elia-giordano" target="_blank">Elia Giordano</a></p>
+    <p>Email: elgio0926@gmail.com</p>
+    <p>Telefono: +393515749331</p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/eliagiordano/" target="_blank">Elia Giordano</a></p>
   </div>
 
   <footer>
     © 2025 Elia Giordano. Tutti i diritti riservati.
   </footer>
-
-  <!-- Three.js CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r148/three.min.js"></script>
-  <script>
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.z = 10;
-
-    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('bg'), alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
-
-    // Cube
-    const geometry = new THREE.BoxGeometry(5, 5, 5); // più grande
-    const material = new THREE.MeshStandardMaterial({
-      color: 0x00bfff,
-      emissive: 0x00bfff,
-      metalness: 0.9,
-      roughness: 0.1
-    });
-    const cube = new THREE.Mesh(geometry, material);
-    scene.add(cube);
-
-    // Light
-    const pointLight = new THREE.PointLight(0xffffff, 1.5);
-    pointLight.position.set(15, 10, 10);
-    scene.add(pointLight);
-    scene.add(new THREE.AmbientLight(0x404040));
-
-    // Animation loop
-    function animate() {
-      requestAnimationFrame(animate);
-      cube.rotation.x += 0.01;
-      cube.rotation.y += 0.01;
-      renderer.render(scene, camera);
-    }
-
-    animate();
-
-    // Resize
-    window.addEventListener('resize', () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    });
-  </script>
 </body>
 </html>
