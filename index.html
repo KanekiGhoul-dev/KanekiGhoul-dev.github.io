@@ -20,62 +20,71 @@
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
+            perspective: 1000px;
         }
 
-        /* Animated Background */
-        .animated-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 200%;
-            height: 200%;
-            background: url("https://cdn.pixabay.com/photo/2016/11/29/04/17/space-1867616_1280.jpg") repeat;
-            background-size: cover;
-            animation: moveBg 120s linear infinite;
-            z-index: -1;
-            opacity: 0.3;
-        }
-
-        @keyframes moveBg {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(-500px, -500px); }
-        }
-
-        /* Stars */
-        .stars {
+        /* Animated Space Background */
+        .space-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
+            z-index: -2;
+            perspective: 1000px;
+            overflow: hidden;
+        }
+
+        .stars-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            animation: spaceTravel 60s linear infinite;
+        }
+
+        @keyframes spaceTravel {
+            0% {
+                transform: translateZ(0) rotateX(0deg);
+            }
+            100% {
+                transform: translateZ(1000px) rotateX(10deg);
+            }
         }
 
         .star {
             position: absolute;
             background-color: white;
             border-radius: 50%;
-            opacity: 0.7;
-            animation: twinkle 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes twinkle {
-            0% { opacity: 0.5; transform: scale(1); }
-            100% { opacity: 1; transform: scale(1.3); }
+            opacity: 0.8;
         }
 
         /* Planets */
         .planet {
             position: fixed;
             border-radius: 50%;
-            opacity: 0.3;
+            opacity: 0.4;
             z-index: -1;
-            animation: float 20s ease-in-out infinite;
+            animation: planetMove 30s linear infinite;
+        }
+
+        @keyframes planetMove {
+            0% {
+                transform: translateZ(-500px) translateX(0);
+            }
+            50% {
+                transform: translateZ(100px) translateX(100px);
+            }
+            100% {
+                transform: translateZ(-500px) translateX(0);
+            }
         }
 
         .planet-1 {
-            width: 80px;
-            height: 80px;
+            width: 120px;
+            height: 120px;
             background-color: #ff6b6b;
             top: 15%;
             left: 85%;
@@ -84,64 +93,65 @@
         }
 
         .planet-2 {
-            width: 120px;
-            height: 120px;
+            width: 180px;
+            height: 180px;
             background-color: #48dbfb;
             top: 75%;
             left: 10%;
-            box-shadow: 0 0 30px #48dbfb;
+            box-shadow: 0 0 40px #48dbfb;
             animation-delay: 5s;
+            animation-duration: 40s;
         }
 
         .planet-3 {
-            width: 60px;
-            height: 60px;
+            width: 100px;
+            height: 100px;
             background-color: #feca57;
             top: 40%;
             left: 90%;
             box-shadow: 0 0 30px #feca57;
             animation-delay: 10s;
+            animation-duration: 35s;
         }
 
         .planet-4 {
-            width: 40px;
-            height: 40px;
+            width: 80px;
+            height: 80px;
             background-color: #1dd1a1;
             top: 20%;
             left: 20%;
-            box-shadow: 0 0 20px #1dd1a1;
+            box-shadow: 0 0 25px #1dd1a1;
             animation-delay: 7s;
+            animation-duration: 45s;
         }
 
         .planet-5 {
-            width: 70px;
-            height: 70px;
+            width: 150px;
+            height: 150px;
             background-color: #ff9ff3;
             top: 60%;
             left: 70%;
-            box-shadow: 0 0 25px #ff9ff3;
+            box-shadow: 0 0 35px #ff9ff3;
             animation-delay: 3s;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
-            100% { transform: translateY(0) rotate(0deg); }
+            animation-duration: 50s;
         }
 
         /* Header */
         header {
             text-align: center;
             padding: 3rem 1rem;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(4px);
             position: relative;
             z-index: 10;
+            border-bottom: 2px solid #00bfff;
+            box-shadow: 0 0 20px #00bfff;
         }
 
         header h1 {
             font-size: 3rem;
             margin-bottom: 0.5rem;
+            text-shadow: 0 0 10px #00bfff;
         }
 
         header p {
@@ -156,17 +166,18 @@
             height: 400px;
             margin: 2rem 0;
             z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .hand-image {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             width: 600px;
             height: auto;
             z-index: 9;
-            filter: drop-shadow(0 0 15px #00bfff);
+            filter: drop-shadow(0 0 20px #00bfff);
+            opacity: 0.8;
         }
 
         /* Navigation */
@@ -180,7 +191,6 @@
             width: 100%;
             max-width: 800px;
             margin: 0 auto;
-            padding-top: 50px;
         }
 
         .nav-button {
@@ -199,6 +209,7 @@
             justify-content: center;
             box-shadow: 0 0 20px #00bfff;
             position: relative;
+            text-shadow: 0 0 5px #00bfff;
         }
 
         .nav-button:hover {
@@ -221,7 +232,7 @@
         .section {
             padding: 2rem;
             text-align: center;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(4px);
             margin: 2rem auto;
             border-radius: 1rem;
@@ -229,6 +240,7 @@
             max-width: 64rem;
             display: none;
             transition: opacity 0.3s ease;
+            border: 2px solid #00bfff;
         }
 
         .section.active {
@@ -239,6 +251,7 @@
             font-size: 1.875rem;
             font-weight: bold;
             margin-bottom: 1.5rem;
+            text-shadow: 0 0 10px #00bfff;
         }
 
         .section p {
@@ -387,6 +400,7 @@
             margin-top: 4rem;
             position: relative;
             z-index: 10;
+            border-top: 1px solid #00bfff;
         }
 
         footer p {
@@ -448,11 +462,10 @@
     </style>
 </head>
 <body>
-    <!-- Animated Background -->
-    <div class="animated-bg"></div>
-
-    <!-- Stars -->
-    <div class="stars" id="stars"></div>
+    <!-- Space Background with Stars -->
+    <div class="space-container">
+        <div class="stars-container" id="stars-container"></div>
+    </div>
 
     <!-- Planets -->
     <div class="planet planet-1" id="planet-1"></div>
@@ -470,7 +483,7 @@
     <!-- Hand and Navigation Menu -->
     <div class="hand-container">
         <!-- Immagine della mano -->
-        <img src="https://cdn3.iconfinder.com/data/icons/human-body-parts-1/100/Hand-512.png" alt="Mano" class="hand-image">
+        <img src="https://www.pngall.com/wp-content/uploads/5/Open-Hand-PNG-Image-File.png" alt="Mano" class="hand-image">
         
         <!-- Navigation Menu -->
         <div class="nav-menu">
@@ -487,23 +500,12 @@
         <section id="chi-sono" class="section active">
             <h2>Chi Sono</h2>
             <p>
-                Appassionato di tecnologia, design e forme aliene. Creo esperienze visive uniche che spaziano dal design
-                grafico alla modellazione 3D.
+                Creativo appassionato di tecnologia e design 3D. Trasformo idee in esperienze visive uniche, 
+                combinando precisione tecnica e visione artistica per dare vita a mondi digitali straordinari.
             </p>
             <p>
-                La mia passione per il mondo tridimensionale è nata fin da giovane, quando ho scoperto la magia di dare vita
-                a oggetti e ambienti virtuali. Sono affascinato dalle infinite possibilità creative che il 3D offre, dalla
-                modellazione di oggetti realistici alla creazione di mondi fantastici.
-            </p>
-            <p>
-                Le animazioni sono il cuore del mio lavoro: adoro vedere come un modello statico prende vita attraverso il
-                movimento, raccontando storie e suscitando emozioni. Ogni progetto è un'opportunità per sperimentare nuove
-                tecniche e spingere i confini della creatività digitale.
-            </p>
-            <p>
-                Il mio approccio combina precisione tecnica e visione artistica, creando esperienze visive che catturano
-                l'attenzione e stimolano l'immaginazione. Che si tratti di un logo animato, un personaggio 3D o un ambiente
-                virtuale complesso, metto la stessa passione e dedizione in ogni creazione.
+                La mia passione è vedere come un modello statico prende vita attraverso il movimento, 
+                raccontando storie e suscitando emozioni. Ogni progetto è un'opportunità per spingermi oltre i confini della creatività.
             </p>
         </section>
 
@@ -591,6 +593,10 @@
             <h2>Contatti</h2>
             <p>Mi puoi contattare tramite i seguenti canali:</p>
             <div class="contatti-links">
+                <a href="tel:+393515749331" class="contatto-link">
+                    <span>📱</span>
+                    +39 351 574 9331
+                </a>
                 <a href="mailto:elgio0926@gmail.com" class="contatto-link">
                     <span>✉️</span>
                     elgio0926@gmail.com
@@ -617,29 +623,61 @@
     </footer>
 
     <script>
-        // Crea stelle dinamicamente
         document.addEventListener('DOMContentLoaded', function() {
             // Imposta l'anno corrente nel footer
             document.getElementById('current-year').textContent = new Date().getFullYear();
 
-            // Crea stelle sparse per tutto lo schermo
-            const starsContainer = document.getElementById('stars');
-            for (let i = 0; i < 200; i++) {
+            // Crea stelle con effetto di viaggio spaziale
+            const starsContainer = document.getElementById('stars-container');
+            
+            // Crea molte stelle a diverse profondità per dare l'effetto 3D
+            for (let i = 0; i < 500; i++) {
                 const star = document.createElement('div');
                 star.className = 'star';
+                
+                // Dimensione variabile delle stelle
                 const size = Math.random() * 3 + 1;
                 star.style.width = `${size}px`;
                 star.style.height = `${size}px`;
                 
-                // Posiziona le stelle in modo casuale su tutto lo schermo
-                star.style.left = `${Math.random() * 100}%`;
-                star.style.top = `${Math.random() * 100}%`;
+                // Posizione casuale nello spazio 3D
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                const z = Math.random() * 1000 - 500; // Profondità variabile
                 
-                // Aggiungi animazione di twinkle con ritardo casuale
-                star.style.animationDelay = `${Math.random() * 5}s`;
+                star.style.left = `${x}%`;
+                star.style.top = `${y}%`;
+                star.style.transform = `translateZ(${z}px)`;
+                
+                // Velocità di movimento variabile
+                const speed = Math.random() * 5 + 2;
+                star.style.animation = `starMove ${speed}s linear infinite`;
+                
+                // Luminosità variabile
+                star.style.opacity = Math.random() * 0.5 + 0.5;
                 
                 starsContainer.appendChild(star);
             }
+            
+            // Aggiungi keyframes per il movimento delle stelle
+            const styleSheet = document.createElement('style');
+            styleSheet.type = 'text/css';
+            styleSheet.innerHTML = `
+                @keyframes starMove {
+                    0% {
+                        transform: translateZ(-500px);
+                        opacity: 0;
+                    }
+                    50% {
+                        opacity: 1;
+                    }
+                    100% {
+                        transform: translateZ(500px);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(styleSheet);
 
             // Gestione navigazione
             const navButtons = document.querySelectorAll('.nav-button');
@@ -656,6 +694,12 @@
                     // Aggiungi classe active al pulsante cliccato e alla sezione corrispondente
                     this.classList.add('active');
                     document.getElementById(targetSectionId).classList.add('active');
+                    
+                    // Effetto di accelerazione spaziale quando cambi sezione
+                    document.querySelector('.stars-container').style.animationDuration = '20s';
+                    setTimeout(() => {
+                        document.querySelector('.stars-container').style.animationDuration = '60s';
+                    }, 1000);
                 });
             });
 
@@ -745,6 +789,21 @@
                 if (e.target === modal) {
                     closeModal.click();
                 }
+            });
+            
+            // Effetto di movimento quando si muove il mouse
+            document.addEventListener('mousemove', function(e) {
+                const mouseX = e.clientX / window.innerWidth;
+                const mouseY = e.clientY / window.innerHeight;
+                
+                // Muovi leggermente le stelle in base alla posizione del mouse
+                document.querySelector('.stars-container').style.transform = `translate(${mouseX * 20}px, ${mouseY * 20}px)`;
+                
+                // Muovi i pianeti in direzioni diverse
+                document.querySelectorAll('.planet').forEach((planet, index) => {
+                    const factor = index % 2 === 0 ? 1 : -1;
+                    planet.style.transform = `translate(${mouseX * 50 * factor}px, ${mouseY * 50 * factor}px)`;
+                });
             });
         });
     </script>
