@@ -56,7 +56,12 @@
             background-color: white;
             border-radius: 50%;
             opacity: 0.7;
-            transition: transform 0.3s ease-out;
+            animation: twinkle 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.5; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.3); }
         }
 
         /* Planets */
@@ -65,7 +70,7 @@
             border-radius: 50%;
             opacity: 0.3;
             z-index: -1;
-            transition: transform 0.5s ease-out;
+            animation: float 20s ease-in-out infinite;
         }
 
         .planet-1 {
@@ -75,6 +80,7 @@
             top: 15%;
             left: 85%;
             box-shadow: 0 0 30px #ff6b6b;
+            animation-delay: 0s;
         }
 
         .planet-2 {
@@ -84,6 +90,7 @@
             top: 75%;
             left: 10%;
             box-shadow: 0 0 30px #48dbfb;
+            animation-delay: 5s;
         }
 
         .planet-3 {
@@ -93,6 +100,7 @@
             top: 40%;
             left: 90%;
             box-shadow: 0 0 30px #feca57;
+            animation-delay: 10s;
         }
 
         .planet-4 {
@@ -102,6 +110,7 @@
             top: 20%;
             left: 20%;
             box-shadow: 0 0 20px #1dd1a1;
+            animation-delay: 7s;
         }
 
         .planet-5 {
@@ -111,6 +120,13 @@
             top: 60%;
             left: 70%;
             box-shadow: 0 0 25px #ff9ff3;
+            animation-delay: 3s;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0) rotate(0deg); }
         }
 
         /* Header */
@@ -133,38 +149,62 @@
             color: #b0dfff;
         }
 
+        /* Hand Container */
+        .hand-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            margin: 2rem 0;
+            z-index: 10;
+        }
+
+        .hand-image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: auto;
+            z-index: 9;
+            filter: drop-shadow(0 0 15px #00bfff);
+        }
+
         /* Navigation */
         .nav-menu {
             display: flex;
             justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
-            padding: 0 1rem;
+            gap: 2rem;
             position: relative;
-            z-index: 10;
+            z-index: 11;
             flex-wrap: wrap;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding-top: 50px;
         }
 
         .nav-button {
-            width: 120px;
-            height: 120px;
-            border: 2px solid #00bfff;
+            width: 150px;
+            height: 150px;
+            border: 3px solid #00bfff;
             background-color: rgba(0, 0, 0, 0.7);
             color: #00bfff;
             border-radius: 50%;
             cursor: pointer;
             font-family: 'Orbitron', sans-serif;
-            font-size: 1rem;
+            font-size: 1.2rem;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 15px #00bfff;
+            box-shadow: 0 0 20px #00bfff;
+            position: relative;
         }
 
         .nav-button:hover {
             background-color: #00bfff;
             color: #000;
+            transform: scale(1.1);
         }
 
         .nav-button.active {
@@ -354,19 +394,47 @@
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
+            .hand-image {
+                width: 500px;
+            }
+            
             .nav-button {
-                width: 100px;
-                height: 100px;
-                font-size: 0.875rem;
+                width: 130px;
+                height: 130px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hand-image {
+                width: 400px;
+            }
+            
+            .nav-button {
+                width: 110px;
+                height: 110px;
+                font-size: 0.9rem;
+            }
+            
+            .nav-menu {
+                gap: 1.5rem;
             }
         }
 
         @media (max-width: 480px) {
+            .hand-image {
+                width: 300px;
+            }
+            
             .nav-button {
-                width: 80px;
-                height: 80px;
-                font-size: 0.75rem;
+                width: 90px;
+                height: 90px;
+                font-size: 0.8rem;
+            }
+            
+            .nav-menu {
+                gap: 1rem;
             }
 
             header h1 {
@@ -399,12 +467,18 @@
         <p>Modellatore 3D • Visual Designer • Creativo dallo spazio</p>
     </header>
 
-    <!-- Navigation Menu -->
-    <div class="nav-menu">
-        <button class="nav-button active" data-section="chi-sono">Chi Sono</button>
-        <button class="nav-button" data-section="competenze">Competenze</button>
-        <button class="nav-button" data-section="progetti">Progetti</button>
-        <button class="nav-button" data-section="contatti">Contatti</button>
+    <!-- Hand and Navigation Menu -->
+    <div class="hand-container">
+        <!-- Immagine della mano -->
+        <img src="https://cdn3.iconfinder.com/data/icons/human-body-parts-1/100/Hand-512.png" alt="Mano" class="hand-image">
+        
+        <!-- Navigation Menu -->
+        <div class="nav-menu">
+            <button class="nav-button active" data-section="chi-sono">Chi Sono</button>
+            <button class="nav-button" data-section="competenze">Competenze</button>
+            <button class="nav-button" data-section="progetti">Progetti</button>
+            <button class="nav-button" data-section="contatti">Contatti</button>
+        </div>
     </div>
 
     <!-- Content Sections -->
@@ -466,7 +540,7 @@
                 </div>
                 
                 <!-- Spherelums -->
-                <div class="project-item" data-img="spherelumsimg.jpg" data-gif="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/spherelumsvdo-i6rBt9qan9aiMIxqxEu9DfnOAHy73q.gif">
+                <div class="project-item" data-img="spherelumsimg.jpg" data-gif="spherelumsvdo.gif">
                     <img src="spherelumsimg.jpg" alt="Modello 3D di uno spherelum">
                 </div>
                 
@@ -476,18 +550,18 @@
                 </div>
                 
                 <!-- Palla geometrica -->
-                <div class="project-item" data-img="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pallaimg.jpg-CzTT4ixcat0XllKxRyA4FMwhr0NqQz.jpeg" data-gif="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pallavdo-jJOor52Fo7EFv8rX0zSbZShy6d20xN.gif">
-                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pallaimg.jpg-CzTT4ixcat0XllKxRyA4FMwhr0NqQz.jpeg" alt="Modello 3D di una palla geometrica">
+                <div class="project-item" data-img="pallaimg.jpg" data-gif="pallavdo.gif">
+                    <img src="pallaimg.jpg" alt="Modello 3D di una palla geometrica">
                 </div>
                 
                 <!-- Forma magica -->
-                <div class="project-item" data-img="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/magicimg.jpg-evyjUKbH25mPoWwTOoabapEytim4tT.jpeg" data-gif="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/magicvdo-oMNVR55gFdvndWz8bh2zPfN5KPslAx.gif">
-                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/magicimg.jpg-evyjUKbH25mPoWwTOoabapEytim4tT.jpeg" alt="Modello 3D di una forma magica">
+                <div class="project-item" data-img="magicimg.jpg" data-gif="magicvdo.gif">
+                    <img src="magicimg.jpg" alt="Modello 3D di una forma magica">
                 </div>
                 
                 <!-- Scena con luci -->
-                <div class="project-item" data-img="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wtrimg.jpg-rj1k608E2nD91NBvu6wy2NMbBBFZYg.jpeg" data-gif="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wtrvdo-1xSymzzzQXg4IwOCoPqYUAWkiwGuED.gif">
-                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wtrimg.jpg-rj1k608E2nD91NBvu6wy2NMbBBFZYg.jpeg" alt="Scena con luci in Blender">
+                <div class="project-item" data-img="wtrimg.jpg" data-gif="wtrvdo.gif">
+                    <img src="wtrimg.jpg" alt="Scena con luci in Blender">
                 </div>
             </div>
 
@@ -548,9 +622,8 @@
             // Imposta l'anno corrente nel footer
             document.getElementById('current-year').textContent = new Date().getFullYear();
 
-            // Crea stelle
+            // Crea stelle sparse per tutto lo schermo
             const starsContainer = document.getElementById('stars');
-            const stars = [];
             for (let i = 0; i < 200; i++) {
                 const star = document.createElement('div');
                 star.className = 'star';
@@ -558,84 +631,15 @@
                 star.style.width = `${size}px`;
                 star.style.height = `${size}px`;
                 
-                // Posiziona le stelle in modo casuale
-                const angle = Math.random() * Math.PI * 2; // Angolo casuale
-                const distance = 50 + Math.random() * 50; // Distanza dal centro
-                const centerX = window.innerWidth / 2;
-                const centerY = window.innerHeight / 2;
+                // Posiziona le stelle in modo casuale su tutto lo schermo
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
                 
-                const x = centerX + Math.cos(angle) * distance;
-                const y = centerY + Math.sin(angle) * distance;
-                
-                star.style.left = `${x}px`;
-                star.style.top = `${y}px`;
-                
-                // Aggiungi animazione di orbita
-                const orbitSpeed = 20 + Math.random() * 40; // Velocità casuale
-                const orbitDelay = Math.random() * 10; // Ritardo casuale
-                const orbitDirection = Math.random() > 0.5 ? 1 : -1; // Direzione casuale
-                
-                star.style.animation = `orbit ${orbitSpeed}s linear ${orbitDelay}s infinite ${orbitDirection === 1 ? 'normal' : 'reverse'}`;
+                // Aggiungi animazione di twinkle con ritardo casuale
+                star.style.animationDelay = `${Math.random() * 5}s`;
                 
                 starsContainer.appendChild(star);
-                stars.push({
-                    element: star,
-                    angle: angle,
-                    distance: distance,
-                    speed: 0.001 + Math.random() * 0.002 * orbitDirection
-                });
             }
-            
-            // Aggiungi keyframes per l'orbita
-            const styleSheet = document.createElement('style');
-            styleSheet.type = 'text/css';
-            styleSheet.innerHTML = `
-                @keyframes orbit {
-                    0% { transform: rotate(0deg) translateX(var(--orbit-radius)) rotate(0deg); }
-                    100% { transform: rotate(360deg) translateX(var(--orbit-radius)) rotate(-360deg); }
-                }
-                
-                @keyframes twinkle {
-                    0% { opacity: 0.7; }
-                    100% { opacity: 1; transform: scale(1.2); }
-                }
-            `;
-            document.head.appendChild(styleSheet);
-            
-            // Configura i pianeti per l'orbita
-            const planets = document.querySelectorAll('.planet');
-            const planetData = [
-                { radius: 250, speed: 40, delay: 0 },
-                { radius: 350, speed: 60, delay: 5 },
-                { radius: 200, speed: 30, delay: 10 },
-                { radius: 300, speed: 50, delay: 15 },
-                { radius: 400, speed: 70, delay: 20 }
-            ];
-            
-            planets.forEach((planet, index) => {
-                const data = planetData[index];
-                planet.style.setProperty('--orbit-radius', `${data.radius}px`);
-                planet.style.animation = `orbit ${data.speed}s linear ${data.delay}s infinite ${index % 2 === 0 ? 'normal' : 'reverse'}`;
-            });
-            
-            // Animazione delle stelle
-            function animateStars() {
-                const centerX = window.innerWidth / 2;
-                const centerY = window.innerHeight / 2;
-                
-                stars.forEach(star => {
-                    star.angle += star.speed;
-                    const x = centerX + Math.cos(star.angle) * star.distance;
-                    const y = centerY + Math.sin(star.angle) * star.distance;
-                    
-                    star.element.style.left = `${x}px`;
-                    star.element.style.top = `${y}px`;
-                });
-                
-                requestAnimationFrame(animateStars);
-            }
-            
-            animateStars();
 
             // Gestione navigazione
             const navButtons = document.querySelectorAll('.nav-button');
@@ -688,7 +692,7 @@
                     
                     // Controlla se è un GIF o un'immagine statica
                     if (gifSrc.endsWith('.gif')) {
-                        // Per GIF, usa un elemento video
+                        // Per GIF, usa un elemento video o img a seconda del formato
                         const img = document.createElement('img');
                         img.src = gifSrc;
                         img.alt = 'Animazione progetto';
@@ -741,86 +745,6 @@
                 if (e.target === modal) {
                     closeModal.click();
                 }
-            });
-
-            // Effetto magnetico al passaggio del mouse
-            document.addEventListener('mousemove', function(e) {
-                const mouseX = e.clientX;
-                const mouseY = e.clientY;
-                
-                // Effetto magnetico sulle stelle
-                document.querySelectorAll('.star').forEach(star => {
-                    const starRect = star.getBoundingClientRect();
-                    const starX = starRect.left + starRect.width / 2;
-                    const starY = starRect.top + starRect.height / 2;
-                    
-                    const distanceX = mouseX - starX;
-                    const distanceY = mouseY - starY;
-                    const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
-                    
-                    const attractionRadius = 150;
-                    
-                    if (distance < attractionRadius) {
-                        // Calcola la forza di attrazione (più forte quando sei più vicino)
-                        const force = (attractionRadius - distance) / attractionRadius;
-                        
-                        // Direzione verso il mouse (effetto magnetico)
-                        const moveX = distanceX * force / 5;
-                        const moveY = distanceY * force / 5;
-                        
-                        star.style.transform = `translate(${moveX}px, ${moveY}px) scale(${1 + force * 0.5})`;
-                    } else {
-                        star.style.transform = '';
-                    }
-                });
-                
-                // Effetto magnetico sui pianeti
-                document.querySelectorAll('.planet').forEach(planet => {
-                    const planetRect = planet.getBoundingClientRect();
-                    const planetX = planetRect.left + planetRect.width / 2;
-                    const planetY = planetRect.top + planetRect.height / 2;
-                    
-                    const distanceX = mouseX - planetX;
-                    const distanceY = mouseY - planetY;
-                    const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
-                    
-                    const attractionRadius = 250;
-                    
-                    if (distance < attractionRadius) {
-                        // Calcola la forza di attrazione (più forte quando sei più vicino)
-                        const force = (attractionRadius - distance) / attractionRadius;
-                        
-                        // Direzione verso il mouse (effetto magnetico)
-                        const moveX = distanceX * force / 3;
-                        const moveY = distanceY * force / 3;
-                        
-                        planet.style.transform = `translate(${moveX}px, ${moveY}px) scale(${1 + force * 0.2})`;
-                    } else {
-                        planet.style.transform = '';
-                    }
-                });
-            });
-            
-            // Ripristina la posizione quando il mouse esce dalla finestra
-            document.addEventListener('mouseleave', function() {
-                document.querySelectorAll('.star, .planet').forEach(element => {
-                    element.style.transform = '';
-                });
-            });
-            
-            // Adatta le animazioni quando la finestra viene ridimensionata
-            window.addEventListener('resize', function() {
-                // Aggiorna il centro dell'orbita
-                const centerX = window.innerWidth / 2;
-                const centerY = window.innerHeight / 2;
-                
-                stars.forEach(star => {
-                    const x = centerX + Math.cos(star.angle) * star.distance;
-                    const y = centerY + Math.sin(star.angle) * star.distance;
-                    
-                    star.element.style.left = `${x}px`;
-                    star.element.style.top = `${y}px`;
-                });
             });
         });
     </script>
