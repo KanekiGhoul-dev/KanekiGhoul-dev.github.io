@@ -57,11 +57,12 @@
             border-radius: 50%;
             opacity: 0.7;
             animation: twinkle 2s linear infinite alternate;
+            transition: transform 0.3s ease-out;
         }
 
         @keyframes twinkle {
             0% { opacity: 0.7; transform: scale(1) translate(0, 0); }
-            100% { opacity: 1; transform: scale(1.1) translate(3px, -3px); }
+            100% { opacity: 1; transform: scale(1.1) translate(5px, -5px); }
         }
 
         /* Planets */
@@ -70,6 +71,7 @@
             border-radius: 50%;
             opacity: 0.3;
             z-index: -1;
+            transition: transform 0.5s ease-out;
         }
 
         .planet-1 {
@@ -102,26 +104,61 @@
             animation: float3 20s ease-in-out infinite;
         }
 
+        .planet-4 {
+            width: 40px;
+            height: 40px;
+            background-color: #1dd1a1;
+            top: 20%;
+            left: 20%;
+            box-shadow: 0 0 20px #1dd1a1;
+            animation: float4 22s ease-in-out infinite;
+        }
+
+        .planet-5 {
+            width: 70px;
+            height: 70px;
+            background-color: #ff9ff3;
+            top: 60%;
+            left: 70%;
+            box-shadow: 0 0 25px #ff9ff3;
+            animation: float5 28s ease-in-out infinite;
+        }
+
         @keyframes float1 {
             0% { transform: translateY(0) translateX(0) rotate(0deg); }
-            25% { transform: translateY(-30px) translateX(20px) rotate(5deg); }
-            50% { transform: translateY(0) translateX(40px) rotate(0deg); }
-            75% { transform: translateY(30px) translateX(20px) rotate(-5deg); }
+            25% { transform: translateY(-50px) translateX(30px) rotate(5deg); }
+            50% { transform: translateY(0) translateX(60px) rotate(0deg); }
+            75% { transform: translateY(50px) translateX(30px) rotate(-5deg); }
             100% { transform: translateY(0) translateX(0) rotate(0deg); }
         }
 
         @keyframes float2 {
             0% { transform: translateY(0) translateX(0) rotate(0deg); }
-            25% { transform: translateY(40px) translateX(-30px) rotate(-5deg); }
-            50% { transform: translateY(0) translateX(-60px) rotate(0deg); }
-            75% { transform: translateY(-40px) translateX(-30px) rotate(5deg); }
+            25% { transform: translateY(60px) translateX(-40px) rotate(-5deg); }
+            50% { transform: translateY(0) translateX(-80px) rotate(0deg); }
+            75% { transform: translateY(-60px) translateX(-40px) rotate(5deg); }
             100% { transform: translateY(0) translateX(0) rotate(0deg); }
         }
 
         @keyframes float3 {
             0% { transform: translateY(0) translateX(0) rotate(0deg); }
-            33% { transform: translateY(-25px) translateX(-25px) rotate(10deg); }
-            66% { transform: translateY(25px) translateX(-50px) rotate(-10deg); }
+            33% { transform: translateY(-40px) translateX(-40px) rotate(10deg); }
+            66% { transform: translateY(40px) translateX(-80px) rotate(-10deg); }
+            100% { transform: translateY(0) translateX(0) rotate(0deg); }
+        }
+
+        @keyframes float4 {
+            0% { transform: translateY(0) translateX(0) rotate(0deg); }
+            33% { transform: translateY(30px) translateX(50px) rotate(-15deg); }
+            66% { transform: translateY(-30px) translateX(100px) rotate(15deg); }
+            100% { transform: translateY(0) translateX(0) rotate(0deg); }
+        }
+
+        @keyframes float5 {
+            0% { transform: translateY(0) translateX(0) rotate(0deg); }
+            25% { transform: translateY(-40px) translateX(-30px) rotate(8deg); }
+            50% { transform: translateY(0) translateX(-60px) rotate(0deg); }
+            75% { transform: translateY(40px) translateX(-30px) rotate(-8deg); }
             100% { transform: translateY(0) translateX(0) rotate(0deg); }
         }
 
@@ -401,6 +438,8 @@
     <div class="planet planet-1"></div>
     <div class="planet planet-2"></div>
     <div class="planet planet-3"></div>
+    <div class="planet planet-4"></div>
+    <div class="planet planet-5"></div>
 
     <!-- Header -->
     <header>
@@ -478,14 +517,32 @@
                 <div class="project-item" data-src="spherelumsimg.jpg">
                     <img src="spherelumsimg.jpg" alt="Modello 3D di uno spherelum">
                 </div>
-                <div class="project-item" data-src="spherelumsvdo.gif">
-                    <img src="spherelumsvdo.gif" alt="Animazione spherelum">
+                <div class="project-item" data-src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/spherelumsvdo-i6rBt9qan9aiMIxqxEu9DfnOAHy73q.gif">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/spherelumsvdo-i6rBt9qan9aiMIxqxEu9DfnOAHy73q.gif" alt="Animazione spherelum">
                 </div>
                 <div class="project-item" data-src="tazzinaimg.jpg">
                     <img src="tazzinaimg.jpg" alt="Modello 3D di una tazzina">
                 </div>
                 <div class="project-item" data-src="tazzinavdo.gif">
                     <img src="tazzinavdo.gif" alt="Animazione tazzina">
+                </div>
+                <div class="project-item" data-src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pallaimg.jpg-CzTT4ixcat0XllKxRyA4FMwhr0NqQz.jpeg">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pallaimg.jpg-CzTT4ixcat0XllKxRyA4FMwhr0NqQz.jpeg" alt="Modello 3D di una palla geometrica">
+                </div>
+                <div class="project-item" data-src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pallavdo-jJOor52Fo7EFv8rX0zSbZShy6d20xN.gif">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pallavdo-jJOor52Fo7EFv8rX0zSbZShy6d20xN.gif" alt="Animazione palla geometrica">
+                </div>
+                <div class="project-item" data-src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/magicimg.jpg-evyjUKbH25mPoWwTOoabapEytim4tT.jpeg">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/magicimg.jpg-evyjUKbH25mPoWwTOoabapEytim4tT.jpeg" alt="Modello 3D di una forma magica">
+                </div>
+                <div class="project-item" data-src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/magicvdo-oMNVR55gFdvndWz8bh2zPfN5KPslAx.gif">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/magicvdo-oMNVR55gFdvndWz8bh2zPfN5KPslAx.gif" alt="Animazione forma magica">
+                </div>
+                <div class="project-item" data-src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wtrimg.jpg-rj1k608E2nD91NBvu6wy2NMbBBFZYg.jpeg">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wtrimg.jpg-rj1k608E2nD91NBvu6wy2NMbBBFZYg.jpeg" alt="Scena con luci in Blender">
+                </div>
+                <div class="project-item" data-src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wtrvdo-1xSymzzzQXg4IwOCoPqYUAWkiwGuED.gif">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wtrvdo-1xSymzzzQXg4IwOCoPqYUAWkiwGuED.gif" alt="Animazione scena con luci">
                 </div>
             </div>
 
@@ -548,7 +605,7 @@
 
             // Crea stelle
             const starsContainer = document.getElementById('stars');
-            for (let i = 0; i < 100; i++) {
+            for (let i = 0; i < 200; i++) { // Aumentato a 200 stelle
                 const star = document.createElement('div');
                 star.className = 'star';
                 const size = Math.random() * 3 + 1;
@@ -648,13 +705,15 @@
                 }
             });
 
-            // Effetto attrazione stelle al movimento del mouse
+            // Effetto repulsione stelle e pianeti al movimento del mouse
             const stars = document.querySelectorAll('.star');
+            const planets = document.querySelectorAll('.planet');
             
             document.addEventListener('mousemove', function(e) {
                 const mouseX = e.clientX;
                 const mouseY = e.clientY;
                 
+                // Effetto repulsione stelle
                 stars.forEach(star => {
                     const starRect = star.getBoundingClientRect();
                     const starX = starRect.left + starRect.width / 2;
@@ -664,20 +723,57 @@
                     const distanceY = mouseY - starY;
                     const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
                     
-                    const attractionRadius = 150;
-                    const scaleFactor = Math.max(1, 1 + (attractionRadius - distance) / (attractionRadius * 3));
+                    const repulsionRadius = 200;
                     
-                    if (distance < attractionRadius) {
-                        star.style.transform = `translate(${distanceX / (attractionRadius / 5)}px, ${distanceY / (attractionRadius / 5)}px) scale(${scaleFactor})`;
+                    if (distance < repulsionRadius) {
+                        // Calcola la forza di repulsione (più forte quando sei più vicino)
+                        const force = (repulsionRadius - distance) / repulsionRadius;
+                        
+                        // Direzione opposta al mouse (effetto repulsione)
+                        const moveX = -distanceX * force / 5;
+                        const moveY = -distanceY * force / 5;
+                        
+                        star.style.transform = `translate(${moveX}px, ${moveY}px)`;
                     } else {
                         star.style.transform = '';
                     }
                 });
+                
+                // Effetto repulsione pianeti
+                planets.forEach(planet => {
+                    const planetRect = planet.getBoundingClientRect();
+                    const planetX = planetRect.left + planetRect.width / 2;
+                    const planetY = planetRect.top + planetRect.height / 2;
+                    
+                    const distanceX = mouseX - planetX;
+                    const distanceY = mouseY - planetY;
+                    const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+                    
+                    const repulsionRadius = 300;
+                    
+                    if (distance < repulsionRadius) {
+                        // Calcola la forza di repulsione (più forte quando sei più vicino)
+                        const force = (repulsionRadius - distance) / repulsionRadius;
+                        
+                        // Direzione opposta al mouse (effetto repulsione)
+                        const moveX = -distanceX * force / 3; // Movimento più forte per i pianeti
+                        const moveY = -distanceY * force / 3;
+                        
+                        // Applica la trasformazione mantenendo l'animazione originale
+                        const currentTransform = window.getComputedStyle(planet).getPropertyValue('transform');
+                        planet.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                    }
+                });
             });
             
+            // Ripristina la posizione quando il mouse esce dalla finestra
             document.addEventListener('mouseleave', function() {
                 stars.forEach(star => {
                     star.style.transform = '';
+                });
+                
+                planets.forEach(planet => {
+                    planet.style.transform = '';
                 });
             });
         });
