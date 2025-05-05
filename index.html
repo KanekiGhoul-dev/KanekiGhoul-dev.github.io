@@ -61,81 +61,6 @@
             opacity: 0.8;
         }
 
-        /* Planets */
-        .planet {
-            position: fixed;
-            border-radius: 50%;
-            opacity: 0.4;
-            z-index: -1;
-            animation: planetMove 30s linear infinite;
-        }
-
-        @keyframes planetMove {
-            0% {
-                transform: translateZ(-500px) translateX(0);
-            }
-            50% {
-                transform: translateZ(100px) translateX(100px);
-            }
-            100% {
-                transform: translateZ(-500px) translateX(0);
-            }
-        }
-
-        .planet-1 {
-            width: 120px;
-            height: 120px;
-            background-color: #ff6b6b;
-            top: 15%;
-            left: 85%;
-            box-shadow: 0 0 30px #ff6b6b;
-            animation-delay: 0s;
-        }
-
-        .planet-2 {
-            width: 180px;
-            height: 180px;
-            background-color: #48dbfb;
-            top: 75%;
-            left: 10%;
-            box-shadow: 0 0 40px #48dbfb;
-            animation-delay: 5s;
-            animation-duration: 40s;
-        }
-
-        .planet-3 {
-            width: 100px;
-            height: 100px;
-            background-color: #feca57;
-            top: 40%;
-            left: 90%;
-            box-shadow: 0 0 30px #feca57;
-            animation-delay: 10s;
-            animation-duration: 35s;
-        }
-
-        .planet-4 {
-            width: 80px;
-            height: 80px;
-            background-color: #1dd1a1;
-            top: 20%;
-            left: 20%;
-            box-shadow: 0 0 25px #1dd1a1;
-            animation-delay: 7s;
-            animation-duration: 45s;
-        }
-
-        .planet-5 {
-            width: 150px;
-            height: 150px;
-            background-color: #ff9ff3;
-            top: 60%;
-            left: 70%;
-            box-shadow: 0 0 35px #ff9ff3;
-            animation-delay: 3s;
-            animation-duration: 50s;
-        }
-
         /* Header */
         header {
             text-align: center;
@@ -163,7 +88,7 @@
         .hand-container {
             position: relative;
             width: 100%;
-            height: 400px;
+            height: 500px; /* Aumentata l'altezza per dare più spazio */
             margin: 2rem 0;
             z-index: 10;
             display: flex;
@@ -173,24 +98,25 @@
 
         .hand-image {
             position: absolute;
-            width: 600px;
+            width: 600px; /* Dimensione della mano */
             height: auto;
             z-index: 9;
             filter: drop-shadow(0 0 20px #00bfff);
-            opacity: 0.8;
+            opacity: 0.9;
+            transform: translateY(50px); /* Sposta la mano leggermente verso il basso */
         }
 
         /* Navigation */
         .nav-menu {
+            position: absolute;
             display: flex;
             justify-content: center;
             gap: 2rem;
-            position: relative;
             z-index: 11;
             flex-wrap: wrap;
             width: 100%;
             max-width: 800px;
-            margin: 0 auto;
+            padding-top: 50px;
         }
 
         .nav-button {
@@ -212,10 +138,27 @@
             text-shadow: 0 0 5px #00bfff;
         }
 
+        /* Posizionamento specifico per ogni bottone sulla mano */
+        .nav-button:nth-child(1) {
+            transform: translate(-200px, 50px); /* Chi Sono - pollice */
+        }
+
+        .nav-button:nth-child(2) {
+            transform: translate(-70px, -50px); /* Competenze - indice */
+        }
+
+        .nav-button:nth-child(3) {
+            transform: translate(70px, -70px); /* Progetti - medio */
+        }
+
+        .nav-button:nth-child(4) {
+            transform: translate(200px, 0px); /* Contatti - anulare */
+        }
+
         .nav-button:hover {
             background-color: #00bfff;
             color: #000;
-            transform: scale(1.1);
+            transform: scale(1.1) translateY(-10px);
         }
 
         .nav-button.active {
@@ -418,6 +361,22 @@
                 height: 130px;
                 font-size: 1rem;
             }
+            
+            .nav-button:nth-child(1) {
+                transform: translate(-170px, 50px);
+            }
+            
+            .nav-button:nth-child(2) {
+                transform: translate(-60px, -40px);
+            }
+            
+            .nav-button:nth-child(3) {
+                transform: translate(60px, -60px);
+            }
+            
+            .nav-button:nth-child(4) {
+                transform: translate(170px, 0px);
+            }
         }
 
         @media (max-width: 768px) {
@@ -431,8 +390,20 @@
                 font-size: 0.9rem;
             }
             
-            .nav-menu {
-                gap: 1.5rem;
+            .nav-button:nth-child(1) {
+                transform: translate(-140px, 40px);
+            }
+            
+            .nav-button:nth-child(2) {
+                transform: translate(-50px, -30px);
+            }
+            
+            .nav-button:nth-child(3) {
+                transform: translate(50px, -50px);
+            }
+            
+            .nav-button:nth-child(4) {
+                transform: translate(140px, 0px);
             }
         }
 
@@ -447,8 +418,20 @@
                 font-size: 0.8rem;
             }
             
-            .nav-menu {
-                gap: 1rem;
+            .nav-button:nth-child(1) {
+                transform: translate(-110px, 30px);
+            }
+            
+            .nav-button:nth-child(2) {
+                transform: translate(-40px, -20px);
+            }
+            
+            .nav-button:nth-child(3) {
+                transform: translate(40px, -40px);
+            }
+            
+            .nav-button:nth-child(4) {
+                transform: translate(110px, 0px);
             }
 
             header h1 {
@@ -467,13 +450,6 @@
         <div class="stars-container" id="stars-container"></div>
     </div>
 
-    <!-- Planets -->
-    <div class="planet planet-1" id="planet-1"></div>
-    <div class="planet planet-2" id="planet-2"></div>
-    <div class="planet planet-3" id="planet-3"></div>
-    <div class="planet planet-4" id="planet-4"></div>
-    <div class="planet planet-5" id="planet-5"></div>
-
     <!-- Header -->
     <header>
         <h1>Elia Giordano</h1>
@@ -482,8 +458,8 @@
 
     <!-- Hand and Navigation Menu -->
     <div class="hand-container">
-        <!-- Immagine della mano -->
-        <img src="https://www.pngall.com/wp-content/uploads/5/Open-Hand-PNG-Image-File.png" alt="Mano" class="hand-image">
+        <!-- Immagine della mano (usando il file locale) -->
+        <img src="hand.png" alt="Mano" class="hand-image">
         
         <!-- Navigation Menu -->
         <div class="nav-menu">
@@ -798,12 +774,6 @@
                 
                 // Muovi leggermente le stelle in base alla posizione del mouse
                 document.querySelector('.stars-container').style.transform = `translate(${mouseX * 20}px, ${mouseY * 20}px)`;
-                
-                // Muovi i pianeti in direzioni diverse
-                document.querySelectorAll('.planet').forEach((planet, index) => {
-                    const factor = index % 2 === 0 ? 1 : -1;
-                    planet.style.transform = `translate(${mouseX * 50 * factor}px, ${mouseY * 50 * factor}px)`;
-                });
             });
         });
     </script>
