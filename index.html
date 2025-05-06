@@ -30,9 +30,22 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -2;
+            z-index: -3;
             perspective: 1000px;
             overflow: hidden;
+        }
+
+        .space-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('sfondoportfolio.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: -3;
+            opacity: 0.8;
         }
 
         .stars-container {
@@ -43,6 +56,7 @@
             height: 100%;
             transform-style: preserve-3d;
             animation: spaceTravel 60s linear infinite;
+            z-index: -2;
         }
 
         @keyframes spaceTravel {
@@ -64,7 +78,7 @@
         /* Header */
         header {
             text-align: center;
-            padding: 3rem 1rem;
+            padding: 2rem 1rem;
             background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(4px);
             position: relative;
@@ -74,13 +88,13 @@
         }
 
         header h1 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             margin-bottom: 0.5rem;
             text-shadow: 0 0 10px #00bfff;
         }
 
         header p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: #b0dfff;
         }
 
@@ -88,7 +102,7 @@
         .hand-container {
             position: relative;
             width: 100%;
-            height: 500px; /* Aumentata l'altezza per dare più spazio */
+            height: 500px;
             margin: 2rem 0;
             z-index: 10;
             display: flex;
@@ -98,12 +112,12 @@
 
         .hand-image {
             position: absolute;
-            width: 900px; /* Dimensione della mano */
+            width: 600px;
             height: auto;
             z-index: 9;
             filter: drop-shadow(0 0 20px #00bfff);
             opacity: 0.9;
-            transform: translateY(50px); /* Sposta la mano leggermente verso il basso */
+            transform: translateY(50px);
         }
 
         /* Navigation */
@@ -120,16 +134,16 @@
         }
 
         .nav-button {
-            width: 150px;
-            height: 150px;
+            width: 180px;
+            height: 180px;
             border: 3px solid #00bfff;
             background-color: rgba(0, 0, 0, 0.7);
             color: #00bfff;
             border-radius: 50%;
             cursor: pointer;
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
+            font-size: 1.5rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -158,7 +172,6 @@
         .nav-button:hover {
             background-color: #00bfff;
             color: #000;
-            transform: scale(1.1) translateY(-10px);
         }
 
         .nav-button.active {
@@ -350,6 +363,53 @@
             color: #ccc;
         }
 
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #00bfff;
+            color: #000;
+            font-size: 24px;
+            border: none;
+            z-index: 100;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(0, 191, 255, 0.7);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 99;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu-button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #00bfff;
+            border: 2px solid #00bfff;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
+        }
+
         /* Responsive */
         @media (max-width: 1024px) {
             .hand-image {
@@ -357,9 +417,9 @@
             }
             
             .nav-button {
-                width: 130px;
-                height: 130px;
-                font-size: 1rem;
+                width: 150px;
+                height: 150px;
+                font-size: 1.3rem;
             }
             
             .nav-button:nth-child(1) {
@@ -380,14 +440,18 @@
         }
 
         @media (max-width: 768px) {
+            .hand-container {
+                height: 400px;
+            }
+            
             .hand-image {
                 width: 400px;
             }
             
             .nav-button {
-                width: 110px;
-                height: 110px;
-                font-size: 0.9rem;
+                width: 130px;
+                height: 130px;
+                font-size: 1.1rem;
             }
             
             .nav-button:nth-child(1) {
@@ -407,39 +471,84 @@
             }
         }
 
-        @media (max-width: 480px) {
-            .hand-image {
-                width: 300px;
+        @media (max-width: 640px) {
+            .hand-container {
+                display: none;
             }
             
-            .nav-button {
-                width: 90px;
-                height: 90px;
-                font-size: 0.8rem;
+            .nav-menu {
+                display: none;
             }
             
-            .nav-button:nth-child(1) {
-                transform: translate(-110px, 30px);
+            .mobile-menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
             
-            .nav-button:nth-child(2) {
-                transform: translate(-40px, -20px);
-            }
-            
-            .nav-button:nth-child(3) {
-                transform: translate(40px, -40px);
-            }
-            
-            .nav-button:nth-child(4) {
-                transform: translate(110px, 0px);
-            }
-
             header h1 {
                 font-size: 2rem;
             }
-
+            
             header p {
+                font-size: 0.9rem;
+            }
+            
+            .section {
+                padding: 1.5rem;
+                margin: 1rem auto;
+            }
+            
+            .section h2 {
+                font-size: 1.5rem;
+            }
+            
+            .section p {
                 font-size: 1rem;
+            }
+            
+            .project-item {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 1.5rem 1rem;
+            }
+            
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            header p {
+                font-size: 0.8rem;
+            }
+            
+            .section {
+                padding: 1rem;
+            }
+            
+            .section h2 {
+                font-size: 1.3rem;
+            }
+            
+            .section p {
+                font-size: 0.9rem;
+            }
+            
+            .project-item {
+                width: 130px;
+                height: 130px;
+            }
+            
+            .competenze-icons {
+                gap: 1rem;
+            }
+            
+            .competenze-icons .icon {
+                font-size: 2rem;
             }
         }
     </style>
@@ -447,6 +556,7 @@
 <body>
     <!-- Space Background with Stars -->
     <div class="space-container">
+        <div class="space-bg"></div>
         <div class="stars-container" id="stars-container"></div>
     </div>
 
@@ -459,7 +569,7 @@
     <!-- Hand and Navigation Menu -->
     <div class="hand-container">
         <!-- Immagine della mano (usando il file locale) -->
-        <img src="hand.PNG" alt="Mano" class="hand-image">
+        <img src="hand.png" alt="Mano" class="hand-image">
         
         <!-- Navigation Menu -->
         <div class="nav-menu">
@@ -468,6 +578,17 @@
             <button class="nav-button" data-section="progetti">Progetti</button>
             <button class="nav-button" data-section="contatti">Contatti</button>
         </div>
+    </div>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" id="mobile-menu-toggle">≡</button>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <button class="mobile-menu-button active" data-section="chi-sono">Chi Sono</button>
+        <button class="mobile-menu-button" data-section="competenze">Comp.</button>
+        <button class="mobile-menu-button" data-section="progetti">Progetti</button>
+        <button class="mobile-menu-button" data-section="contatti">Contatti</button>
     </div>
 
     <!-- Content Sections -->
@@ -656,7 +777,7 @@
             document.head.appendChild(styleSheet);
 
             // Gestione navigazione
-            const navButtons = document.querySelectorAll('.nav-button');
+            const navButtons = document.querySelectorAll('.nav-button, .mobile-menu-button');
             const sections = document.querySelectorAll('.section');
 
             navButtons.forEach(button => {
@@ -668,7 +789,9 @@
                     sections.forEach(section => section.classList.remove('active'));
                     
                     // Aggiungi classe active al pulsante cliccato e alla sezione corrispondente
-                    this.classList.add('active');
+                    document.querySelectorAll(`[data-section="${targetSectionId}"]`).forEach(btn => {
+                        btn.classList.add('active');
+                    });
                     document.getElementById(targetSectionId).classList.add('active');
                     
                     // Effetto di accelerazione spaziale quando cambi sezione
@@ -676,7 +799,18 @@
                     setTimeout(() => {
                         document.querySelector('.stars-container').style.animationDuration = '60s';
                     }, 1000);
+                    
+                    // Nascondi il menu mobile se aperto
+                    document.getElementById('mobile-menu').classList.remove('active');
                 });
+            });
+
+            // Gestione menu mobile
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuToggle.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
             });
 
             // Gestione selezione progetti
