@@ -1,667 +1,771 @@
+
 <!DOCTYPE html>
 <html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio di Elia Giordano</title>
+    <meta name="description" content="Portfolio di Elia Giordano - Modellatore 3D, Visual Designer" />
+    <meta name="author" content="Elia Giordano" />
+    
+    <!-- Orbitron font for the space theme -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <meta property="og:title" content="Portfolio di Elia Giordano" />
+    <meta property="og:description" content="Modellatore 3D • Visual Designer • Creativo dallo spazio" />
+    <meta property="og:type" content="website" />
+    
     <style>
-        /* Reset e stili di base */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      /* Reset e stili di base */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        body {
-            font-family: 'Orbitron', sans-serif;
-            background-color: #000;
-            color: #00bfff;
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-            perspective: 1000px;
-        }
+      body {
+        font-family: 'Orbitron', sans-serif;
+        background-color: #090a1a;
+        color: #fff;
+        min-height: 100vh;
+        overflow-x: hidden;
+        position: relative;
+      }
 
-        /* Animated Space Background */
-        .space-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -3;
-            perspective: 1000px;
-            overflow: hidden;
-        }
+      /* Animated Space Background */
+      .space-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -3;
+        perspective: 1000px;
+        overflow: hidden;
+      }
 
-        .space-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('sfondoportfolio.jpg');
-            background-size: cover;
-            background-position: center;
-            z-index: -3;
-            opacity: 0.8;
-        }
+      .space-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: radial-gradient(circle at 80% 20%, #151638 0%, #090a1a 80%);
+        z-index: -3;
+      }
 
-        .stars-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            transform-style: preserve-3d;
-            animation: spaceTravel 60s linear infinite;
-            z-index: -2;
-        }
+      .stars-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+        animation: spaceTravel 60s linear infinite;
+        z-index: -2;
+      }
 
-        @keyframes spaceTravel {
-            0% {
-                transform: translateZ(0) rotateX(0deg);
-            }
-            100% {
-                transform: translateZ(1000px) rotateX(10deg);
-            }
+      @keyframes spaceTravel {
+        0% {
+          transform: translateZ(0) rotateX(0deg);
         }
-
-        .star {
-            position: absolute;
-            background-color: white;
-            border-radius: 50%;
-            opacity: 0.8;
+        100% {
+          transform: translateZ(1000px) rotateX(10deg);
         }
+      }
 
-        /* Header */
-        header {
-            text-align: center;
-            padding: 2rem 1rem;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(4px);
-            position: relative;
-            z-index: 10;
-            border-bottom: 2px solid #00bfff;
-            box-shadow: 0 0 20px #00bfff;
+      .star {
+        position: absolute;
+        background-color: white;
+        border-radius: 50%;
+      }
+
+      /* Header/Navbar */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 50;
+        padding: 1.5rem 2rem;
+        transition: all 0.5s ease;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .navbar.scrolled {
+        background-color: rgba(9, 10, 26, 0.8);
+        box-shadow: 0 0 20px rgba(0, 191, 255, 0.3);
+        backdrop-filter: blur(10px);
+        padding: 1rem 2rem;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #00bfff;
+      }
+
+      .logo span {
+        color: #fff;
+        margin-left: 0.5rem;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+      }
+
+      .nav-link {
+        color: #b0dfff;
+        text-decoration: none;
+        font-weight: medium;
+        position: relative;
+        transition: all 0.3s;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        color: #00bfff;
+      }
+
+      .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        bottom: -4px;
+        left: 0;
+        background: #00bfff;
+        transform: scaleX(0);
+        transform-origin: bottom right;
+        transition: transform 0.3s ease-out;
+      }
+
+      .nav-link:hover::after,
+      .nav-link.active::after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+      }
+
+      /* Mobile Menu */
+      .mobile-menu-toggle {
+        display: none;
+        background: none;
+        border: none;
+        color: #00bfff;
+        font-size: 1.5rem;
+        cursor: pointer;
+        z-index: 100;
+      }
+
+      /* Hero Section */
+      .hero {
+        min-height: 100vh;
+        padding: 8rem 2rem 4rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        position: relative;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        font-weight: bold;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+      }
+
+      .hero h1 span {
+        background: linear-gradient(to right, #00bfff, #4cc9f0, #90e0ef);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        display: inline-block;
+      }
+
+      .hero-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        justify-content: center;
+        margin-bottom: 2rem;
+      }
+
+      .hero-tag {
+        padding: 0.5rem 1rem;
+        background-color: rgba(26, 27, 58, 0.8);
+        border: 1px solid #0088cc;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+      }
+
+      .hero-description {
+        max-width: 36rem;
+        margin: 0 auto 3rem;
+        color: #b0dfff;
+        font-size: 1.1rem;
+        line-height: 1.6;
+      }
+
+      .hero-cta {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 3rem;
+      }
+
+      .btn {
+        padding: 0.75rem 1.5rem;
+        font-family: 'Orbitron', sans-serif;
+        font-weight: 500;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        font-size: 1rem;
+      }
+
+      .btn-primary {
+        background: linear-gradient(to right, #00bfff, #0088cc);
+        color: white;
+        border: none;
+        box-shadow: 0 0 25px rgba(0, 191, 255, 0.5);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 0 30px rgba(0, 191, 255, 0.7);
+      }
+
+      .btn-outline {
+        background: transparent;
+        color: #00bfff;
+        border: 1px solid #00bfff;
+      }
+
+      .btn-outline:hover {
+        background-color: rgba(0, 191, 255, 0.1);
+      }
+
+      /* Scroll Indicator */
+      .scroll-indicator {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .scroll-text {
+        color: #b0dfff;
+        font-size: 0.875rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .scroll-icon {
+        width: 1.5rem;
+        height: 2.5rem;
+        border: 2px solid #b0dfff;
+        border-radius: 9999px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding-top: 0.5rem;
+      }
+
+      .scroll-dot {
+        width: 0.375rem;
+        height: 0.375rem;
+        background-color: #b0dfff;
+        border-radius: 50%;
+        animation: scrollDown 1.5s infinite;
+      }
+
+      @keyframes scrollDown {
+        0% {
+          opacity: 1;
+          transform: translateY(0);
         }
-
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 0 10px #00bfff;
+        100% {
+          opacity: 0;
+          transform: translateY(1rem);
         }
+      }
 
-        header p {
-            font-size: 1.1rem;
-            color: #b0dfff;
+      /* Section common styles */
+      section {
+        padding: 6rem 2rem;
+        position: relative;
+        z-index: 10;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 3rem;
+        color: white;
+      }
+
+      .section-title span {
+        background: linear-gradient(to right, #00bfff, #4cc9f0);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      /* About Section */
+      .about {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .about-content {
+        max-width: 48rem;
+        text-align: center;
+      }
+
+      .about-text {
+        color: #b0dfff;
+        font-size: 1.1rem;
+        line-height: 1.8;
+        margin-bottom: 2rem;
+      }
+
+      .skills-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+        margin-top: 3rem;
+      }
+
+      .skill-item {
+        background-color: rgba(26, 27, 58, 0.7);
+        border: 1px solid #0088cc;
+        border-radius: 0.5rem;
+        padding: 0.75rem 1.25rem;
+        transition: all 0.3s ease;
+      }
+
+      .skill-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 15px rgba(0, 191, 255, 0.5);
+        background-color: rgba(26, 27, 58, 0.9);
+      }
+
+      /* Projects Section */
+      .projects {
+        background-color: rgba(13, 14, 36, 0.5);
+        border-top: 1px solid rgba(0, 191, 255, 0.3);
+        border-bottom: 1px solid rgba(0, 191, 255, 0.3);
+      }
+
+      .project-filter {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 3rem;
+        flex-wrap: wrap;
+      }
+
+      .filter-btn {
+        background-color: rgba(26, 27, 58, 0.7);
+        border: 1px solid #0088cc;
+        color: #b0dfff;
+        padding: 0.5rem 1rem;
+        border-radius: 9999px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .filter-btn:hover,
+      .filter-btn.active {
+        background-color: rgba(0, 191, 255, 0.2);
+        color: white;
+      }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .project-card {
+        background-color: rgba(26, 27, 58, 0.7);
+        border-radius: 1rem;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(0, 191, 255, 0.3);
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        transform: translateY(0);
+      }
+
+      .project-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 0 25px rgba(0, 191, 255, 0.3);
+      }
+
+      .project-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-bottom: 1px solid rgba(0, 191, 255, 0.3);
+      }
+
+      .project-info {
+        padding: 1.5rem;
+      }
+
+      .project-title {
+        font-size: 1.25rem;
+        margin-bottom: 0.75rem;
+        color: white;
+      }
+
+      .project-desc {
+        color: #b0dfff;
+        font-size: 0.875rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .project-link {
+        display: inline-flex;
+        align-items: center;
+        color: #00bfff;
+        font-size: 0.875rem;
+        text-decoration: none;
+        gap: 0.5rem;
+        transition: transform 0.3s ease;
+      }
+
+      .project-link:hover {
+        transform: translateX(5px);
+      }
+
+      .project-category {
+        display: none;
+      }
+
+      .project-category.active {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+        width: 100%;
+      }
+
+      /* Modal */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(9, 10, 26, 0.95);
+        z-index: 100;
+        justify-content: center;
+        align-items: center;
+        backdrop-filter: blur(8px);
+      }
+
+      .modal.active {
+        display: flex;
+      }
+
+      .modal-content {
+        max-width: 90%;
+        max-height: 90vh;
+        position: relative;
+        border-radius: 1rem;
+        overflow: hidden;
+        box-shadow: 0 0 30px rgba(0, 191, 255, 0.5);
+      }
+
+      .modal-image,
+      .modal-video {
+        max-width: 100%;
+        max-height: 80vh;
+      }
+
+      .modal-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        width: 2.5rem;
+        height: 2.5rem;
+        background-color: rgba(0, 0, 0, 0.7);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        z-index: 101;
+      }
+
+      /* Contact Section */
+      .contact {
+        text-align: center;
+      }
+
+      .contact-desc {
+        color: #b0dfff;
+        font-size: 1.1rem;
+        max-width: 36rem;
+        margin: 0 auto 3rem;
+      }
+
+      .contact-methods {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        max-width: 28rem;
+        margin: 0 auto;
+      }
+
+      .contact-item {
+        background-color: rgba(26, 27, 58, 0.7);
+        border: 1px solid rgba(0, 191, 255, 0.3);
+        padding: 1.25rem;
+        border-radius: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        color: white;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .contact-item:hover {
+        background-color: rgba(26, 27, 58, 0.9);
+        border-color: #00bfff;
+        transform: translateY(-3px);
+        box-shadow: 0 0 15px rgba(0, 191, 255, 0.3);
+      }
+
+      .contact-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+        background-color: rgba(0, 191, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+      }
+
+      .contact-text {
+        text-align: left;
+        flex-grow: 1;
+      }
+
+      .contact-label {
+        font-size: 0.875rem;
+        color: #b0dfff;
+        margin-bottom: 0.25rem;
+      }
+
+      .contact-value {
+        font-size: 1rem;
+      }
+
+      /* Footer */
+      footer {
+        background-color: rgba(13, 14, 36, 0.7);
+        border-top: 1px solid rgba(0, 191, 255, 0.2);
+        padding: 3rem 2rem;
+        text-align: center;
+      }
+
+      .footer-content {
+        max-width: 48rem;
+        margin: 0 auto;
+      }
+
+      .footer-logo {
+        font-size: 1.5rem;
+        color: #00bfff;
+        font-weight: bold;
+        margin-bottom: 1.5rem;
+      }
+
+      .footer-text {
+        color: #b0dfff;
+        margin-bottom: 2rem;
+        font-size: 0.875rem;
+      }
+
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .footer-link {
+        color: #b0dfff;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-link:hover {
+        color: #00bfff;
+      }
+
+      .copyright {
+        color: #b0dfff;
+        font-size: 0.875rem;
+      }
+
+      /* Planets */
+      .planet {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.2;
+        box-shadow: 0 0 30px;
+        animation: float 15s ease-in-out infinite;
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      .planet-1 {
+        width: 80px;
+        height: 80px;
+        background-color: #ff6b6b;
+        top: 15%;
+        left: 85%;
+        box-shadow: 0 0 30px #ff6b6b;
+        animation-delay: 0s;
+      }
+
+      .planet-2 {
+        width: 120px;
+        height: 120px;
+        background-color: #48dbfb;
+        top: 75%;
+        left: 10%;
+        box-shadow: 0 0 30px #48dbfb;
+        animation-delay: 1s;
+      }
+
+      .planet-3 {
+        width: 60px;
+        height: 60px;
+        background-color: #feca57;
+        top: 40%;
+        left: 90%;
+        box-shadow: 0 0 30px #feca57;
+        animation-delay: 2s;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0) rotate(0deg);
         }
-
-        /* Hand Container */
-        .hand-container {
-            position: relative;
-            width: 100%;
-            height: 500px;
-            margin: 2rem 0;
-            z-index: 5; /* Mano sopra lo sfondo ma sotto i bottoni */
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        50% {
+          transform: translateY(-20px) rotate(3deg);
         }
-
-        .hand-image {
-            position: absolute;
-            width: 600px;
-            height: auto;
-            z-index: 5; /* Mano sopra lo sfondo ma sotto i bottoni */
-            filter: drop-shadow(0 0 20px #00bfff);
-            opacity: 0.9;
-            transform: translateY(50px);
+        100% {
+          transform: translateY(0) rotate(0deg);
         }
+      }
 
-        /* Navigation */
-        .nav-menu {
-            position: absolute;
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            z-index: 11; /* Bottoni sopra la mano */
-            flex-wrap: wrap;
-            width: 100%;
-            max-width: 800px;
-            padding-top: 50px;
+      /* Media Queries */
+      @media (max-width: 1024px) {
+        .hero h1 {
+          font-size: 3rem;
         }
-
-        .nav-button {
-            width: 180px;
-            height: 180px;
-            border: 3px solid #00bfff;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: #00bfff;
-            border-radius: 50%;
-            cursor: pointer;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            transition: background-color 0.3s ease, color 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 20px #00bfff;
-            position: relative;
-            text-shadow: 0 0 5px #00bfff;
+        
+        .section-title {
+          font-size: 2.2rem;
         }
+      }
 
-        /* Posizionamento specifico per ogni bottone sulla mano */
-        .nav-button:nth-child(1) {
-            transform: translate(-200px, 50px); /* Chi Sono - pollice */
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: rgba(9, 10, 26, 0.95);
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          z-index: 40;
+          gap: 3rem;
         }
-
-        .nav-button:nth-child(2) {
-            transform: translate(-70px, -50px); /* Competenze - indice */
+        
+        .nav-links.active {
+          display: flex;
         }
-
-        .nav-button:nth-child(3) {
-            transform: translate(70px, -70px); /* Progetti - medio */
-        }
-
-        .nav-button:nth-child(4) {
-            transform: translate(200px, 0px); /* Contatti - anulare */
-        }
-
-        .nav-button:hover {
-            background-color: #00bfff;
-            color: #000;
-        }
-
-        .nav-button.active {
-            background-color: rgba(0, 191, 255, 0.3);
-        }
-
-        /* Planets */
-        .planet {
-            position: fixed;
-            border-radius: 50%;
-            opacity: 0.3;
-            z-index: 1; /* Pianeti sopra lo sfondo ma sotto la mano */
-            box-shadow: 0 0 30px;
-            animation: float 15s ease-in-out infinite;
-        }
-
-        .planet-1 {
-            width: 80px;
-            height: 80px;
-            background-color: #ff6b6b;
-            top: 15%;
-            left: 85%;
-            box-shadow: 0 0 30px #ff6b6b;
-            animation-delay: 0s;
-        }
-
-        .planet-2 {
-            width: 120px;
-            height: 120px;
-            background-color: #48dbfb;
-            top: 75%;
-            left: 10%;
-            box-shadow: 0 0 30px #48dbfb;
-            animation-delay: 1s;
-        }
-
-        .planet-3 {
-            width: 60px;
-            height: 60px;
-            background-color: #feca57;
-            top: 40%;
-            left: 90%;
-            box-shadow: 0 0 30px #feca57;
-            animation-delay: 2s;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-20px) rotate(3deg);
-            }
-            100% {
-                transform: translateY(0) rotate(0deg);
-            }
-        }
-
-        /* Content Sections */
-        .content-container {
-            padding: 1rem;
-            position: relative;
-            z-index: 10;
-        }
-
-        .section {
-            padding: 2rem;
-            text-align: center;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(4px);
-            margin: 2rem auto;
-            border-radius: 1rem;
-            box-shadow: 0 0 15px #00bfff;
-            max-width: 64rem;
-            display: none;
-            transition: opacity 0.3s ease;
-            border: 2px solid #00bfff;
-        }
-
-        .section.active {
-            display: block;
-        }
-
-        .section h2 {
-            font-size: 1.875rem;
-            font-weight: bold;
-            margin-bottom: 1.5rem;
-            text-shadow: 0 0 10px #00bfff;
-        }
-
-        .section p {
-            font-size: 1.125rem;
-            margin-bottom: 1rem;
-        }
-
-        /* Competenze */
-        .competenze-icons {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .competenze-icons .icon {
-            font-size: 3rem;
-        }
-
-        /* Progetti */
-        .progetti-select {
-            padding: 0.5rem 1rem;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: #00bfff;
-            border: 2px solid #00bfff;
-            border-radius: 9999px;
-            cursor: pointer;
-            font-family: 'Orbitron', sans-serif;
-            margin-bottom: 1.5rem;
-        }
-
-        .project-group {
-            display: none;
-            justify-content: center;
-            gap: 1.25rem;
-            flex-wrap: wrap;
-        }
-
-        .project-group.active {
-            display: flex;
-        }
-
-        .project-item {
-            width: 200px;
-            height: 200px;
-            border-radius: 0.5rem;
-            overflow: hidden;
-            box-shadow: 0 0 15px #00bfff;
-            transition: transform 0.3s ease;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .project-item:hover {
-            transform: scale(1.1);
-        }
-
-        .project-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Modal per visualizzazione progetti */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            z-index: 100;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            max-width: 90%;
-            max-height: 90%;
-            position: relative;
-        }
-
-        .modal-content img, 
-        .modal-content video {
-            max-width: 100%;
-            max-height: 80vh;
-            border-radius: 0.5rem;
-            box-shadow: 0 0 30px #00bfff;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: -40px;
-            right: 0;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-            background: none;
-            border: none;
-            outline: none;
-        }
-
-        /* Contatti */
-        .contatti-links {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-            max-width: 28rem;
-            margin: 0 auto;
-        }
-
-        .contatto-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-            width: 100%;
-            padding: 0.5rem 0;
-            font-size: 1.25rem;
-            color: #00bfff;
-            text-decoration: none;
-            border: 1px solid #00bfff;
-            border-radius: 0.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .contatto-link:hover {
-            background-color: rgba(0, 191, 255, 0.2);
-            color: white;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 1rem;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(4px);
-            margin-top: 4rem;
-            position: relative;
-            z-index: 10;
-            border-top: 1px solid #00bfff;
-        }
-
-        footer p {
-            color: #ccc;
-        }
-
-        /* Mobile Menu */
+        
         .mobile-menu-toggle {
-            display: none;
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background-color: #00bfff;
-            color: #000;
-            font-size: 24px;
-            border: none;
-            z-index: 100;
-            cursor: pointer;
-            box-shadow: 0 0 15px rgba(0, 191, 255, 0.7);
+          display: block;
         }
+        
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+        
+        .projects-grid,
+        .project-category.active {
+          grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        }
+        
+        section {
+          padding: 4rem 1.5rem;
+        }
+      }
 
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            bottom: 90px;
-            right: 20px;
-            flex-direction: column;
-            gap: 10px;
-            z-index: 99;
+      @media (max-width: 480px) {
+        .hero h1 {
+          font-size: 2rem;
         }
-
-        .mobile-menu.active {
-            display: flex;
+        
+        .hero-description {
+          font-size: 1rem;
         }
-
-        .mobile-menu-button {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: rgba(0, 0, 0, 0.8);
-            color: #00bfff;
-            border: 2px solid #00bfff;
-            font-size: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
+        
+        .section-title {
+          font-size: 1.8rem;
         }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .hand-image {
-                width: 500px;
-            }
-            
-            .nav-button {
-                width: 150px;
-                height: 150px;
-                font-size: 1.3rem;
-            }
-            
-            .nav-button:nth-child(1) {
-                transform: translate(-170px, 50px);
-            }
-            
-            .nav-button:nth-child(2) {
-                transform: translate(-60px, -40px);
-            }
-            
-            .nav-button:nth-child(3) {
-                transform: translate(60px, -60px);
-            }
-            
-            .nav-button:nth-child(4) {
-                transform: translate(170px, 0px);
-            }
+        
+        .hero-cta {
+          flex-direction: column;
+          width: 100%;
         }
-
-        @media (max-width: 768px) {
-            .hand-container {
-                height: 400px;
-            }
-            
-            .hand-image {
-                width: 400px;
-            }
-            
-            .nav-button {
-                width: 130px;
-                height: 130px;
-                font-size: 1.1rem;
-            }
-            
-            .nav-button:nth-child(1) {
-                transform: translate(-140px, 40px);
-            }
-            
-            .nav-button:nth-child(2) {
-                transform: translate(-50px, -30px);
-            }
-            
-            .nav-button:nth-child(3) {
-                transform: translate(50px, -50px);
-            }
-            
-            .nav-button:nth-child(4) {
-                transform: translate(140px, 0px);
-            }
+        
+        .btn {
+          width: 100%;
+          display: block;
+          text-align: center;
         }
-
-        @media (max-width: 640px) {
-            .mobile-menu-toggle {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            
-            .hand-container {
-                height: 300px;
-            }
-            
-            .hand-image {
-                width: 300px;
-            }
-            
-            .nav-button {
-                width: 100px;
-                height: 100px;
-                font-size: 0.9rem;
-            }
-            
-            .nav-button:nth-child(1) {
-                transform: translate(-100px, 30px);
-            }
-            
-            .nav-button:nth-child(2) {
-                transform: translate(-35px, -20px);
-            }
-            
-            .nav-button:nth-child(3) {
-                transform: translate(35px, -30px);
-            }
-            
-            .nav-button:nth-child(4) {
-                transform: translate(100px, 0px);
-            }
-            
-            header h1 {
-                font-size: 2rem;
-            }
-            
-            header p {
-                font-size: 0.9rem;
-            }
-            
-            .section {
-                padding: 1.5rem;
-                margin: 1rem auto;
-            }
-            
-            .section h2 {
-                font-size: 1.5rem;
-            }
-            
-            .section p {
-                font-size: 1rem;
-            }
-            
-            .project-item {
-                width: 150px;
-                height: 150px;
-            }
+        
+        .projects-grid,
+        .project-category.active {
+          grid-template-columns: 1fr;
         }
-
-        @media (max-width: 480px) {
-            header {
-                padding: 1.5rem 1rem;
-            }
-            
-            header h1 {
-                font-size: 1.8rem;
-            }
-            
-            header p {
-                font-size: 0.8rem;
-            }
-            
-            .hand-container {
-                height: 250px;
-            }
-            
-            .hand-image {
-                width: 250px;
-            }
-            
-            .nav-button {
-                width: 80px;
-                height: 80px;
-                font-size: 0.8rem;
-            }
-            
-            .nav-button:nth-child(1) {
-                transform: translate(-80px, 25px);
-            }
-            
-            .nav-button:nth-child(2) {
-                transform: translate(-25px, -15px);
-            }
-            
-            .nav-button:nth-child(3) {
-                transform: translate(25px, -25px);
-            }
-            
-            .nav-button:nth-child(4) {
-                transform: translate(80px, 0px);
-            }
-            
-            .section {
-                padding: 1rem;
-            }
-            
-            .section h2 {
-                font-size: 1.3rem;
-            }
-            
-            .section p {
-                font-size: 0.9rem;
-            }
-            
-            .project-item {
-                width: 130px;
-                height: 130px;
-            }
-            
-            .competenze-icons {
-                gap: 1rem;
-            }
-            
-            .competenze-icons .icon {
-                font-size: 2rem;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <!-- Space Background with Stars -->
     <div class="space-container">
-        <div class="space-bg"></div>
-        <div class="stars-container" id="stars-container"></div>
+      <div class="space-bg"></div>
+      <div class="stars-container" id="stars-container"></div>
     </div>
 
     <!-- Planets -->
@@ -669,356 +773,476 @@
     <div class="planet planet-2"></div>
     <div class="planet planet-3"></div>
 
-    <!-- Header -->
-    <header>
-        <h1>Elia Giordano</h1>
-        <p>Modellatore 3D • Visual Designer • Creativo dallo spazio</p>
-    </header>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+      <div class="logo">ELIA<span>GIORDANO</span></div>
+      <div class="nav-links" id="nav-links">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">Chi Sono</a>
+        <a href="#projects" class="nav-link">Progetti</a>
+        <a href="#contact" class="nav-link">Contatti</a>
+      </div>
+      <button class="mobile-menu-toggle" id="mobile-menu-toggle">☰</button>
+    </nav>
 
-    <!-- Hand and Navigation Menu -->
-    <div class="hand-container">
-        <!-- Immagine della mano (usando il file locale con estensione corretta) -->
-        <img src="hand.PNG" alt="Mano" class="hand-image">
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <h1>ELIA <span>GIORDANO</span></h1>
+      <div class="hero-tags">
+        <span class="hero-tag">Modellatore 3D</span>
+        <span class="hero-tag">Visual Designer</span>
+        <span class="hero-tag">Creativo</span>
+      </div>
+      <p class="hero-description">
+        Trasformo idee in esperienze visive straordinarie, combinando precisione tecnica 
+        e visione artistica per creare mondi digitali innovativi.
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">Esplora Progetti</a>
+        <a href="#contact" class="btn btn-outline">Contattami</a>
+      </div>
+      
+      <div class="scroll-indicator">
+        <span class="scroll-text">Scroll</span>
+        <div class="scroll-icon">
+          <div class="scroll-dot"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+      <h2 class="section-title">Chi <span>Sono</span></h2>
+      <div class="about-content">
+        <p class="about-text">
+          Creativo appassionato di tecnologia e design 3D. La mia passione è vedere come un modello statico 
+          prende vita attraverso il movimento, raccontando storie e suscitando emozioni. Ogni progetto è 
+          un'opportunità per spingermi oltre i confini della creatività.
+        </p>
+        <p class="about-text">
+          Con anni di esperienza nel settore digital design, ho sviluppato competenze che mi permettono 
+          di affrontare sfide creative con soluzioni innovative e di impatto.
+        </p>
+        <div class="skills-container">
+          <div class="skill-item">Modellazione 3D</div>
+          <div class="skill-item">Logo Design</div>
+          <div class="skill-item">UI futuristica</div>
+          <div class="skill-item">Animazioni</div>
+          <div class="skill-item">Blender</div>
+          <div class="skill-item">Photoshop</div>
+          <div class="skill-item">Illustrator</div>
+          <div class="skill-item">InDesign</div>
+          <div class="skill-item">AutoCAD</div>
+          <div class="skill-item">Inventor</div>
+          <div class="skill-item">3ds Max</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+      <h2 class="section-title">I miei <span>Progetti</span></h2>
+      <div class="project-filter">
+        <button class="filter-btn active" data-filter="all">Tutti</button>
+        <button class="filter-btn" data-filter="blender">Blender</button>
+        <button class="filter-btn" data-filter="photoshop">Photoshop</button>
+        <button class="filter-btn" data-filter="illustrator">Illustrator</button>
+      </div>
+      
+      <div class="projects-grid">
+        <!-- Blender Projects -->
+        <div class="project-card" data-category="blender">
+          <img src="rubikimg.jpg" alt="Cubo di Rubik" class="project-image">
+          <div class="project-info">
+            <h3 class="project-title">Cubo di Rubik</h3>
+            <p class="project-desc">Modellazione e rendering di un cubo di Rubik con effetti di illuminazione avanzati.</p>
+            <a href="#" class="project-link view-project" data-img="rubikimg.jpg" data-media="rubikvdo.gif" data-type="image">
+              Visualizza progetto →
+            </a>
+          </div>
+        </div>
         
-        <!-- Navigation Menu -->
-        <div class="nav-menu">
-            <button class="nav-button active" data-section="chi-sono">Chi Sono</button>
-            <button class="nav-button" data-section="competenze">Competenze</button>
-            <button class="nav-button" data-section="progetti">Progetti</button>
-            <button class="nav-button" data-section="contatti">Contatti</button>
+        <div class="project-card" data-category="blender">
+          <img src="spherelumsimg.jpg" alt="Spherelums" class="project-image">
+          <div class="project-info">
+            <h3 class="project-title">Spherelums</h3>
+            <p class="project-desc">Studio di forme geometriche e illuminazione con effetti particellari avanzati.</p>
+            <a href="#" class="project-link view-project" data-img="spherelumsimg.jpg" data-media="spherelumsvdo.gif" data-type="image">
+              Visualizza progetto →
+            </a>
+          </div>
         </div>
-    </div>
-
-    <!-- Mobile Menu Toggle -->
-    <button class="mobile-menu-toggle" id="mobile-menu-toggle">≡</button>
-    
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobile-menu">
-        <button class="mobile-menu-button active" data-section="chi-sono">Chi Sono</button>
-        <button class="mobile-menu-button" data-section="competenze">Comp.</button>
-        <button class="mobile-menu-button" data-section="progetti">Progetti</button>
-        <button class="mobile-menu-button" data-section="contatti">Contatti</button>
-    </div>
-
-    <!-- Content Sections -->
-    <div class="content-container">
-        <!-- Chi Sono Section -->
-        <section id="chi-sono" class="section active">
-            <h2>Chi Sono</h2>
-            <p>
-                Creativo appassionato di tecnologia e design 3D. Trasformo idee in esperienze visive uniche, 
-                combinando precisione tecnica e visione artistica per dare vita a mondi digitali straordinari.
-            </p>
-            <p>
-                La mia passione è vedere come un modello statico prende vita attraverso il movimento, 
-                raccontando storie e suscitando emozioni. Ogni progetto è un'opportunità per spingermi oltre i confini della creatività.
-            </p>
-        </section>
-
-        <!-- Competenze Section -->
-        <section id="competenze" class="section">
-            <h2>Competenze</h2>
-            <div class="competenze-icons">
-                <div class="icon">🔷</div>
-                <div class="icon">🔲</div>
-                <div class="icon">⚪</div>
-                <div class="icon">🗑️</div>
-            </div>
-            <p>
-                Modellazione 3D, Logo Design, UI futuristica, Animazioni spaziali, Blender, Photoshop, Illustrator,
-                InDesign, AutoCAD, Inventor, 3ds Max
-            </p>
-        </section>
-
-        <!-- Progetti Section -->
-        <section id="progetti" class="section">
-            <h2>Progetti</h2>
-            <select class="progetti-select" id="software-select">
-                <option value="">Seleziona un software</option>
-                <option value="blender">Blender</option>
-                <option value="photoshop">Photoshop</option>
-                <option value="illustrator">Illustrator</option>
-            </select>
-
-            <!-- Blender Projects -->
-            <div id="blender-projects" class="project-group active">
-                <!-- Rubik Cube -->
-                <div class="project-item" data-img="rubikimg.jpg" data-gif="rubikvdo.gif">
-                    <img src="rubikimg.jpg" alt="Modello 3D di un cubo di Rubik">
-                </div>
-                
-                <!-- Spherelums -->
-                <div class="project-item" data-img="spherelumsimg.jpg" data-gif="spherelumsvdo.gif">
-                    <img src="spherelumsimg.jpg" alt="Modello 3D di uno spherelum">
-                </div>
-                
-                <!-- Tazzina -->
-                <div class="project-item" data-img="tazzinaimg.jpg" data-gif="tazzinavdo.gif">
-                    <img src="tazzinaimg.jpg" alt="Modello 3D di una tazzina">
-                </div>
-                
-                <!-- Palla geometrica -->
-                <div class="project-item" data-img="pallaimg.jpg" data-gif="pallavdo.gif">
-                    <img src="pallaimg.jpg" alt="Modello 3D di una palla geometrica">
-                </div>
-                
-                <!-- Forma magica -->
-                <div class="project-item" data-img="magicimg.jpg" data-gif="magicvdo.gif">
-                    <img src="magicimg.jpg" alt="Modello 3D di una forma magica">
-                </div>
-                
-                <!-- Scena con luci -->
-                <div class="project-item" data-img="wtrimg.jpg" data-gif="wtrvdo.gif">
-                    <img src="wtrimg.jpg" alt="Scena con luci in Blender">
-                </div>
-            </div>
-
-            <!-- Photoshop Projects -->
-            <div id="photoshop-projects" class="project-group">
-                <div class="project-item" data-img="https://via.placeholder.com/200x200.png?text=Photoshop+1" data-gif="https://via.placeholder.com/800x600.png?text=Photoshop+1+Full">
-                    <img src="https://via.placeholder.com/200x200.png?text=Photoshop+1" alt="Progetto Photoshop 1">
-                </div>
-                <div class="project-item" data-img="https://via.placeholder.com/200x200.png?text=Photoshop+2" data-gif="https://via.placeholder.com/800x600.png?text=Photoshop+2+Full">
-                    <img src="https://via.placeholder.com/200x200.png?text=Photoshop+2" alt="Progetto Photoshop 2">
-                </div>
-            </div>
-
-            <!-- Illustrator Projects -->
-            <div id="illustrator-projects" class="project-group">
-                <div class="project-item" data-img="https://via.placeholder.com/200x200.png?text=Illustrator+1" data-gif="https://via.placeholder.com/800x600.png?text=Illustrator+1+Full">
-                    <img src="https://via.placeholder.com/200x200.png?text=Illustrator+1" alt="Progetto Illustrator 1">
-                </div>
-                <div class="project-item" data-img="https://via.placeholder.com/200x200.png?text=Illustrator+2" data-gif="https://via.placeholder.com/800x600.png?text=Illustrator+2+Full">
-                    <img src="https://via.placeholder.com/200x200.png?text=Illustrator+2" alt="Progetto Illustrator 2">
-                </div>
-            </div>
-        </section>
-
-        <!-- Contatti Section -->
-        <section id="contatti" class="section">
-            <h2>Contatti</h2>
-            <p>Mi puoi contattare tramite i seguenti canali:</p>
-            <div class="contatti-links">
-                <a href="tel:+393515749331" class="contatto-link">
-                    <span>📱</span>
-                    +39 351 574 9331
-                </a>
-                <a href="mailto:elgio0926@gmail.com" class="contatto-link">
-                    <span>✉️</span>
-                    elgio0926@gmail.com
-                </a>
-                <a href="https://www.linkedin.com/in/elia-giordano" target="_blank" rel="noopener noreferrer" class="contatto-link">
-                    <span>🔗</span>
-                    Elia Giordano
-                </a>
-            </div>
-        </section>
-    </div>
-
-    <!-- Modal per visualizzazione progetti -->
-    <div id="project-modal" class="modal">
-        <div class="modal-content">
-            <button class="close-modal">&times;</button>
-            <div id="modal-content-container"></div>
+        
+        <div class="project-card" data-category="blender">
+          <img src="tazzinaimg.jpg" alt="Tazzina" class="project-image">
+          <div class="project-info">
+            <h3 class="project-title">Tazzina Design</h3>
+            <p class="project-desc">Modello 3D di una tazzina con materiali realistici e studio dell'illuminazione.</p>
+            <a href="#" class="project-link view-project" data-img="tazzinaimg.jpg" data-media="tazzinavdo.gif" data-type="image">
+              Visualizza progetto →
+            </a>
+          </div>
         </div>
-    </div>
+        
+        <div class="project-card" data-category="blender">
+          <img src="pallaimg.jpg" alt="Palla geometrica" class="project-image">
+          <div class="project-info">
+            <h3 class="project-title">Palla geometrica</h3>
+            <p class="project-desc">Studio di forme geometriche complesse con effetti di luce e riflessi dinamici.</p>
+            <a href="#" class="project-link view-project" data-img="pallaimg.jpg" data-media="pallavdo.gif" data-type="image">
+              Visualizza progetto →
+            </a>
+          </div>
+        </div>
+        
+        <div class="project-card" data-category="blender">
+          <img src="magicimg.jpg" alt="Forma magica" class="project-image">
+          <div class="project-info">
+            <h3 class="project-title">Forma magica</h3>
+            <p class="project-desc">Esplorazione di forme astratte con materiali procedurali e illuminazione volumetrica.</p>
+            <a href="#" class="project-link view-project" data-img="magicimg.jpg" data-media="magicvdo.gif" data-type="image">
+              Visualizza progetto →
+            </a>
+          </div>
+        </div>
+        
+        <div class="project-card" data-category="blender">
+          <img src="wtrimg.jpg" alt="Scena con luci" class="project-image">
+          <div class="project-info">
+            <h3 class="project-title">Illuminazione Avanzata</h3>
+            <p class="project-desc">Studio di tecniche di illuminazione avanzate per creare atmosfere suggestive.</p>
+            <a href="#" class="project-link view-project" data-img="wtrimg.jpg" data-media="wtrvdo.gif" data-type="image">
+              Visualizza progetto →
+            </a>
+          </div>
+        </div>
+        
+        <!-- Photoshop Projects - placeholder -->
+        <div class="project-card" data-category="photoshop">
+          <img src="https://via.placeholder.com/300x200.png?text=Photoshop+1" alt="Photoshop 1" class="project-image">
+          <div class="project-info">
+            <h3 class="project-title">Composizione digitale</h3>
+            <p class="project-desc">Combinazione di elementi per creare un'immagine surreale con tecniche avanzate di fotomontaggio.</p>
+            <a href="#" class="project-link view-project" data-img="https://via.placeholder.com/300x200.png?text=Photoshop+1" data-media="https://via.placeholder.com/800x600.png?text=Photoshop+1+Full" data-type="image">
+              Visualizza progetto →
+            </a>
+          </div>
+        </div>
+        
+        <div class="project-card" data-category="photoshop">
+          <img src="https://via.placeholder.com/300x200.png?text=Photoshop+2" alt="Photoshop 2" class="project-image">
+          <div class="project-info">
+            <h3 class="project-title">Foto manipolazione</h3>
+            <p class="project-desc">Elaborazione di immagini per creare atmosfere fantascientifiche con effetti speciali.</p>
+            <a href="#" class="project-link view-project" data-img="https://via.placeholder.com/300x200.png?text=Photoshop+2" data-media="https://via.placeholder.com/800x600.png?text=Photoshop+2+Full" data-type="image">
+              Visualizza progetto →
+            </a>
+          </div>
+        </div>
+        
+        <!-- Illustrator Projects - placeholder -->
+        <div class="project-card" data-category="illustrator">
+          <img src="https://via.placeholder.com/300x200.png?text=Illustrator+1" alt="Illustrator 1" class="project-image">
+          <div class="project-info">
+            <h3 class="project-title">Logo design</h3>
+            <p class="project-desc">Design di logo minimalista con elementi geometrici e palette colori futuristica.</p>
+            <a href="#" class="project-link view-project" data-img="https://via.placeholder.com/300x200.png?text=Illustrator+1" data-media="https://via.placeholder.com/800x600.png?text=Illustrator+1+Full" data-type="image">
+              Visualizza progetto →
+            </a>
+          </div>
+        </div>
+        
+        <div class="project-card" data-category="illustrator">
+          <img src="https://via.placeholder.com/300x200.png?text=Illustrator+2" alt="Illustrator 2" class="project-image">
+          <div class="project-info">
+            <h3 class="project-title">Illustrazione vettoriale</h3>
+            <p class="project-desc">Grafica vettoriale ispirata al tema spaziale con elementi futuristici.</p>
+            <a href="#" class="project-link view-project" data-img="https://via.placeholder.com/300x200.png?text=Illustrator+2" data-media="https://via.placeholder.com/800x600.png?text=Illustrator+2+Full" data-type="image">
+              Visualizza progetto →
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+      <h2 class="section-title">Contattami</h2>
+      <p class="contact-desc">
+        Hai un progetto in mente? Sei interessato a collaborare? Contattami e parliamone!
+      </p>
+      <div class="contact-methods">
+        <a href="tel:+393515749331" class="contact-item">
+          <div class="contact-icon">📱</div>
+          <div class="contact-text">
+            <div class="contact-label">Telefono</div>
+            <div class="contact-value">+39 351 574 9331</div>
+          </div>
+        </a>
+        <a href="mailto:elgio0926@gmail.com" class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div class="contact-text">
+            <div class="contact-label">Email</div>
+            <div class="contact-value">elgio0926@gmail.com</div>
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/in/elia-giordano" target="_blank" rel="noopener noreferrer" class="contact-item">
+          <div class="contact-icon">🔗</div>
+          <div class="contact-text">
+            <div class="contact-label">LinkedIn</div>
+            <div class="contact-value">Elia Giordano</div>
+          </div>
+        </a>
+      </div>
+    </section>
 
     <!-- Footer -->
     <footer>
-        <p>© <span id="current-year"></span> Elia Giordano. Tutti i diritti riservati.</p>
+      <div class="footer-content">
+        <div class="footer-logo">ELIAGIORDANO</div>
+        <p class="footer-text">
+          Creativo digitale specializzato in modellazione 3D e visual design.
+        </p>
+        <div class="footer-links">
+          <a href="#home" class="footer-link">Home</a>
+          <a href="#about" class="footer-link">Chi Sono</a>
+          <a href="#projects" class="footer-link">Progetti</a>
+          <a href="#contact" class="footer-link">Contatti</a>
+        </div>
+        <p class="copyright">© <span id="current-year"></span> Elia Giordano. Tutti i diritti riservati.</p>
+      </div>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Imposta l'anno corrente nel footer
-            document.getElementById('current-year').textContent = new Date().getFullYear();
+    <!-- Modal per visualizzazione progetti -->
+    <div id="project-modal" class="modal">
+      <button class="modal-close">&times;</button>
+      <div class="modal-content">
+        <div id="modal-content-container"></div>
+      </div>
+    </div>
 
-            // Crea stelle con effetto di viaggio spaziale
-            const starsContainer = document.getElementById('stars-container');
+    <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+    
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Imposta l'anno corrente nel footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Crea stelle dinamicamente
+        const starsContainer = document.getElementById('stars-container');
+        for (let i = 0; i < 300; i++) {
+          const star = document.createElement('div');
+          star.className = 'star';
+          
+          // Dimensione variabile delle stelle
+          const size = Math.random() * 2 + 1;
+          star.style.width = `${size}px`;
+          star.style.height = `${size}px`;
+          
+          // Posizione casuale
+          star.style.left = `${Math.random() * 100}%`;
+          star.style.top = `${Math.random() * 100}%`;
+          
+          // Profondità 3D casuale
+          const z = Math.random() * 1000 - 500;
+          star.style.transform = `translateZ(${z}px)`;
+          
+          // Opacità e colore
+          star.style.opacity = `${Math.random() * 0.7 + 0.3}`;
+          star.style.backgroundColor = i % 20 === 0 ? '#90e0ef' : '#ffffff';
+          
+          // Effetto lampeggiante per alcune stelle
+          if (i % 5 === 0) {
+            const duration = Math.random() * 5 + 3;
+            star.style.animation = `twinkle ${duration}s ease-in-out infinite`;
+          }
+          
+          starsContainer.appendChild(star);
+        }
+        
+        // Gestione scroll navbar
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', function() {
+          if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+          } else {
+            navbar.classList.remove('scrolled');
+          }
+        });
+        
+        // Gestione menu mobile
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const navLinks = document.getElementById('nav-links');
+        
+        mobileMenuToggle.addEventListener('click', function() {
+          navLinks.classList.toggle('active');
+          mobileMenuToggle.textContent = navLinks.classList.contains('active') ? '×' : '☰';
+        });
+        
+        // Chiudi menu mobile quando si clicca su un link
+        const mobileNavLinks = document.querySelectorAll('.nav-links .nav-link');
+        mobileNavLinks.forEach(link => {
+          link.addEventListener('click', function() {
+            navLinks.classList.remove('active');
+            mobileMenuToggle.textContent = '☰';
+          });
+        });
+        
+        // Evidenzia link attivo nella navbar durante lo scroll
+        const sections = document.querySelectorAll('section');
+        const navbarLinks = document.querySelectorAll('.nav-link');
+        
+        window.addEventListener('scroll', function() {
+          let current = '';
+          
+          sections.forEach(section => {
+            const sectionTop = section.offsetTop - 100;
+            const sectionHeight = section.clientHeight;
+            if (window.scrollY >= sectionTop) {
+              current = section.getAttribute('id');
+            }
+          });
+          
+          navbarLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').substring(1) === current) {
+              link.classList.add('active');
+            }
+          });
+        });
+        
+        // Filtro progetti
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+        
+        filterBtns.forEach(btn => {
+          btn.addEventListener('click', function() {
+            // Rimuovi classe active da tutti i pulsanti
+            filterBtns.forEach(btn => btn.classList.remove('active'));
+            // Aggiungi classe active al pulsante cliccato
+            this.classList.add('active');
             
-            // Crea molte stelle a diverse profondità per dare l'effetto 3D
-            for (let i = 0; i < 500; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                
-                // Dimensione variabile delle stelle
-                const size = Math.random() * 3 + 1;
-                star.style.width = `${size}px`;
-                star.style.height = `${size}px`;
-                
-                // Posizione casuale nello spazio 3D
-                const x = Math.random() * 100;
-                const y = Math.random() * 100;
-                const z = Math.random() * 1000 - 500; // Profondità variabile
-                
-                star.style.left = `${x}%`;
-                star.style.top = `${y}%`;
-                star.style.transform = `translateZ(${z}px)`;
-                
-                // Velocità di movimento variabile
-                const speed = Math.random() * 5 + 2;
-                star.style.animation = `starMove ${speed}s linear infinite`;
-                
-                // Luminosità variabile
-                star.style.opacity = Math.random() * 0.5 + 0.5;
-                
-                starsContainer.appendChild(star);
+            const filter = this.getAttribute('data-filter');
+            
+            projectCards.forEach(card => {
+              if (filter === 'all') {
+                card.style.display = 'block';
+              } else {
+                if (card.getAttribute('data-category') === filter) {
+                  card.style.display = 'block';
+                } else {
+                  card.style.display = 'none';
+                }
+              }
+            });
+          });
+        });
+        
+        // Gestione modal progetti
+        const viewProjectLinks = document.querySelectorAll('.view-project');
+        const projectModal = document.getElementById('project-modal');
+        const modalContentContainer = document.getElementById('modal-content-container');
+        const modalClose = document.querySelector('.modal-close');
+        
+        viewProjectLinks.forEach(link => {
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const mediaPath = this.getAttribute('data-media');
+            const mediaType = this.getAttribute('data-type');
+            
+            modalContentContainer.innerHTML = '';
+            
+            // Check if it's a video or an image
+            if (mediaType === 'video' || mediaPath.endsWith('.mp4')) {
+              const video = document.createElement('video');
+              video.src = mediaPath;
+              video.className = 'modal-video';
+              video.controls = true;
+              video.autoplay = true;
+              video.loop = true;
+              modalContentContainer.appendChild(video);
+            } else {
+              // For images and GIFs
+              const img = document.createElement('img');
+              img.src = mediaPath;
+              img.className = 'modal-image';
+              img.alt = 'Project preview';
+              modalContentContainer.appendChild(img);
             }
             
-            // Aggiungi keyframes per il movimento delle stelle
-            const styleSheet = document.createElement('style');
-            styleSheet.type = 'text/css';
-            styleSheet.innerHTML = `
-                @keyframes starMove {
-                    0% {
-                        transform: translateZ(-500px);
-                        opacity: 0;
-                    }
-                    50% {
-                        opacity: 1;
-                    }
-                    100% {
-                        transform: translateZ(500px);
-                        opacity: 0;
-                    }
-                }
-            `;
-            document.head.appendChild(styleSheet);
-
-            // Gestione navigazione
-            const navButtons = document.querySelectorAll('.nav-button, .mobile-menu-button');
-            const sections = document.querySelectorAll('.section');
-
-            navButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const targetSectionId = this.getAttribute('data-section');
-                    
-                    // Rimuovi classe active da tutti i pulsanti e sezioni
-                    navButtons.forEach(btn => btn.classList.remove('active'));
-                    sections.forEach(section => section.classList.remove('active'));
-                    
-                    // Aggiungi classe active al pulsante cliccato e alla sezione corrispondente
-                    document.querySelectorAll(`[data-section="${targetSectionId}"]`).forEach(btn => {
-                        btn.classList.add('active');
-                    });
-                    document.getElementById(targetSectionId).classList.add('active');
-                    
-                    // Effetto di accelerazione spaziale quando cambi sezione
-                    document.querySelector('.stars-container').style.animationDuration = '20s';
-                    setTimeout(() => {
-                        document.querySelector('.stars-container').style.animationDuration = '60s';
-                    }, 1000);
-                    
-                    // Nascondi il menu mobile se aperto
-                    document.getElementById('mobile-menu').classList.remove('active');
-                });
-            });
-
-            // Gestione menu mobile
-            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-            const mobileMenu = document.getElementById('mobile-menu');
-            
-            mobileMenuToggle.addEventListener('click', function() {
-                mobileMenu.classList.toggle('active');
-            });
-
-            // Gestione selezione progetti
-            const softwareSelect = document.getElementById('software-select');
-            const projectGroups = document.querySelectorAll('.project-group');
-
-            softwareSelect.addEventListener('change', function() {
-                const selectedValue = this.value;
-                
-                // Nascondi tutti i gruppi di progetti
-                projectGroups.forEach(group => group.classList.remove('active'));
-                
-                // Mostra il gruppo selezionato o il gruppo Blender se nessuna selezione
-                if (selectedValue === '') {
-                    document.getElementById('blender-projects').classList.add('active');
-                } else {
-                    document.getElementById(`${selectedValue}-projects`).classList.add('active');
-                }
-            });
-
-            // Gestione modal per visualizzazione progetti
-            const projectItems = document.querySelectorAll('.project-item');
-            const modal = document.getElementById('project-modal');
-            const modalContentContainer = document.getElementById('modal-content-container');
-            const closeModal = document.querySelector('.close-modal');
-
-            projectItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    const imgSrc = this.getAttribute('data-img');
-                    const gifSrc = this.getAttribute('data-gif');
-                    
-                    modalContentContainer.innerHTML = '';
-                    
-                    // Controlla se è un GIF o un'immagine statica
-                    if (gifSrc.endsWith('.gif')) {
-                        // Per GIF, usa un elemento video o img a seconda del formato
-                        const img = document.createElement('img');
-                        img.src = gifSrc;
-                        img.alt = 'Animazione progetto';
-                        modalContentContainer.appendChild(img);
-                    } else {
-                        // Per immagini statiche
-                        const img = document.createElement('img');
-                        img.src = gifSrc;
-                        img.alt = 'Progetto';
-                        modalContentContainer.appendChild(img);
-                    }
-                    
-                    modal.classList.add('active');
-                    
-                    // Aggiungi animazione di apertura
-                    const content = modal.querySelector('.modal-content');
-                    content.style.transform = 'scale(0.7)';
-                    content.style.opacity = '0';
-                    content.style.transition = 'all 0.3s ease-out';
-                    
-                    setTimeout(() => {
-                        content.style.transform = 'scale(1)';
-                        content.style.opacity = '1';
-                    }, 10);
-                });
-            });
-
-            closeModal.addEventListener('click', function() {
-                // Aggiungi animazione di chiusura
-                const content = modal.querySelector('.modal-content');
-                content.style.transform = 'scale(1.1)';
-                content.style.opacity = '0';
-                
-                setTimeout(() => {
-                    modal.classList.remove('active');
-                    content.style.transform = '';
-                    content.style.opacity = '';
-                    
-                    // Ferma eventuali video in riproduzione
-                    const videos = modalContentContainer.querySelectorAll('video');
-                    videos.forEach(video => video.pause());
-                    
-                    // Svuota il contenitore
-                    modalContentContainer.innerHTML = '';
-                }, 300);
-            });
-
-            // Chiudi modal cliccando fuori dal contenuto
-            modal.addEventListener('click', function(e) {
-                if (e.target === modal) {
-                    closeModal.click();
-                }
-            });
-            
-            // Effetto di movimento quando si muove il mouse
-            document.addEventListener('mousemove', function(e) {
-                const mouseX = e.clientX / window.innerWidth;
-                const mouseY = e.clientY / window.innerHeight;
-                
-                // Muovi leggermente le stelle in base alla posizione del mouse
-                document.querySelector('.stars-container').style.transform = `translate(${mouseX * 20}px, ${mouseY * 20}px)`;
-            });
+            projectModal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+          });
         });
+        
+        modalClose.addEventListener('click', function() {
+          projectModal.classList.remove('active');
+          document.body.style.overflow = ''; // Re-enable scrolling
+          
+          // Stop any playing videos
+          const videos = modalContentContainer.querySelectorAll('video');
+          videos.forEach(video => video.pause());
+        });
+        
+        projectModal.addEventListener('click', function(e) {
+          if (e.target === projectModal) {
+            modalClose.click();
+          }
+        });
+        
+        // Aggiunta stile per l'effetto twinkle
+        const twinkleStyle = document.createElement('style');
+        twinkleStyle.innerHTML = `
+          @keyframes twinkle {
+            0% { opacity: ${Math.random() * 0.3 + 0.3}; }
+            50% { opacity: ${Math.random() * 0.3 + 0.7}; }
+            100% { opacity: ${Math.random() * 0.3 + 0.3}; }
+          }
+        `;
+        document.head.appendChild(twinkleStyle);
+        
+        // Smooth scrolling per i link interni
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+              window.scrollTo({
+                top: targetElement.offsetTop,
+                behavior: 'smooth'
+              });
+            }
+          });
+        });
+        
+        // Parallax effect on mouse move
+        document.addEventListener('mousemove', function(e) {
+          const mouseX = e.clientX / window.innerWidth - 0.5;
+          const mouseY = e.clientY / window.innerHeight - 0.5;
+          
+          // Subtle parallax for stars
+          const stars = document.querySelectorAll('.star');
+          const starsArray = Array.from(stars);
+          starsArray.slice(0, 50).forEach(star => {
+            const depth = parseFloat(star.style.transform.match(/translateZ\(([^)]+)\)/)?.[1] || '0');
+            const depthFactor = (depth + 500) / 1000;
+            const moveX = mouseX * 20 * depthFactor;
+            const moveY = mouseY * 20 * depthFactor;
+            
+            star.style.transform = `translateZ(${depth}px) translate(${moveX}px, ${moveY}px)`;
+          });
+          
+          // Parallax for planets
+          document.querySelector('.planet-1').style.transform = `translate(${mouseX * -30}px, ${mouseY * -30}px) rotate(${mouseX * 5}deg)`;
+          document.querySelector('.planet-2').style.transform = `translate(${mouseX * -20}px, ${mouseY * -20}px) rotate(${mouseY * 5}deg)`;
+          document.querySelector('.planet-3').style.transform = `translate(${mouseX * -10}px, ${mouseY * -10}px) rotate(${mouseX * mouseY * 10}deg)`;
+        });
+      });
     </script>
-</body>
+  </body>
 </html>
